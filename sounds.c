@@ -14,9 +14,22 @@ void notification_beep(){
 }
 
 void error_beep(){
-    PlaySound(TEXT("error.mp3"), NULL, SND_FILENAME | SND_ASYNC);
+    PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
 }
 
 void car_horn(){
     PlaySound(TEXT("car_horn.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+void applause(){
+    PlaySound(TEXT("applause.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+void hit(){
+    PlaySound(TEXT("hit.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+void out(){
+    PlaySound(TEXT("lose.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+
+void crowd(){
+    PlaySound(TEXT("crowd.wav"), NULL, SND_FILENAME | SND_ASYNC);
 }

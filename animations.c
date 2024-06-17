@@ -99,7 +99,7 @@ int carAnime() {
         printf("\t\t  Loading %d%%\n",position*4);
         set_text_color(CURRENT_FOREGROUND_COLOR,RED);
         printf("\v\v");
-        if (position%8==0)
+        if (position %8 ==0)
         {
             car_horn();
         }

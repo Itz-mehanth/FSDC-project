@@ -3,6 +3,9 @@
 #include <math.h>
 #include <time.h>
 #include <stdlib.h>
+#include "login.h"
+#include "food_order_page.h"
+#include "sounds.h"
 #include "cricket_game.h"
 #include <conio.h>  // For kbhit() and getch()
 #include "theme.h"
@@ -43,6 +46,7 @@ void print_ground() {
     set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
 }
 void print_hit() {
+    hit();
     setCursor(0,6);
     printf("\n\n\n");
     printf("       O                                               O\n");
@@ -93,7 +97,7 @@ void print_bowl(int score,char *team,char *opponent,int runs,int balls) {
 
 void printBall(int x, int y) {
     setCursor(x, y);
-    printf("O");
+    printf("🥎");
 }
 
 void clearBall(int x, int y) {
@@ -147,6 +151,7 @@ int score_manager(int hitpoint,int *score){
         printf("|      S I X     |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        applause();
         return 0;
     }else if (hitpoint >=8 && hitpoint <=9)
     {
@@ -157,6 +162,7 @@ int score_manager(int hitpoint,int *score){
         printf("|    F O U R     |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        applause();
         return 0;
     }else if (hitpoint >=11 && hitpoint <=12){
         *score = *score + 3;
@@ -166,6 +172,7 @@ int score_manager(int hitpoint,int *score){
         printf("|    T H R E E   |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        applause();
         return 0;
     }
     else if (hitpoint >=13 && hitpoint <=13){
@@ -176,6 +183,7 @@ int score_manager(int hitpoint,int *score){
         printf("|      T W O     |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        applause();
         return 0;
     }
     else if (hitpoint >=14 && hitpoint <=14){
@@ -186,6 +194,7 @@ int score_manager(int hitpoint,int *score){
         printf("|      O N E    |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        applause();
         return 0;
     }
     else {
@@ -194,6 +203,7 @@ int score_manager(int hitpoint,int *score){
         printf("|      O U T    |\n");
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        out();
         return 1;
     }
 }
@@ -249,6 +259,7 @@ char* choose_team(int rand){
 
 
 int cricket_game() {
+    crowd();
     int score =0, match_over = 0;
     char opponent[10],team_name[10];
     int rand_op;
@@ -259,8 +270,11 @@ int cricket_game() {
 
     system("cls");
     print_ground();
-    printf("1.CSK\t\t2.DC\t\t3.GT\t\t4.KKR\t\t5.LSG\n");
-    printf("6.MI\t\t7.PK\t\t8.RR\t\t9.RCB\t\t10.SRH\n");
+    int x = 80,y=15;
+    setCursor_inc(x,y++);
+    printf("1.CSK🟨   2.DC🟦   3.GT🟦   4.KKR🟪   5.LSG");
+    setCursor_inc(x,y++);
+    printf("6.MI🟦    7.PK🟥   8.RR   9.RCB🟥   10.SRH🟧\n");
     printf("Select your team: ");
     scanf("%d",&team);
     strcpy(team_name ,choose_team(team));
@@ -299,6 +313,7 @@ int cricket_game() {
         print_scoreboard(team_name, opponent,rand_target-score,rand_balls);
         print_score(score);
         printBall(startX, (int)y);
+        Sleep(1);
         clearBall(startX, (int)y);
         float deltaY = (rand() % 6 + 3) / 100.0f; // Random value between 0.03 and 0.08
         y += deltaY;                              // Update the vertical position
@@ -314,6 +329,7 @@ int cricket_game() {
                 if (score>=rand_target)
                 {
                     print_success("CONGRATULATIONS YOU WON THE GAME\n");
+                    applause();
                     return 1; 
                 }
                 else if (score<rand_target)
@@ -340,6 +356,7 @@ int cricket_game() {
         printf("|     O U T     |\n");
         printf("=================\n");      
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
+        out();
     }
 
     setCursor(0, 0); // Set cursor to default position

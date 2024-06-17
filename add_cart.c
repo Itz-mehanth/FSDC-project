@@ -38,7 +38,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
     readCurrentUser();
     FILE *file = fopen("foods.txt", "r+");
     if (file == NULL) {
-        printf("Error opening foods.txt file.\n");
+        print_error("Error opening foods.txt file.\n");
         return 0;
     }
 
@@ -90,7 +90,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
         // Check if the rating already exists in ratings.txt
         FILE *ratingsFile = fopen("ratings.txt", "r+");
         if (ratingsFile == NULL) {
-            printf("Error opening ratings.txt file.\n");
+            print_error("Error opening ratings.txt file.\n");
             return 0;
         }
 
@@ -108,8 +108,6 @@ int updateFoodItemRating(const char *itemName, float newRating) {
                 // Move the file pointer back to the beginning of the line
                 pos = ftell(ratingsFile) - (strlen(ratingsLine)+1);
                 fseek(ratingsFile, pos, SEEK_SET);
-                print_error("found a duplicate");
-                getchar();
                 // Update the line with the new rating
                 fprintf(ratingsFile, "%s,%s,%.2f\n", current_user_details.username, itemName, newRating);
 
@@ -125,10 +123,9 @@ int updateFoodItemRating(const char *itemName, float newRating) {
         
         fclose(ratingsFile);
 
-        printf("Rating for %s updated successfully.\n", itemName);
         return 1;
     } else {
-        printf("Food item not found.\n");
+        print_error("Food item not found.\n");
         return 0;
     }
 }
@@ -136,7 +133,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
 int food_in_fav(char *food_name){
     FILE *file = fopen("favourites.txt", "r");
     if (file == NULL) {
-        printf("Error opening file\n");
+        print_error("Error opening file\n");
         return 0;
     }
     int found = 0;
@@ -156,7 +153,7 @@ int food_in_fav(char *food_name){
 int food_exists(char *food_name){
     FILE *file = fopen("cart.txt", "r");
     if (file == NULL) {
-        printf("Error opening file\n");
+        print_error("Error opening file\n");
         return 0;
     }
     int found = 0;
@@ -184,7 +181,6 @@ FoodItem recommendedFoodDisplay(){
     loadFoodItems(items,&countFood);
     collaborative_filter(predictedRatings,&numPredictions);
     // printf("%d is the num of predictions\n",numPredictions);
-    getchar();
     for (int i = 0; i < numPredictions; i++) {
         for (int j = 0; j < TOTAL_FOOD_ITEMS; j++)
         {
@@ -199,16 +195,17 @@ FoodItem recommendedFoodDisplay(){
         }
         
     }
-    printf("Press 0 to skip:\n");
-    printf("Enter your choice: ");
-    
-    scanf("%d",&choice);
-
-    if (choice == 0)
-    {
+    int response = MessageBox(NULL, "Wanna view recommended items", "Warning", MB_ICONWARNING | MB_OKCANCEL);
+    if (response == IDOK) {
+        MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
+    } else {
+        MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
         strcpy(predFoods[0].name,"none");
         return predFoods[0];
     }
+
+    printf("Enter your choice: ");
+    scanf("%d",&choice);
     return predFoods[choice-1];
 
 }
@@ -219,76 +216,63 @@ void rate_food_item(FoodItem food){
     char choice;
     char add;
     int quantity;
-    B:printf("Wanna add rating(Y/N):");
-    scanf(" %c",&choice);
-    select_beep();
+    B:
+    int response = MessageBox(NULL, "Wanna add rating", "Warning", MB_ICONWARNING | MB_OKCANCEL);
 
-    if(choice=='Y'){
+    if(response == IDOK){
+        MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
         printf("Enter your rating: ");
         scanf("%d", &user_rating);
         select_beep();
 
         if(user_rating>0 && user_rating<6){
-            printf("\t\t\t\t#===========================#\n");
-            printf("\t\t\t\t Thank you for your feedback\n");
-            printf("\t\t\t\t#===========================#\n");
+            print_success("Thank you for your feedback");
         }else{
-            printf("Invalid rating\n");
+            print_error("Invalid rating");
             goto B;
         }
-    }else if (choice=='N')
+    }else
     {
+        MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
         goto C;
-    }else{
-        printf("Please enter Y or N\n");
-        goto B;
     }
     food.rating=user_rating;
             
     if(updateFoodItemRating(food.name,user_rating)==1){
-        printf("Item updated in the file\n");
     }else {
-        printf("Item not updated in the file\n");
+        print_error("Item not updated in the file\n");
     }
     
 
     C: 
     if(!food_exists(food.name)){
-        printf("Add to cart(Y/N):");
+        response = MessageBox(NULL, "Add to cart", "Warning", MB_ICONWARNING | MB_OKCANCEL);
         scanf(" %c",&add);
         select_beep();
 
-        if (add == 'Y')
+        if (response == IDOK)
         {
+            MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
             printf("Enter the quantity:");
             scanf(" %d",&quantity);
             select_beep();
 
             if(addToCart(food,quantity)==1){
-                printf("\t\t\t\t#==================#\n");
-                printf("\t\t\t\t Item added to cart\n");
-                printf("\t\t\t\t#==================#\n");
-                getchar();
-
+                print_success("Item added to cart\n");
             }else{
-                printf("Error adding item to cart\n");
+                print_error("Error adding item to cart\n");
             }
-        }
-        else if(add != 'N') {
-            printf("Enter a valid input" );
+        }else{
+            MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
         }
     }else{
-        printf("\t\t\t\t#====================#\n");
-        printf("\t\t\t\t Item already in cart\n");
-        printf("\t\t\t\t#====================#\n");
-        getchar();
-        getchar();
+        print_error("Item already added in cart");
     }
     if(!food_in_fav(food.name)){
-        printf("Wanna add it to the favourites list(Y/n):");
-        scanf(" %c",&choice);
-        if (choice == 'Y')
+        response = MessageBox(NULL, "Wanna add it to the favourites list", "Warning", MB_ICONWARNING | MB_OKCANCEL);
+        if (response == IDOK)
         {
+            MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
             FILE *file = fopen("favourites.txt", "a");
             if (file == NULL) {
                 printf("Error opening file\n");
@@ -297,15 +281,15 @@ void rate_food_item(FoodItem food){
             fprintf(file, "Username: %s,Name: %s, Price: %.2f, Category: %s, Type: %s, Ratings: %.2f, Total_ratings: %d\n",current_user_details.username ,food.name, food.price, food.category,food.type, food.rating, food.total_ratings);
             FILE *fp = fopen("current_resturant.txt", "w");
             if (fp == NULL){
-                printf("Error opening file\n");
+                print_error("Error opening file\n");
                 fclose(fp);
                 exit(1);
             }
             fprintf(fp, "%s", current_restaurant_name);
             fclose(fp);
 
-        }else if(add != 'n') {
-            printf("Enter a valid input" );
+        }else{
+            MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
         }
     }
 
