@@ -1,0 +1,2 @@
+mehanth Pizza_Slice 2.99 FastFood Veg 0.00 0 5
+mehanth Oysters_on_the_Half_Shell 19.99 Seafood Veg 0.00 0 4

@@ -1,0 +1,2 @@
+mehanth TofuStirFry 13.00 Chinese Veg 0.00 0 13mehanth EggplantParmesan 16.00 Italian Veg 0.00 0 3
+Itz_Mehanth VegetableUdon 14.00 Japanese Veg 0.00 0 6Itz_Mehanth VegetableLoMein 11.00 Chinese Veg 0.00 0 3Itz_Mehanth SomTumSalad 8.00 Thai Veg 0.00 0 3

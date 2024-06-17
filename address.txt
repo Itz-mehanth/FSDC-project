@@ -1,0 +1,632 @@
+A.Chengalpattu
+1. Acharavakkam
+2. Agaram
+3. Alapakkam
+4. Alathur
+5. Alathur Rf
+6. Amaiyampattu
+7. Amirthampallam
+8. Amoor
+9. Anjur
+10. Anjur Rf
+11. Appur
+12. Appur Rf
+13. Arungal
+14. Arungundram
+15. Athigamanallur
+16. Athur
+17. Chettipatturayamankuppam
+18. Chettipunyam
+19. Chinna Irumbedu
+20. Chinnavippedu
+21. Dasarikunnathur
+22. Dasarikuppam
+23. Dhakshnavarthy
+24. Echankaranai
+25. Edarkundram
+26. Edayankuppam
+27. Edayankuppam Rf
+28. Gudalore Rf
+29. Guruvanmedu
+30. Hanumanthai
+31. Hanumanthapuram
+32. Hanumanthaputheri Rf
+33. Hasthinapuram
+34. Ideeyankodumanthangal
+35. Illalur
+36. Illalur Rf
+37. Kachadimangalam
+38. Kalanipakkam
+39. Kalvoy
+40. Kalvoy Rf
+41. Kannathur Reddy Kuppam
+42. Kannivakkam
+43. Kanthalur
+44. Karambur
+45. Karanai
+46. Karanaipuducheri
+47. Karumbakkam
+48. Karunguzhipallam
+49. Karunilam
+50. Kattakhazhani
+51. Kattankolathur Rf
+52. Kattur
+53. Kattur Rf
+54. Kayar
+55. Kayar Rf
+56. Kayarambedu
+57. Keelakottiyur
+58. Keerappakkam
+59. Kelambakkam
+60. Kizhur
+61. Kolathur
+62. Kolathur Rf
+63. Kondamangalam
+64. Kondangi
+65. Konerikuppam
+66. Kongadu
+67. Kottamedu
+68. Kovalam
+69. Kovilanthangal
+70. Krishanankaranai
+71. Kumizhi
+72. Kumuzhi Rf
+73. Kunnappattu
+74. Kunnavakkam
+75. Madathur Rf
+76. Madayathur
+77. Mailai
+78. Mambakkam
+79. Mambakkam Rf
+80. Manamathy
+81. Mannavedudevadaram
+82. Mannivakkam
+83. Maruderi
+84. Melaiyur
+85. Melakottiyur
+86. Melamaiyur
+87. Melkanagampattu
+88. Melmanapakkam
+89. Mullipakkam
+90. Murugamangalam
+91. Muthukadu
+92. Nallambakkam
+93. Navalur
+94. Nedungundram
+95. Nellikuppam
+96. Nemmeli
+97. Oragadam
+98. Oragadam Rf
+99. Orathur
+100. Othivakkam
+101. Othivakkam Rf
+102. Otteri
+103. Ozhalur
+104. Padur
+105. Paiyanur
+106. Palur
+107. Panchanthiruthy
+108. Pandur
+109. Paranur
+110. Paranur Rf
+111. Pattaravakkam
+112. Pattipulam
+113. Pazhaveli
+114. Periyairumbedu
+115. Periyaputheri
+116. Periyavippedu
+117. Perumalthangal
+118. Perumathunallur
+119. Perunthandalam
+120. Polacheri
+121. Ponmar
+122. Pooluppai
+123. Poondi
+124. Poranthavakkam
+125. Porunth
+
+B.Chennai
+Edyanchavadi-1
+Kathivakkam
+Thiruvottriyur-1 & 2
+Manali
+Sadayankuppam
+Chinna Sekkadu
+Kadapakkam
+Ariyalur
+Ernavoor
+Sathangadu
+Elandanchery
+Madavaram
+Puzhal
+Vadaperumbakkam
+Surapet
+Kadhirvedu
+Puthagaram
+Mathur
+Chettimedu
+Villakupattu
+Kosapur
+Manchambakkam
+Maduravoyal
+Valasaravalkam
+Porur
+Nolambur
+Karampakkam
+Nerkundram
+Ramapuram
+Sivabootham
+Chettiyar Agaram
+Thandalam
+Orakadam
+Menambedu
+Patravakkam
+Ambattur
+Attipattu
+Mannurpet
+Korattur
+Kakkapallam
+Mogappair
+Paadi
+Alandur
+Nandambakkam
+Meenambakkam
+Mugalivakkam
+Manappakkam
+Adambakkam
+Pazhavanthangal
+Nanganallur
+Thalakanacheri
+Madanandapuram
+Ullagaram
+Perungudi
+Pallikaranai
+Shollinganallur
+Kottivakkam
+Palavakkam
+Neelangarai
+Enjambakkam
+Karapakkam
+Okkiam Thorapakkam
+Madipakkam
+Jaladampet
+Semmanjeri
+Uthandi
+Seevaram
+
+C.Kanchipuram
+Agaram
+Alapakkam
+Alavandarmedu
+Alavur
+Ambakkam
+Angambakkam
+Ariyambakkam
+Ariyaperumbakkam
+Arpakkam
+Asoor
+Athipattu
+Athivakkam
+Attuputhur
+Avalur
+Ayimicheri
+Ayyampettai
+Bavasahibpettai
+Chinnamadurapakkam
+Chithaathur
+Chitterimedu
+Damal
+Devariyambakkam
+Ekanampettai
+Elayanarvelur
+Enadur
+Erivoy
+Govindavadi
+Illuppapattu
+Injambakkam
+Iyangarkulam
+Kalakattur
+Kaliyanur
+Kallipattu
+Kallur
+Kambarajapuram
+Kamugampallam
+Kanakambakkam
+Karai
+Karuppadithattadai
+Karur
+Kattavakkam
+Kavanthandalam
+Kilambi
+Kilar
+Kilkadirpoor
+Kilottivakkam
+Kilputhur
+Kolathur
+Kolivakkam
+Konerikuppam
+Kosapattu
+Kottavakkam
+Kovalavedu
+Koyambakkam
+Kunnavakkam
+Kuram
+Kuruvimalai
+Kuthirambakkam
+Madapuram
+Madavilagam
+Magaral
+Mangalpadi
+Maniyachi
+Manjamedu
+Marutham
+Melambi
+Melbangaram
+Melkadirpoor
+Melottivakkam
+Melputhur
+Mettukuppam
+Moolapattu
+Murukkanthangal
+Musaravakkam
+Muthavedu
+Muthialpettai
+Muttavakkam
+Naickenkuppam
+Naickenpettai
+Nallur
+Narapakkam
+Nathanallur
+Nattapettai
+Navettikulam
+Neervalur
+Nelveli
+Nelvoy
+Nummappattu
+Oddanthangal
+Olaiyur
+Olakkalpattu
+Orikkai
+Padappam
+Padunelli
+Palayaseevaram
+Pappankuzhi
+Parandur
+Periamadurapakkam
+Periyakarambur
+Perumanallur
+Perumbakkam
+Pitchavadi
+Podavur
+Pondavakkam
+Poondithangal
+Poosivakkam
+Pudupakkam
+Puliyambakkam
+Pullalur
+Pullambakkam
+Punjarasanthangal
+Purisai
+Puthagaram
+Putheri
+Sadathangal
+Seeyamangalam
+Seeyati
+Sekkankulam
+Semanthangal
+Sembarambakkam
+Singadivakkam
+Sinnivakkam
+Sirukaveripakkam
+Sirunaiperugal
+Sirupagal
+Siruvakkam
+Siruvallur 128
+
+D.Thiruvallur
+Abrahampuram
+Agaram
+Allikuzhi
+Allikuzhi R F
+Ammanambakkam
+Aranvoyal
+Arikkambattu
+Arumbakkam
+Attupakkam
+Ayalacheri
+Ayalur
+Ayathur
+Azhinjivakkam
+Chithambakkam
+Chitrambakkam
+Chittathur
+Egattur
+Eraiyur
+Erayamangalam
+Gengulukandigai
+Gerugampoondi
+Govindamedu
+Greenvelnatham
+Guruvoyal
+Hudson Nagaram
+Hudsonpuram
+Ikkadu
+Illuppur
+Irulancherry
+Kadambathur
+Kakkalur
+Kalianur
+Kaliyanakuppam
+Kallambedu
+Kanagavallipuram
+Kannampettai
+Kannur
+Karanai
+Karani
+Karanisampattu
+Karattanur
+Karikkalvakkam
+Kavankolathur
+Keelacherry
+Keelanur
+Keelvilagam
+Kilambakkam
+Koduveli
+Kondanjerry
+Koovam
+Koppur
+Kottaiyur
+Krishnapuram
+Kumaracherry
+Kunnavalam
+Madathukuppam
+Magaral
+Manambedu
+Mappedu
+Melakondaiyur
+Melanur
+Melnallathur
+Melvilagam
+Monnavedu
+Moovur
+Nallankavanur
+Narasingaparam
+Nayapakkam
+Neiveli
+Nemiliagaram
+Nungambakkam
+Othikkadu
+Pakkam
+Panambakkam
+Pandur
+Papparambakkam
+Pattaraiperumbudur
+Perambakkam
+Perathur
+Perumalpattu
+Pillaiyarkuppam
+Pinjivakkam
+Placepalayam
+Polivakkam
+Poondi
+Praiyankuppam
+Pudukuppam
+Pudumavelangai
+Pudupattu
+Puliyur
+Pullarambakkam
+Pullarambakkam R F
+Punnapakkam
+Punnapattu
+Putlur
+Ramanjeri
+Ramankoil
+Ramathandalam
+Rangapuram
+Satharai
+Seeyanjeri
+Selai
+Sembedu
+Sendrayanpalayam
+Senji
+Sennavaram
+Sethupakkam
+Sevvapettai
+Singilikuppam
+Sirukadal
+Sirukalathur
+Sivanvoyal
+Thamaaraipakkam
+Thandalam
+Thaneerkulam
+Thenkaranai
+Thirukananjeri
+Thirupachur
+Thirupandiyur
+Tiruppair
+Thodukadu
+Thomur
+Thottikalai
+Thozhur
+Tirur
+Tiruvallur
+Ulundai
+Uthirambakkam
+Valasaivettikadu
+Vathattur
+Vedaiyur
+Velliyur
+Venkatapuram
+Vengal
+Vengathur
+Veppambaattu 26
+Veppambaattu 25
+Vilapakkam
+Vishnuvakkam
+Voyalur
+
+E.Vellore
+Mangalam
+Acharapakkam
+Agaram
+Alangarathinalur
+Alanthurai
+Alathur
+Anaiyur
+Anapakkam
+Andankoil
+Andur
+Annamalai Nagar
+Arasanipalaiyam
+Arcot
+Ariyur
+Athikarai
+Athipakkam
+Athiyur
+Avalur
+Ayyanthangal
+Balasamudram
+Banavaram
+Bethamangalam
+Bhuvanagiri
+Chennasamudram
+Chengam
+Chengattur
+Chettiarpatti
+Chinnakkarai
+Chinnamanur
+Chinnasekkadu
+Chinnathangal
+Chintalapuram
+Chokkikulam
+Coimbatore
+Dalavaypuram
+Devarajaneri
+Devathur
+Dharmapuram
+Edayanchavadi
+Elamavur
+Ellarai
+Ellarigundu
+Erayanallur
+Erumaiyur
+Ethirkkarai
+Ganapathi Agraharam
+Gangaikondacholapuram
+Gingee
+Gopalapuram
+Gudiyatham
+Guduvancheri
+Irumbuliyur
+Jadayampalayam
+Jalarpet
+Jamunamarathur
+Kadirpet
+Kalavai
+Kaligandapuram
+Kalinjur
+Kallambedu
+Kallappattu
+Kallasamudram
+Kalpattu
+Kamalapuram
+Kanagapuram
+Kanakkampalayam
+Kanavipudur
+Kanchipuram
+Kandachipalayam
+Kaniyambadi
+Karai
+Karungal
+Karunguzhi
+Karuppur
+Kattupakkam
+Kavaraipettai
+Kazhipattur
+Keezhpakkam
+Keeranur
+Keerapalayam
+Keerthangudi
+Kelamangalam
+Kilampakkam
+Kilkulam
+Killai
+Killi
+Kilmanavur
+Kilnachipalayam
+Kilpallipattu
+Kilpatti
+Kilpennathur
+Kilputhur
+Kilsekkadu
+Kilsathanur
+Kilur
+Kinathukadavu
+Kinathukondan
+Kirumambakkam
+Kizhakkuthagaram
+Kizhapakkam
+Kizhakkuthangal
+Kizhathur
+Kodigai
+Kodur
+Koilpatti
+Kokilambedu
+Kolathur
+Kommalankuttai
+Konagavayal
+Kondamanur
+Kondur
+Koovam
+Korukkupet
+Kosathur
+Kothakkarai
+Kothapalli
+Kottaiyur
+Kovaipudur
+Kovalam
+Kovilur
+Krishnagiri
+Krishnapuram
+Krishnarayapuram
+Kuduthurai
+Kulasekarapatnam
+Kumaramangalam
+Kunnathur
+Kurinjipadi
+Kurukkal
+Kurumbapatti
+Kurumbur
+Kuthalam
+Kuthirai
+Kuthiranur
+Labbaikudikadu
+Madanagopalapuram
+Madapattu
+Madathukulam
+Madavaram
+Madurantakam
+Magaral
+Mahabalipuram
+Mahendravadi
+Mailam
+Majur
+Malaiperumalnagar
+Mallappuram
+Mamandur
+Manampattu
+Manavala Nagar
+Manavur
+Mangadu
+Mangalam
+Mangalathupatti
+Mangathai
+Mannargudi
+Mannarisai
+Manthampattu
+Marakkanam
+Maranallur
+Marathur
+Maruthur
+Maruthuvakudi
+Melacheri

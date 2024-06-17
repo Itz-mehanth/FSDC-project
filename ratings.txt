@@ -1,0 +1,13 @@
+mehanth,Grilled_Salmon,5.00
+paveethiran,Cheeseburger,4.00
+mehanth,Crab_Cakes,1.00
+paveethiran,Chicken_Nuggets,3.00
+paveethiran,Moussaka,4.00
+mehanth,Tibs_(Sauteed_Meat),3.00
+paveethiran,Tibs_(Sauteed_Meat),5.00
+paveethiran,Key_Lime_Pie,4.00
+paveethiran,Clam_Chowder,4.00
+paveethiran,Curry_Leaf_Rice,4.00
+paveethiran,Key_Lime_Pie,4.00
+mehanth,Clam_Chowder,5.00
+mehanth,Curry_Leaf_Rice,4.00

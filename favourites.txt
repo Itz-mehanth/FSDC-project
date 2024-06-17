@@ -1,0 +1,4 @@
+Username: mehanth,Name: Grilled_Salmon, Price: 16.99, Category: Seafood, Type: NonVeg, Ratings: 0.00, Total_ratings: 0
+Username: paveethiran,Name: Lobster_Bisque, Price: 12.99, Category: Seafood, Type: NonVeg, Ratings: 0.00, Total_ratings: 0
+Username: paveethiran,Name: Shrimp_Scampi, Price: 15.99, Category: Seafood, Type: NonVeg, Ratings: 0.00, Total_ratings: 0
+Username: paveethiran,Name: Bagel_with_Cream_Cheese, Price: 5.49, Category: Breakfast, Type: Veg, Ratings: 0.00, Total_ratings: 0
