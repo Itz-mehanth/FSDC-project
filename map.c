@@ -58,7 +58,7 @@ void calculate_distances(Node *node) {
 Node* create_graph_from_file(const char* filename) {
     FILE* fp = fopen(filename, "r");
     if (fp == NULL) {
-        printf("Error opening file: %s\n", filename);
+        print_error("Error opening file");
         return NULL;
     }
 
@@ -75,7 +75,7 @@ Node* create_graph_from_file(const char* filename) {
     // Allocate memory for the graph
     Node* graph = (Node*)malloc(num_cities * sizeof(Node));
     if (graph == NULL) {
-        printf("Error allocating memory for graph.\n");
+        print_error("Error allocating memory for graph.\n");
         fclose(fp);
         return NULL;
     }
@@ -136,7 +136,7 @@ Node* create_graph_from_file(const char* filename) {
 void write_graph_to_file(const char* filename, Node* graph) {
     FILE* fp = fopen(filename, "w");
     if (fp == NULL) {
-        printf("Error opening file: %s\n", filename);
+        print_error("Error opening file");
         return;
     }
 
@@ -170,7 +170,7 @@ int find_source_node_index(Node* graph,const char *source_name) {
   }
 
   // If not found, return -1 to indicate an error
-  printf("Source node '%s' not found in the graph.\n", source_name);
+  print_error("Source node not found in the graph");
   return -1;
 }
 void create_cost_matrix(double cost_matrix[MAX_CITIES][MAX_CITIES], Node *graph, Node *source) {
@@ -300,7 +300,7 @@ void dijkstra(double graph[V][V], int src, int dest, Node* graph_arr, double dis
 void graph_binary_write() {
     FILE *file = fopen("graph.bin", "wb");
     if (file == NULL) {
-        printf("Error opening file!\n");
+        print_error("Error opening file!\n");
         exit(1);
     }
 
@@ -308,7 +308,7 @@ void graph_binary_write() {
 
     for (int i = 0; i < num_cities; i++) {
         if (fwrite(&graph[i], sizeof(Node), 1, file) != 1) {
-            printf("Error writing node %d to file\n", i);
+            print_error("Error writing node to file");
             fclose(file);
             getchar();
             exit(1);
@@ -316,13 +316,12 @@ void graph_binary_write() {
     }
 
     fclose(file);
-    printf("Graph written to file successfully.\n");
 }
 Node* readNodesFromFile() {
     int count;
     FILE* file = fopen("graph.bin", "rb");
     if (file == NULL) {
-        perror("Error opening file");
+        print_error("Error opening file");
         exit(EXIT_FAILURE);
     }
 
@@ -358,7 +357,7 @@ void cost_binary_write(){
     FILE *file = fopen("cost_matrix.bin", "wb");
     if (file == NULL)
     {
-         printf("Error opening file!\n");
+         print_error("Error opening file!");
          exit(1);
     }
     // printf("creating cost matrix\n");
@@ -367,7 +366,7 @@ void cost_binary_write(){
     getchar();
     if (file == NULL)  
     {
-         printf("Error opening file!\n");
+         print_error("Error opening file!");
          exit(1);
     }
     fwrite(&count, sizeof(int), 1, file);
@@ -386,13 +385,13 @@ void readcostsFromFile(double cost_matrix[MAX_CITIES][MAX_CITIES]) {
     int count= 119;
     FILE* file = fopen("cost_matrix.bin", "rb");
     if (file == NULL) {
-        perror("Error opening file");
+        print_error("Error opening file");
         exit(EXIT_FAILURE);
     }
 
     // Move to the end of the file to determine the file size
     if (cost_matrix == NULL) {
-        perror("Memory allocation failed");         
+        print_error("Memory allocation failed");         
         fclose(file);
         exit(EXIT_FAILURE);
     }
@@ -404,7 +403,7 @@ void readcostsFromFile(double cost_matrix[MAX_CITIES][MAX_CITIES]) {
 
     // Ensure the dimensions match
     if (rows != 119 || cols != 119) {
-        fprintf(stderr, "Matrix dimensions do not match!\n");
+        print_error("Matrix dimensions do not match!\n");
         fclose(file);
         exit(EXIT_FAILURE);
     }
@@ -495,7 +494,7 @@ int map(char *sourcename, float max_dist){
             selection = select_restaurants();
         }
         
-        printf("your have selected %d",selection);
+        // printf("your have selected %d",selection);
         system("cls");
         home();
         printUserDetails();

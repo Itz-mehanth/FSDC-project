@@ -4,6 +4,7 @@
 #include "illustrations.h"
 #include "login.h"
 #include "theme.h"
+#include "textField.h"
 #include "profile.h"
 #include "food_order_page.h"
 #include "notification.h"
@@ -123,6 +124,9 @@ int edit_profile()
     printf("Enter your choice (1-4): ");
 
     int choice;
+    char *editProfileLabels[] = { "Password", "Email", "Phone", "Back" };
+    InputPopup(editProfileLabels,4);
+    // choice = current_button;
     char new_value[100]; // Buffer for new input
 
     scanf("%d", &choice);
@@ -161,20 +165,13 @@ int edit_profile()
             }
             // Write updated user information to file
             fprintf(file, "%s %s %s %s\n", Users[i].username, Users[i].password, Users[i].email, Users[i].phone_no);
-            writeCurrentUser();
-            // switch (choice) {
-            //     case 1:
-            //         add_notification("You have changed your password successfully");
-            //         break;
-            //     case 2:
-            //         add_notification("You have changed your email successfully");
-            //         break;
-            //     case 3:
-            //         add_notification("You have changed your phone number successfully");
-            //         break;
-            //     default:
-            //         break;
-            // }
+            strcpy(current_user_details.email,Users[i].email);
+            strcpy(current_user_details.password,Users[i].password);
+            strcpy(current_user_details.username,Users[i].username);
+            strcpy(current_user_details.phone_no,Users[i].phone_no);
+            current_user_details.isveg = Users[i].isveg;
+            writeCurrentUser(current_user_details);
+
             fclose(file);
             break;
         } else {
@@ -186,16 +183,13 @@ int edit_profile()
 }
 
 int profile_options(){
-    while (1)
-    {
         printf("1. Edit profile\n");
         printf("2. Favourites\n");
-        printf("3. notifications\n");
-        printf("4. comments\n");
-        printf("5. Ratings\n");
-        printf("6. Statistics\n");
-        printf("7. History\n");
-        printf("8. back\n");
+        printf("3. comments\n");
+        printf("4. Ratings\n");
+        printf("5. Statistics\n");
+        printf("6. History\n");
+        printf("7. back\n");
         printf("Enter your choice (1-8): ");
         getchar(); // Consume newline character left in the buffer
 
@@ -214,13 +208,6 @@ int profile_options(){
             view_favourites();
             getchar();
             break;
-        case 3: 
-            system("cls");
-            top_bar();
-            view_notifications();
-            getchar();
-            getchar();
-            break;
         case 4: 
             
             break;
@@ -228,29 +215,27 @@ int profile_options(){
             
             break;
         case 6: 
-            
-            break;
-        case 7: 
             calender();
             break;
-        case 8: 
-            return 1;
+        case 7: 
+            return 0;
             break;
         default:
             break;
-        
-    }
-    
-
     }
 }
-void display_user_profile() {
+int display_user_profile() {
     // profile_page_banner();
-    profile_detail_div();
-    
-
-    profile_options();
-    
+    while (1)
+    {
+        system("cls");
+        set_text_color(BLACK,WHITE);
+        home();
+        printUserDetails();
+        home_page_banner();
+        profile_detail_div();
+        if(profile_options()==0) return 1;
+    }
 
 }
 

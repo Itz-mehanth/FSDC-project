@@ -728,7 +728,6 @@ Menu readMenuFromFile(Menu *menu) {
            
         }
     }
-    print_success("starting initialisation");
 
     initializeCategories(menu);
 
@@ -850,7 +849,7 @@ void updateRatings(FoodItem items[], int count) {
 void saveFoodItems(FoodItem items[], int count) {
     FILE *file = fopen("foods.txt", "w");
     if (!file) {
-        perror("Failed to open foods.txt");
+        print_error("Failed to open foods.txt");
         return;
     }
 

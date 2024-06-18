@@ -97,7 +97,7 @@ void print_bowl(int score,char *team,char *opponent,int runs,int balls) {
 
 void printBall(int x, int y) {
     setCursor(x, y);
-    printf("🥎");
+    printf(" ");
 }
 
 void clearBall(int x, int y) {
@@ -204,6 +204,7 @@ int score_manager(int hitpoint,int *score){
         printf("=================\n");
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
         out();
+        print_error("YOU LOSE THE GAME\n");
         return 1;
     }
 }
@@ -270,11 +271,11 @@ int cricket_game() {
 
     system("cls");
     print_ground();
-    int x = 80,y=15;
-    setCursor_inc(x,y++);
-    printf("1.CSK🟨   2.DC🟦   3.GT🟦   4.KKR🟪   5.LSG");
-    setCursor_inc(x,y++);
-    printf("6.MI🟦    7.PK🟥   8.RR   9.RCB🟥   10.SRH🟧\n");
+    int x = 80,Y=15;
+    setCursor_inc(x,Y++);
+    printf("1.CSK   2.DC   3.GT   4.KKR   5.LSG");
+    setCursor_inc(x,Y++);
+    printf("6.MI    7.PK   8.RR   9.RCB   10.SRH\n");
     printf("Select your team: ");
     scanf("%d",&team);
     strcpy(team_name ,choose_team(team));
@@ -357,6 +358,7 @@ int cricket_game() {
         printf("=================\n");      
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
         out();
+        print_error("YOU LOSE THE GAME\n");
     }
 
     setCursor(0, 0); // Set cursor to default position

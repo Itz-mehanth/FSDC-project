@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include "textField.h"
 #include "partner_path.h"
 #include "delivery_boy_selection.h"
 #include "map.h"
 #include <stdbool.h>
 #include "add_cart.h"
 #include <ctype.h>
+#include "buttonCreator.h"
 #include "theme.h"
 #include "delivery_boy_selection.h"
 #include "illustrations.h"
@@ -39,7 +41,7 @@ void home_page_banner(){
     set_text_color(WHITE,YELLOW);
     printf("                                                                                                                                                               ");
     set_text_color(WHITE,RED);
-    printf("🚗🚗🚗🚗🚗🚗🚗🚗   ");
+    printf("                           ");
     set_text_color(WHITE,YELLOW);
     setCursor_inc(x , y++);
     printf("                                                                                                                                                           ");
@@ -53,7 +55,7 @@ void home_page_banner(){
     set_text_color(WHITE,YELLOW);
     set_text_color(RED,YELLOW);
     setCursor_inc(x , y++);
-    printf(" 💝F O O D  Y O U  L O V E.💝                                                                                                                  ");
+    printf("    F O O D  Y O U  L O V E.                                                                                                                     ");
     set_text_color(WHITE,RED);
     printf("                                      ");
     set_text_color(WHITE,YELLOW);
@@ -64,7 +66,7 @@ void home_page_banner(){
     printf("                                            ");
     set_text_color(WHITE,YELLOW);
     setCursor_inc(x , y++);
-    printf("    D E L I V E R E D  T O  Y O U🚘                                                                                                    ");
+    printf("    D E L I V E R E D  T O  Y O U                                                                                                      ");
     set_text_color(WHITE,RED);
     printf("                                                           ");
     set_text_color(WHITE,YELLOW);
@@ -249,7 +251,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("      🏠  HOME             ");
+        printf("          HOME             ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -267,7 +269,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("    😁  PROFILE           ");
+        printf("         PROFILE           ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -283,7 +285,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("     📜  HISTORY          ");
+        printf("          HISTORY          ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -300,7 +302,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("     ⚙️  SETTINGS          ");
+        printf("         SETTINGS          ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -317,7 +319,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("       🔙 LOGOUT           ");
+        printf("          LOGOUT           ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -333,7 +335,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("  🏬  VIEW RESTAURANT      ");
+        printf("      VIEW RESTAURANT      ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -348,7 +350,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("   🎮   PLAY GAMES        ");
+        printf("         PLAY GAMES        ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -364,7 +366,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("       🛒  CART           ");
+        printf("            CART           ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -380,7 +382,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("       🔍  SEARCH         ");
+        printf("            SEARCH         ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -395,7 +397,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf(" 🗺️  NEARBY RESTAURANTS    ");
+        printf("     NEARBY RESTAURANTS    ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -434,6 +436,7 @@ int menu_navigator(){
     {
        
                 ch = _getch();
+                select_beep();
 
                 switch (ch)
                 {
@@ -478,14 +481,14 @@ int play_games(){
         
         int x=80,y=20;
         setCursor_inc(x,y++);
-        set_text_color(BLACK,BLUE);
+        set_text_color(BLACK,GREEN);
         printf("                            \n");
         setCursor_inc(x,y++);
-        printf("1.   🏏 Cricket               \n");
+        printf("1.    Cricket               \n");
         setCursor_inc(x,y++);
-        printf("2.   🪜 Snake and Ladder      \n");
+        printf("2.    Snake and Ladder      \n");
         setCursor_inc(x,y++);
-        printf("3.   🐍 Snake                 \n");
+        printf("3.    Snake                 \n");
         setCursor_inc(x,y++);
         printf("4.    Exit                  \n");
         setCursor_inc(x,y++);
@@ -494,6 +497,7 @@ int play_games(){
         setCursor_inc(x,y++);
         printf("      Enter your choice:   \n");
         scanf("%d",&choice);
+        set_text_color(BLACK,WHITE);
         if(choice==1){
             cricket_game();
             return 1;
@@ -532,48 +536,16 @@ void top_bar(){
         print_restaurants();
     }
 }
-int writeCurrentUser() {
+int writeCurrentUser(User current_user_details) {
     // printf("writing current user\n");
     FILE *file = fopen("current_user.txt", "w");
     if (file == NULL) {
         print_error("Error opening file 'current_user.txt' for writing");
         return 0;
     }
-
-    FILE *main_file = fopen("delivery_boys_details.txt", "r");
-    if (main_file == NULL) {
-        print_error("Error opening file 'delivery_boys_details.txt' for reading");
-        fclose(file); // Close 'current_uaser.txt' file before returning
-        return 0;
-    }
-    // printf("Writing current user\n");
-    User user;
-    int found = 0;
-    while (fscanf(main_file, "%s %s %s %s %d", user.username, user.password, user.email, user.phone_no, &user.isveg) == 5) {
-        // printf("%s is scanned\n", user.username);
-            if (strcmp(user.username,current_user)==0) {
-                strcpy(current_user_details.username, user.username);
-                strcpy(current_user_details.password, user.password);
-                strcpy(current_user_details.email, user.email);
-                strcpy(current_user_details.phone_no, user.phone_no);
-                current_user_details.isveg = user.isveg;
-                found=1;
-                // print_success("current user updated\n");
-                break; // No need to continue searching after finding the user
-            }
-        
-    }
-    fclose(main_file);
-    // printf("Wrote current user\n");
-    if (!found)
-    {
-        print_error("User is not found");
-    } else {
-
-        fprintf(file, "%s %s %s %s %d", current_user_details.username, current_user_details.password, current_user_details.email, current_user_details.phone_no, current_user_details.isveg);
-    }
+    fprintf(file, "%s %s %s %s %d", current_user_details.username, current_user_details.password, current_user_details.email, current_user_details.phone_no, current_user_details.isveg);
+    
     fclose(file);
-    return found;
 }
 
 
@@ -1031,7 +1003,7 @@ int loginUser()
         setCursor_inc(x, y);
         y++;
         set_text_color(BLACK,YELLOW);
-        printf("Username 🧑                            ");
+        printf("Username                              ");
 
         setCursor_inc(x, y++);
         set_text_color(DARK_GRAY,WHITE);
@@ -1045,7 +1017,7 @@ int loginUser()
         setCursor_inc(x, y++);
 
         set_text_color(BLACK,YELLOW);
-        printf("Password 🔒                            ");
+        printf("Password                              ");
 
         setCursor_inc(x, y++);
         set_text_color(DARK_GRAY,WHITE);
@@ -1128,7 +1100,7 @@ int loginUser()
                             setCursor_inc(52,90);
                             set_text_color(WHITE,YELLOW);
                             print_success("  Logging in...");
-                            if(writeCurrentUser()==1){
+                            if(writeCurrentUser(current_user_details)==1){
                                 set_text_color(WHITE,BLUE);
                                 for (int i = 0; i < 37; i++)
                                 {
@@ -1191,15 +1163,15 @@ int UserTypeScreen(int ScreenState,int selected){
     printf("        Customer     :   ");
     if (selected == 1)
     {
-        set_text_color(BLUE,YELLOW);
-        printf(" ✅");
+        set_text_color(GREEN,YELLOW);
+        printf("   %c",508);
     }else if (selected == 2)
     {
         set_text_color(WHITE,YELLOW);
-        printf(" 🔘");
+        printf("   %c",511);
     }else{
         set_text_color(WHITE,YELLOW);
-        printf(" 🔘");
+        printf("   %c",511);
     }
     set_text_color(WHITE,YELLOW);
     printf("             ");
@@ -1212,14 +1184,14 @@ int UserTypeScreen(int ScreenState,int selected){
     if (selected == 1)
     {
         set_text_color(WHITE,YELLOW);
-        printf(" 🔘");
+        printf("   %c",511);
     }else if (selected == 2)
     {
-        set_text_color(BLUE,YELLOW);
-        printf(" ✅");
+        set_text_color(GREEN,YELLOW);
+        printf("   %c",508);
     }else{
         set_text_color(WHITE,YELLOW);
-        printf(" 🔘");
+        printf("   %c",511);
     }
     set_text_color(WHITE,YELLOW);
     printf("             ");
@@ -1230,10 +1202,10 @@ int UserTypeScreen(int ScreenState,int selected){
     if (ScreenState == 3)
     {
         set_text_color(WHITE,BLUE);
-        printf(" CONTINUE➡️");  
+        printf(" CONTINUE  ");  
     }else{
         set_text_color(WHITE,CYAN);
-        printf(" CONTINUE➡️");
+        printf(" CONTINUE  ");
     }
     set_text_color(WHITE,YELLOW);
     printf("                 ");
@@ -1288,6 +1260,15 @@ int UserType(){
 
 int loginFunction()
 {
+    int choice;
+    char *editProfileLabels[] = { "Password", "Email", "Phone", "Back" };
+    InputPopup(editProfileLabels,4);
+
+    char *buttonsLabels[] ={"Fuck you","Kiss you"};
+    int numButtons = InputPopup(buttonsLabels, 2);
+
+
+    printf("%d is cliked\n",current_button);
     // int userType = UserType();
     // print_error("error");
     set_text_color(BLACK,BLACK);
@@ -1295,7 +1276,6 @@ int loginFunction()
     // printf("running login function\n");
     FoodItem food_selected;
     UserDeliveryInfo user_delivery_info;
-    int choice;
     int res = 1;
     float max_dist;
     double cost_matrix[V][V];
@@ -1387,10 +1367,14 @@ int loginFunction()
                     return 2;
                     break;
                 case 6:
-                    system("cls");
-                    top_bar();
+                    res=1;
                     while (res != 0)
                     {
+                        system("cls");
+                        home_page_banner();
+                        home();
+                        printUserDetails();
+                        side_menu(-1);
                         res = play_games();
                         getchar();
                         system("cls");
@@ -1399,7 +1383,7 @@ int loginFunction()
                     getchar();
                     break;
                 case 8:
-                    printf("🔍 Enter food item to search:\n");
+                    printf(" Enter food item to search:\n");
                     food_selected = searchFoodItem(restaurant_no,menu);
                     if (food_selected.name != NULL) 
                     {

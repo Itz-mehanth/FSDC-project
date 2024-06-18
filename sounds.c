@@ -1,7 +1,6 @@
 #include <windows.h>
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")  // Link against the winmm library
-
 #include "sounds.h"
 
 void select_beep(){

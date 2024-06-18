@@ -40,43 +40,10 @@ int writeCurrentPartner(Partner currentPartner) {
         return 0;
     }
 
-    // FILE *main_file = fopen("delivery_boys_details.txt", "r");
-    // if (main_file == NULL) {
-    //     print_error("Error opening file 'users.txt' for reading");
-    //     fclose(file); // Close 'current_uaser.txt' file before returning
-    //     return 0;
-    // }
-    // printf("Writing current partner\n");
-    // Partner partner;
-    // int found = 0;
-    // while (fscanf(main_file, "%s %s %s %s %lf %lf %f %d %d", partner.username, partner.password, partner.email, partner.phone_no, &partner.lat, &partner.lon, &partner.ratings, &partner.total_ratings, &partner.estimated_sec) == 9) {
-    //     // printf("%s is scanned\n", partner.username);
-    //         if (strcmp(partner.username,current_del_boy)==0) {
-    //             strcpy(current_del_boy_details.username, partner.username);
-    //             strcpy(current_del_boy_details.password, partner.password);
-    //             strcpy(current_del_boy_details.email, partner.email);
-    //             strcpy(current_del_boy_details.phone_no, partner.phone_no);
-    //             current_del_boy_details.lat = partner.lat;
-    //             current_del_boy_details.lon = partner.lon;
-    //             current_del_boy_details.total_ratings = partner.total_ratings;
-    //             current_del_boy_details.ratings = partner.ratings;
-    //             current_del_boy_details.estimated_sec = partner.estimated_sec;
-    //             found=1;
-    //             // print_success("current partner updated\n");
-    //             break; // No need to continue searching after finding the partner
-    //         }
-        
-    // }
-    // fclose(main_file);
-    // // printf("Wrote current partner\n");
-    // if (!found)
-    // {
-    //     print_error("Partner is not found");
-    // } else {
+    
     fprintf(file, "%s %s %s %s %lf %lf %f %d %d", currentPartner.username, currentPartner.password, currentPartner.email, currentPartner.phone_no, currentPartner.lat, currentPartner.lon, currentPartner.ratings, currentPartner.total_ratings, currentPartner.estimated_sec);
     // }
     fclose(file);
-    // return found;
 }
 
 
@@ -104,7 +71,7 @@ void writePartnersToFile(Partner partner)
     FILE *file = fopen("delivery_boys_details.txt", "a");
     if (file == NULL)
     {
-        print_error("Error opening file.\n");
+        print_error("Error opening file");
         return;
     }
     fprintf(file, "%s %s %s %s %lf %lf %f %d %d\n", partner.username, partner.password, partner.email, partner.phone_no, 12.790127, 80.221657,0,0,0);
@@ -130,7 +97,7 @@ int readPartnersFromFile() {
 
     FILE *file = fopen("delivery_boys_details.txt", "r");
     if (file == NULL) {
-        print_error("Error opening file.\n");
+        print_error("Error opening file");
         return 0;
     }
     num_del_boys = 0;
@@ -277,7 +244,7 @@ int registerPartner()
                 if(!isPartnernameExists(username) && authenticate(password) && currentField == 4 && isPhoneNumberValid(phone) && isEmailValid(email)){
                         setCursor_inc(80,33);
                         set_text_color(WHITE,YELLOW);
-                        print_success("   Signing up...\n");
+                        print_success("   Signing up...");
                         setCursor_inc(80,34);
                         set_text_color(WHITE,BLUE);
                         for (int i = 0; i < 37; i++)
@@ -287,7 +254,7 @@ int registerPartner()
                         }
                         setCursor_inc(80,34);
                         set_text_color(WHITE,YELLOW);
-                        print_success("Sign-up successful!\n");
+                        print_success("Sign-up successful!");
                         strcpy(partner.email, email);
                         strcpy(partner.username, username);
                         strcpy(partner.password,  password);

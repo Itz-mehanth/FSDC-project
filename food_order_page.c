@@ -309,7 +309,6 @@ void printPopularFoodList(int n,const FoodItem item, int order) {
 }
 
 FoodItem displayMenu(int type,int category_no,Menu menu) {
-        print_error("printing menu");
         FoodItem item;
         readMenuFromFile(&menu);
 
@@ -950,13 +949,13 @@ int remove_items(const char *filename, int target_line){
 
     temp = fopen("temp.txt", "r");
     if(file == NULL){
-        printf("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
     file = fopen(filename, "w");
     if (temp == NULL)
     {
-        printf("Error opening file\n");
+        print_error("Error opening file");
         fclose(file);
         return 0;
     }
@@ -968,7 +967,6 @@ int remove_items(const char *filename, int target_line){
     fclose(file);
     fclose(temp);
 
-    
     return 1;
 }
 
@@ -984,13 +982,13 @@ int change_count(const char *filename, int target_line){
     }
     FILE *file = fopen(filename, "r");
     if(file == NULL){
-        printf("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
     FILE *temp = fopen("temp.txt", "w");
     if (temp == NULL)
     {
-        printf("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
 
@@ -1020,13 +1018,13 @@ int change_count(const char *filename, int target_line){
 
     temp = fopen("temp.txt", "r");
     if(file == NULL){
-        printf("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
     file = fopen(filename, "w");
     if (temp == NULL)
     {
-        printf("Error opening file\n");
+        print_error("Error opening file");
         fclose(file);
         return 0;
     }
@@ -1053,7 +1051,7 @@ int view_cart(){
     FILE *fp;
     fp = fopen("cart.txt", "r");
     if (fp == NULL) {
-        printf("ERROR: Could not open cart file\n");
+        print_error("ERROR: Could not open cart file\n");
         return 0;
     }
     if (readCurrentUser()==1)
@@ -1073,7 +1071,7 @@ int view_cart(){
     // int counts=fscanf(fp, "%s %s %f %s %s %f %d %d",item.username ,item.name, &item.price, item.category, item.type, &item.rating, &item.total_ratings, &item.count);
     // printf("%d",counts);
     while (fscanf(fp, "%s %s %f %s %s %f %d %d",item.username ,item.name, &item.price, item.category, item.type, &item.rating, &item.total_ratings, &item.count) == 8) {
-        {   
+        {
             if (strcmp(item.username ,username)==0){
                 printCartFood(total_count, item);
                 total_price += item.price*item.count;
@@ -1086,7 +1084,7 @@ int view_cart(){
     set_text_color(WHITE, YELLOW);
     printf("                     ");
     setCursor_inc(80,51);
-    printf(" TOTAL PRICE: $%.2f ", total_price);
+    printf(" TOTAL PRIE   $%.2f ", total_price);
     setCursor_inc(80,52);
     printf("                     ");
     set_text_color(WHITE, GREEN);
@@ -1115,7 +1113,7 @@ int add_order_details(){
     FILE *fp,*order_details_file;
     fp = fopen("cart.txt", "r");
     if (fp == NULL) {
-        printf("ERROR: Could not open cart file\n");
+        print_error("ERROR: Could not open cart file\n");
         return 0;
     }
 
@@ -1162,7 +1160,7 @@ int add_order_details(){
     fclose(order_details_file);
     fp = fopen("cart.txt","w");
     if (fp == NULL) {
-        printf("ERROR: Could not open cart file\n");
+        print_error("ERROR: Could not open cart file\n");
         return 0;
     }
     for(int j=0; j<i ; j++){
@@ -1176,12 +1174,20 @@ int add_order_details(){
 int edit_cart(){
         int choice;
         int line_no;
-        printf("\n\t\t1. Place order\n");
-        printf("\t\t2. Change count\n");
-        printf("\t\t3. Remove items\n");
-        printf("\t\t4. Back\n");
-        printf("Enter your choice: ");
-        scanf(" %d", &choice);
+        int x=85,y=0;
+        setCursor_inc(x,y++);
+        set_text_color(BLACK,YELLOW_BACKGROUND);
+        printf("1.      Place order      ");
+        setCursor_inc(x,y++);
+        printf("2.      Change count     ");
+        setCursor_inc(x,y++);
+        printf("3.      Remove items     ");
+        setCursor_inc(x,y++);
+        printf("4.      Back             ");
+        setCursor_inc(x,y++);
+        printf("    Enter your choice:   ");
+        set_text_color(BLACK,WHITE);
+        scanf("%d", &choice);
         select_beep();
 
         switch (choice)
@@ -1205,10 +1211,10 @@ int edit_cart(){
             select_beep();
 
             if(change_count("cart.txt",line_no)==1){
-                printf("Quantity updated\n");
+                print_success("Quantity updated\n");
                 view_cart();
             }else{
-                printf("Quantity not updated\n");
+                print_success("Quantity not updated\n");
             }
             break;
 
@@ -1219,12 +1225,12 @@ int edit_cart(){
 
             int res =remove_items("cart.txt",line_no);
             if(res==1){
-                printf("Item removed\n");
+                print_success("Item removed\n");
                 view_cart();
             } else if(res==-1){ 
-                printf("Item not removed\n");
+                print_error("Item not removed\n");
             }else{
-                printf("Item not found\n");
+                print_error("Item not found\n");
             }
             break;
         case 4:
@@ -1250,7 +1256,7 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
     char ItemName[100]="";
     FILE *file = fopen("foods.txt", "r");
     if (file == NULL) {
-        printf("Error opening file\n");
+        print_error("Error opening file");
     }
     char *type=restaurant_no==0? "veg" : "nonveg";
     char *type_token;
@@ -1264,15 +1270,15 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
         home();
         side_menu(-1);
         // home_page_banner();
-        set_text_color(WHITE,WHITE);
+        set_text_color(WHITE,DARK_GRAY);
         setCursor_inc(x,y++);
         printf("                                          ");
         setCursor_inc(x,y++);
         printf(" Search: ");
-        set_text_color(BLACK,WHITE);
-        printf("%15s               O",ItemName);
+        set_text_color(BLACK,DARK_GRAY);
+        printf("%15s               O-",ItemName);
         setCursor_inc(x,y++);
-        set_text_color(BLACK,WHITE);
+        set_text_color(BLACK,DARK_GRAY);
         printf("                                          ");
     while (1)
     {
@@ -1299,15 +1305,15 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
         home();
         side_menu(-1);
         // home_page_banner();
-        set_text_color(WHITE,WHITE);
+        set_text_color(WHITE,DARK_GRAY);
         setCursor_inc(x,y++);
         printf("                                          ");
         setCursor_inc(x,y++);
         printf(" Search: ");
-        set_text_color(BLACK,WHITE);
-        printf("%15s               O",ItemName);
+        set_text_color(WHITE,DARK_GRAY);
+        printf("%15s               O-",ItemName);
         setCursor_inc(x,y++);
-        set_text_color(BLACK,WHITE);
+        set_text_color(WHITE,DARK_GRAY);
         printf("                                          ");
         
         // Read each line of the file
@@ -1332,7 +1338,7 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
 
 
         if (!found) {
-            printf("Item '%s' not found in the menu.\n", ItemName);
+            print_error("Item not found in the menu");
             fseek(file, 0, SEEK_SET); // Reset file pointer to the beginning
 
         }
@@ -1359,10 +1365,28 @@ int foodOrder() {
         system("cls");
         home();
         printUserDetails();
+        home_page_banner();
         set_text_color(BLACK,WHITE);
-        printf("=======================");
-        printf("\n1. Select Category\n2. Back\n3. Exit\n");
-        printf("=======================\n\n");
+        int x=90,y=20;
+        setCursor_inc(x,y++);
+        printf("=========================");
+        setCursor_inc(x,y++);
+        printf("                        ");
+        setCursor_inc(x,y++);
+        printf("  1. Select Category    ");
+        setCursor_inc(x,y++);
+        printf("                        ");
+        setCursor_inc(x,y++);
+        printf("  2. Back               ");
+        setCursor_inc(x,y++);
+        printf("                        ");
+        setCursor_inc(x,y++);
+        printf("  3. Exit               ");
+        setCursor_inc(x,y++);
+        printf("                        ");
+        setCursor_inc(x,y++);
+        printf("=========================");
+        setCursor_inc(x,y++);
         printf("Enter your choice: ");
         scanf("%d", &choice);
         select_beep();
@@ -1370,42 +1394,55 @@ int foodOrder() {
         switch (choice) 
         {
             case 1:
-                    print_success("Reading menu...");
                     menu = readMenuFromFile(&menu);
-                    print_success("menu read successfully");
                     system("cls");
-                    printf("\n\tThe available categories are:\n");
-                    printf("\t================\n");
-                    printf("\t1. Indian\n");
-                    printf("\t2. Chinese\n");
-                    printf("\t3. Tamil Nadu\n");
-                    printf("\t4. Fast Food\n");
-                    printf("\t5. Seafood\n");
-                    printf("\t6. Breakfast\n");
-                    printf("\t7. Mediterranean\n");
-                    printf("\t8. Vietnamese\n");
-                    printf("\t9. Italian\n");
-                    printf("\t10. Mexican\n");
-                    printf("\t11. Thai\n");
-                    printf("\t12. Japanese\n");
-                    printf("\t13. Caribbean\n");
-                    printf("\t14. Greek\n");
-                    printf("\t15. French\n");
-                    printf("\t16. Spanish\n");
-                    printf("\t17. Middle Eastern\n");
-                    printf("\t18. Korean\n");
-                    printf("\t19. Turkish\n");
-                    printf("\t20. Australian\n");
-                    printf("\t21. Ethiopian\n");
-                    printf("\t22. Moroccan\n");
-                    printf("\t23. North Indian\n");
-                    printf("\t24. South Indian\n");
-                    printf("\t25. Beverages\n");
-                    printf("\t26. Breakfast\n");
-                    printf("\t27. Snacks\n");
-                    printf("\t28. American\n");
-                    printf("\t================\n\n");
-                    printf("\tEnter your choice: ");
+                    home();
+                    side_menu(-1);
+                    home_page_banner();
+                    printUserDetails();
+                    x=70,y=10;
+                    setCursor_inc(x,y++);
+                    set_text_color(BLACK,YELLOW);
+                    printf("    ================  ");
+                    setCursor_inc(x,y++);
+                    printf("    1. Indian         ");
+                    printf("    2. Chinese        ");
+                    printf("    3. Tamil Nadu     ");
+                    setCursor_inc(x,y++);
+                    printf("    4. Fast Food      ");
+                    printf("    5. Seafood        ");
+                    printf("    6. Breakfast      ");
+                    setCursor_inc(x,y++);
+                    printf("    7. Mediterranean  ");
+                    printf("    8. Vietnamese     ");
+                    printf("    9. Italian        ");
+                    setCursor_inc(x,y++);
+                    printf("    10. Mexican       ");
+                    printf("    11. Thai          ");
+                    printf("    12. Japanese      ");
+                    setCursor_inc(x,y++);
+                    printf("    13. Caribbean     ");
+                    printf("    14. Greek         ");
+                    printf("    15. French        ");
+                    setCursor_inc(x,y++);
+                    printf("    16. Spanish       ");
+                    printf("    17. Middle Eastern");
+                    printf("    18. Korean        ");
+                    setCursor_inc(x,y++);
+                    printf("    19. Turkish       ");
+                    printf("    20. Australian    ");
+                    printf("    21. Ethiopian     ");
+                    setCursor_inc(x,y++);
+                    printf("    22. Moroccan      ");
+                    printf("    23. North Indian  ");
+                    printf("    24. South Indian  ");
+                    setCursor_inc(x,y++);
+                    printf("  25. Beverages  ");
+                    printf("  26. Breakfast  ");
+                    printf("  27. Snacks  ");
+                    printf("  28. American  ");
+                    setCursor_inc(x,y++);
+                    printf("    Enter your choice: ");
                     scanf("%d", &food_category_num);
                     select_beep();
                     system("cls");
@@ -1430,31 +1467,15 @@ int foodOrder() {
                 }
                 select_beep();
 
-            // case 2:
-            //     printf("Enter food item to search:\n");
-            //     food_selected = searchFoodItem(restaurant_no,menu);
-            //     if (food_selected.name != NULL) 
-            //     {
-            //         system("cls");
-            //         top_bar();
-            //         printFoodItem(food_selected);
-            //         addCartFunction(food_selected);
-            //     }
-                
-            //     getchar();
-            //     getchar();
-            //     break;
-        
             case 2:
                 system("cls");
                 // restaurantsHomeFunction();
                 return 2;
                 // break;
             case 3:
-                printf("Exiting...\n");
                 return 0;
             default:
-                printf("Invalid choice. Please try again.\n");
+                print_error("Invalid choice. Please try again.");
 
         
     }

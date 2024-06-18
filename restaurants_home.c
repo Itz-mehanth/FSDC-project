@@ -92,7 +92,7 @@ void sortRestaurantsByWeightedRating() {
 int readRestaurants() {
     FILE *fp = fopen("restaurants_new.txt", "r");
     if (fp == NULL) {
-        fprintf(stderr, "Error opening file: %s\n", "restaurants_new.txt");
+        print_error("Error opening file:restaurants_new.txt");
         return 0;
     }
     for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
@@ -116,7 +116,7 @@ int update_restaurant(const char *filename, restaurant *restaurants)
     FILE *fp = fopen(filename, "w"); // Open in write mode to overwrite existing data
     if (fp == NULL)
     {
-        fprintf(stderr, "Error opening file: %s\n", filename);
+        print_error("Error opening file");
         return 0;
     }
 
@@ -129,7 +129,7 @@ int update_restaurant(const char *filename, restaurant *restaurants)
     }
     else
     {
-        printf("Error reading file: %s\n", filename);
+        print_error("Error reading file");
     }
     fclose(fp);
     return 1;
@@ -146,7 +146,7 @@ restaurant *find_restaurant(const char *name)
     }
     restaurant* rest = (restaurant*)malloc(sizeof(restaurant));
     if (rest == NULL) {
-        print_error("Memory allocation failed\n");
+        print_error("Memory allocation failed");
         return NULL; // Return NULL if memory allocation fails
     }
 
@@ -159,35 +159,29 @@ void rate_restaurant(const char *restaurant_name)
 {
     int user_rating;
     char choice;
-    getchar();
 B:
-    printf("Wanna add rating(Y/N):");
-    scanf(" %c", &choice);
-    select_beep();
-    if (choice == 'Y')
-    {
+
+    int response = MessageBox(NULL, "Wanna add rating", "Warning",MB_ICONQUESTION | MB_YESNOCANCEL);
+    if(response == IDYES){
+        MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
         printf("Enter your rating: ");
         scanf("%d", &user_rating);
         select_beep();
         if (user_rating > 0 && user_rating < 6)
         {
-            printf("Thank you for your feedback\n");
+            print_success("Thank you for your feedback");
         }
         else
         {
-            printf("Invalid rating\n");
+            print_error("Invalid rating");
             goto B;
         }
     }
-    else if (choice == 'N')
+    else if (response == IDNO)
     {
         return;
     }
-    else
-    {
-        printf("Please enter Y or N\n");
-        goto B;
-    }
+   
     for (int i = 0; i < TOTAL_RESTAURANTS; i++)
     {
         if (strcmp(restaurants[i].name, restaurant_name) == 0)
@@ -358,14 +352,14 @@ A:
     }
     if (found == 0)
     {
-        printf("No relevant nodes found.\n");
+        print_error("No relevant nodes found");
         goto A;
     }
     printf("Enter your choice:");
     scanf("%d", &choice);
     if (choice > sizeof(index) / sizeof(index[0]))
     {
-        printf("Invalid choice\n");
+        print_error("Invalid choice");
         goto A;
     }
     return graph[index[choice]];
@@ -447,7 +441,7 @@ void storeComment(const char *restaurant_name)
     FILE *file = fopen("restaurant_comments.txt", "a");
     if (file == NULL)
     {
-        printf("Error opening file for writing.\n");
+        print_error("Error opening file for writing");
         return;
     }
 
@@ -456,9 +450,7 @@ void storeComment(const char *restaurant_name)
 
     // Close file
     fclose(file);
-    printf("\n\t\t+=============+\n");
-    printf("\t\tComment added\n");
-    printf("\t\t+=============+\n");
+    print_success("Thank You! Comment added successfully");
 }
 
 int isrestaurant(char *res_name){
@@ -513,7 +505,7 @@ int review_restaurant(const char *restaurant_name)
     case 5:
         return 2;
     default:
-        printf("Enter a valid input\n");
+        print_error("Enter a valid input");
         break;
     }
     system("cls");
@@ -570,7 +562,7 @@ int viewLastFiveComments(const char *restaurant_name)
     FILE *file = fopen("restaurant_comments.txt", "r");
     if (file == NULL)
     {
-        printf("Error opening file for reading.\n");
+        print_error("Error opening file for reading");
         return 0;
     }
 
@@ -586,7 +578,7 @@ int viewLastFiveComments(const char *restaurant_name)
     }
     if (!found)
     {
-        printf("No comments available\n");
+        print_error("No comments available");
         return 1;
     }
     
@@ -640,7 +632,6 @@ int restaurantsHomeFunction()
         {
             selection = select_restaurants();
         }
-        printf("your have selected %d",selection);
         system("cls");
         home();
         printUserDetails();

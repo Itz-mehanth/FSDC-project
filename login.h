@@ -47,7 +47,7 @@ void side_menu(int selectedOption);
 
 void printUserDetails();
 
-int writeCurrentUser();
+int writeCurrentUser(User current_user_details);
 
 int readCurrentUser();
 int authenticate(char *password);

@@ -13,7 +13,6 @@
 
 const char filename[20]="menu.txt";
 
-
 int addToCart(FoodItem food_item, int quantity) {
     char username[20];
     if(readCurrentUser()==1){
@@ -181,22 +180,22 @@ FoodItem recommendedFoodDisplay(){
     loadFoodItems(items,&countFood);
     collaborative_filter(predictedRatings,&numPredictions);
     // printf("%d is the num of predictions\n",numPredictions);
-    for (int i = 0; i < numPredictions; i++) {
-        for (int j = 0; j < TOTAL_FOOD_ITEMS; j++)
-        {
-            // printf("%s == %s\n",predictedRatings[i].itemName,items[j].name);
-            if (strcmp(predictedRatings[i].itemName, items[j].name) == 0)
+    int response = MessageBox(NULL, "Wanna view recommended items", "Warning",  MB_ICONQUESTION | MB_YESNOCANCEL);
+    if (response == IDYES) {
+        for (int i = 0; i < numPredictions; i++) {
+            for (int j = 0; j < TOTAL_FOOD_ITEMS; j++)
             {
-                // printf("Match found\n");
-                printFoodList(index,items[j],index-1);
-                predFoods[index-1] = items[j];
-                index++;
+                // printf("%s == %s\n",predictedRatings[i].itemName,items[j].name);
+                if (strcmp(predictedRatings[i].itemName, items[j].name) == 0)
+                {
+                    // printf("Match found\n");
+                    printFoodList(index,items[j],index-1);
+                    predFoods[index-1] = items[j];
+                    index++;
+                }
             }
+            
         }
-        
-    }
-    int response = MessageBox(NULL, "Wanna view recommended items", "Warning", MB_ICONWARNING | MB_OKCANCEL);
-    if (response == IDOK) {
         MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
     } else {
         MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
@@ -217,9 +216,9 @@ void rate_food_item(FoodItem food){
     char add;
     int quantity;
     B:
-    int response = MessageBox(NULL, "Wanna add rating", "Warning", MB_ICONWARNING | MB_OKCANCEL);
+    int response = MessageBox(NULL, "Wanna add rating", "Opinion", MB_ICONQUESTION | MB_YESNOCANCEL);
 
-    if(response == IDOK){
+    if(response == IDYES){
         MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
         printf("Enter your rating: ");
         scanf("%d", &user_rating);
@@ -246,11 +245,9 @@ void rate_food_item(FoodItem food){
 
     C: 
     if(!food_exists(food.name)){
-        response = MessageBox(NULL, "Add to cart", "Warning", MB_ICONWARNING | MB_OKCANCEL);
-        scanf(" %c",&add);
-        select_beep();
+        response = MessageBox(NULL, "Add to cart", "Warning", MB_ICONQUESTION | MB_YESNOCANCEL);
 
-        if (response == IDOK)
+        if (response == IDYES)
         {
             MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
             printf("Enter the quantity:");
@@ -269,8 +266,8 @@ void rate_food_item(FoodItem food){
         print_error("Item already added in cart");
     }
     if(!food_in_fav(food.name)){
-        response = MessageBox(NULL, "Wanna add it to the favourites list", "Warning", MB_ICONWARNING | MB_OKCANCEL);
-        if (response == IDOK)
+        response = MessageBox(NULL, "Wanna add it to the favourites list", "Warning",  MB_ICONQUESTION | MB_YESNOCANCEL);
+        if (response == IDYES)
         {
             MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
             FILE *file = fopen("favourites.txt", "a");

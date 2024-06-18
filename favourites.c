@@ -29,5 +29,6 @@ int view_favourites(){
             //        name, price, category, type, rating, total_ratings);
         }
     }
+    getchar();
     return 1;
 }
