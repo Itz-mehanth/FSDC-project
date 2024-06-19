@@ -111,7 +111,30 @@ void draw_food() {
     set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
 }
 
-
+int calculate_final_score(int snake_length) {
+    // The snake length is multiplied by 100, we need to map it to a score between 1 and 10.
+    if (snake_length < 10) {
+        return 1;
+    } else if (snake_length < 20) {
+        return 2;
+    } else if (snake_length < 30) {
+        return 3;
+    } else if (snake_length < 40) {
+        return 4;
+    } else if (snake_length < 50) {
+        return 5;
+    } else if (snake_length < 60) {
+        return 6;
+    } else if (snake_length < 70) {
+        return 7;
+    } else if (snake_length < 80) {
+        return 8;
+    } else if (snake_length < 90) {
+        return 9;
+    } else {
+        return 10;
+    }
+}
 void setup_snake() {
     snake.length = 1;
     snake.part[0].x = 1 + rand() % (cols-2);
@@ -163,12 +186,12 @@ int snake_game()
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
         if( !isGameOver ) read_keyboard();
     }
-    
+    int final_score = calculate_final_score(snake.length);
     print_error("Game Over\n");
-    printf("Final score: %d\n", snake.length * 100);
+    printf("Final score: %d\n", final_score);
     A:
     c = getchar();
-    if (c == '\n') return 1;
+    if (c == '\n') return final_score;
     else goto A;
 
 }

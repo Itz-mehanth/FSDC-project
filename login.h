@@ -70,7 +70,7 @@ int registerUser();
 
 int loginUser();
 
-int play_games();
+int play_games(int *score);
 
 int loginFunction();
 

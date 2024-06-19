@@ -1,3 +1,4 @@
+#include "food_items.h"
 #ifndef FOOD_ORDER_PAGE
 #define FOOD_ORDER_PAGE
 #define FOOD_EACH_CATEGORY 10
@@ -7,15 +8,15 @@
 #define TOTAL_FOOD 20
 
 typedef struct {
-    char username[20];
-    char name[20];
-    char category[20];
-    char type[20];
-    int count;
-    char time[30];
-} Order_details;
+    char name[50];
+    char dish[50];
+    char category[50];
+    char type[10];
+    int quantity;
+    char datetime[20];
+    float amount;
+} FoodEntry;
 
-#include "food_items.h"
 
 void printFoodItem(const FoodItem item);
 

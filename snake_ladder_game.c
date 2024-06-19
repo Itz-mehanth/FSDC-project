@@ -138,7 +138,7 @@ int snake_ladder_game()
         if (randomp1==100)
         {
             printf("CONGRATULATIONS PLAYER 1 WON THE MATCH");
-            return 0;
+            return (((randomp1-randomp2)/100)*10)%10-4;
         }else if (randomp2==100)
         {
             printf("CONGRATULATIONS PLAYER 2 WON THE MATCH");

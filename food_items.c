@@ -13,7 +13,59 @@ Menu menu;
 
 Category categories[MAX_CATEGORIES];
 
+// Function to flush a single FoodItem
+void flushFoodItem(FoodItem *item) {
+    strcpy(item->name, "");
+    item->price = 0.0f;
+    item->rating = 0.0f;
+    item->total_ratings = 0;
+    strcpy(item->category, "");
+    strcpy(item->type, "");
+    item->current_user_rating = 0.0f;
+}
 
+// Function to flush a Category
+void flushCategory(Category *category) {
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        flushFoodItem(&(category->veg[i]));
+        flushFoodItem(&(category->nonVeg[i]));
+    }
+    category->count_veg = 0;
+    category->count_non_veg = 0;
+    strcpy(category->name, "");
+}
+
+// Function to flush the entire Menu
+void flushMenu(Menu *menu) {
+    flushCategory(&(menu->italian));
+    flushCategory(&(menu->chinese));
+    flushCategory(&(menu->indian));
+    flushCategory(&(menu->mexican));
+    flushCategory(&(menu->japanese));
+    flushCategory(&(menu->american));
+    flushCategory(&(menu->middleEastern));
+    flushCategory(&(menu->spanish));
+    flushCategory(&(menu->thai));
+    flushCategory(&(menu->greek));
+    flushCategory(&(menu->korean));
+    flushCategory(&(menu->french));
+    flushCategory(&(menu->caribbean));
+    flushCategory(&(menu->mediterranean));
+    flushCategory(&(menu->turkish));
+    flushCategory(&(menu->moroccan));
+    flushCategory(&(menu->ethiopian));
+    flushCategory(&(menu->brazilian));
+    flushCategory(&(menu->vietnamese));
+    flushCategory(&(menu->australian));
+    flushCategory(&(menu->north_indian));
+    flushCategory(&(menu->south_indian));
+    flushCategory(&(menu->tamilnadu));
+    flushCategory(&(menu->fastfood));
+    flushCategory(&(menu->seafood));
+    flushCategory(&(menu->beverages));
+    flushCategory(&(menu->breakfast));
+    flushCategory(&(menu->snacks));
+}
 void initializeCategories(Menu *menu) {
     categories[0] = menu->indian;
     categories[1] = menu->chinese;
@@ -413,7 +465,13 @@ void displayCategoryCounts(Menu *menu) {
 
 
 Menu readMenuFromFile(Menu *menu) {
+    flushMenu(menu);
     FILE *file = fopen("foods.txt", "r");
+    if (file == NULL)
+    {
+        print_error("Couldn't open file 'foods.txt'");
+    }
+    
     FoodItem item;
     // Initialize counts for all categories
     menu->indian.count_veg = 0;
@@ -472,14 +530,14 @@ Menu readMenuFromFile(Menu *menu) {
     menu->beverages.count_non_veg = 0;
     menu->breakfast.count_non_veg = 0;
     menu->american.count_non_veg = 0;
-
+    // print_success("Starting looping through the files...");
     while (fscanf(file, "%[^,],%f,%[^,],%[^,],%f,%d,%f\n", item.name, &item.price, item.category, item.type,&item.rating,&item.total_ratings,&item.current_user_rating) == 7) {
+        // printf("%s,%f,%s,%s,%f,%d,%f\n", item.name, item.price, item.category, item.type,item.rating,item.total_ratings,item.current_user_rating);
         if (strcmp(item.category, "Italian") == 0) {
             if (strcmp(item.type, "Veg") == 0) {
                 memcpy(&menu->italian.veg[menu->italian.count_veg], &item, sizeof(FoodItem));
                 menu->italian.count_veg++;
-            } 
-           
+            }
                 memcpy(&menu->italian.nonVeg[menu->italian.count_non_veg], &item, sizeof(FoodItem));
                 menu->italian.count_non_veg++;
            
@@ -721,16 +779,17 @@ Menu readMenuFromFile(Menu *menu) {
             if (strcmp(item.type, "Veg") == 0) {
                 memcpy(&menu->tamilnadu.veg[menu->tamilnadu.count_veg], &item, sizeof(FoodItem));
                 menu->tamilnadu.count_veg++;
-            } 
+            }
            
                 memcpy(&menu->tamilnadu.nonVeg[menu->tamilnadu.count_non_veg], &item, sizeof(FoodItem));
                 menu->tamilnadu.count_non_veg++;
-           
         }
     }
+    // print_success("Starting initialising ");
 
     initializeCategories(menu);
-
+    // displayCategoryCounts(menu);
+    // print_success("successfull initialising ");
     fclose(file);
 
     return *menu;

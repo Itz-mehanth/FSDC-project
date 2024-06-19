@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <Windows.h>
 #include "illustrations.h"
+#include "buttonCreator.h"
 #include "login.h"
 #include "theme.h"
 #include "textField.h"
@@ -116,20 +117,13 @@ void profile_detail_div(){
 
 int edit_profile()
 {   
-    printf("What would you like to edit?\n");
-    printf("1. Password\n");
-    printf("2. Email\n");
-    printf("3. Phone number\n");
-    printf("4. back\n");
-    printf("Enter your choice (1-4): ");
-
     int choice;
     char *editProfileLabels[] = { "Password", "Email", "Phone", "Back" };
     InputPopup(editProfileLabels,4);
+    choice = current_button;
     // choice = current_button;
     char new_value[100]; // Buffer for new input
 
-    scanf("%d", &choice);
     char email[100], password[20],phone[20];
     readUsersFromFile();
     readCurrentUser();
@@ -138,7 +132,9 @@ int edit_profile()
         print_error("Error opening file!\n");
         return 0;
     }
+
     for (int i = 0; i < num_users; i++) {
+        // printf("%s,%s\n",Users[i].username,current_user_details.username);
         if (strcmp(Users[i].username, current_user_details.username) == 0) {
             switch (choice) {
                 case 1:
@@ -164,7 +160,7 @@ int edit_profile()
                     break;
             }
             // Write updated user information to file
-            fprintf(file, "%s %s %s %s\n", Users[i].username, Users[i].password, Users[i].email, Users[i].phone_no);
+            fprintf(file, "%s %s %s %s %d\n", Users[i].username, Users[i].password, Users[i].email, Users[i].phone_no,Users[i].isveg);
             strcpy(current_user_details.email,Users[i].email);
             strcpy(current_user_details.password,Users[i].password);
             strcpy(current_user_details.username,Users[i].username);
@@ -176,27 +172,27 @@ int edit_profile()
             break;
         } else {
             // Write existing user information to file
-            fprintf(file, "%s %s %s %s\n", Users[i].username, Users[i].password, Users[i].email, Users[i].phone_no);
+            fprintf(file, "%s %s %s %s %d\n", Users[i].username, Users[i].password, Users[i].email, Users[i].phone_no,Users[i].isveg);
         }
     }
     return 1;
 }
 
 int profile_options(){
-        printf("1. Edit profile\n");
-        printf("2. Favourites\n");
-        printf("3. comments\n");
-        printf("4. Ratings\n");
-        printf("5. Statistics\n");
-        printf("6. History\n");
-        printf("7. back\n");
-        printf("Enter your choice (1-8): ");
-        getchar(); // Consume newline character left in the buffer
-
+        // printf("1. Edit profile\n");
+        // printf("2. Favourites\n");
+        // printf("3. comments\n");
+        // printf("4. Ratings\n");
+        // printf("5. Statistics\n");
+        // printf("6. History\n");
+        // printf("7. back\n");
+        // printf("Enter your choice (1-8): ");
+        // getchar(); // Consume newline character left in the buffer
         int choice;
-        scanf("%d", &choice);
+        char *profileOptionsLabels[] = { "Edit profile", "Favourites", "comments", "Ratings", "Statistics", "History", "back" };
+        InputPopup(profileOptionsLabels,7);
+        choice = current_button;
         switch (choice) {
-        
         case 1: 
             edit_profile();
             break;
@@ -223,6 +219,7 @@ int profile_options(){
         default:
             break;
     }
+    return -1;
 }
 int display_user_profile() {
     // profile_page_banner();

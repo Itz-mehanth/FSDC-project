@@ -336,7 +336,7 @@ Node* readNodesFromFile() {
     // Allocate memory for nodes
     Node* nodes = malloc(count * sizeof(Node));
     if (nodes == NULL) {
-        perror("Memory allocation failed");
+        print_error("Memory allocation failed");
         fclose(file);
         exit(EXIT_FAILURE);
     }

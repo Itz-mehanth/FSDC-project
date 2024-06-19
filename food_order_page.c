@@ -6,12 +6,14 @@
 #include "food_order_page.h"
 #include "restaurants_home.h"
 #include "login.h"
+#include "buttonCreator.h"
 #include "settings.h"
 #include "collaborative_filter.h"
 #include "illustrations.h"
 #include <ctype.h>
 #include "settings.h"
 #include "partner_path.h"
+#include "textField.h"
 #include "delivery_boy_selection.h"
 #include <conio.h>
 #include "sounds.h"
@@ -25,31 +27,23 @@
 
 FoodItem select_food(int restaurant_type,Category category){
     int choice;
-    A:
-    printf("===========================================\n");
-    printf("Enter the food: ");
-    scanf("%d", &choice);
-    select_beep();
-    if (veg_mode)
-    {    
-        if(choice > FOOD_EACH_CATEGORY/2 || choice <= 0){
-            print_error("Please select a category");
-            goto A;
-        }
-    }else
-    {
-        if(choice > FOOD_EACH_CATEGORY || choice <= 0){
-            print_error("Please select a category");
-            goto A;
-        }
-    }
-    
+
 
     FoodItem food;
     if (veg_mode)
     {
+
+        char *recommendedFoods[] = { category.nonVeg[0].name,category.nonVeg[1].name,category.nonVeg[2].name,category.nonVeg[3].name,category.nonVeg[4].name};
+        InputPopup(recommendedFoods,5);
+        choice = current_button;
+        select_beep();
         food = category.veg[choice-1];
     }else{
+
+        char *recommendedFoods[] = { category.nonVeg[0].name,category.nonVeg[1].name,category.nonVeg[2].name,category.nonVeg[3].name,category.nonVeg[4].name,category.nonVeg[5].name,category.nonVeg[6].name,category.nonVeg[7].name,category.nonVeg[8].name,category.nonVeg[9].name};
+        InputPopup(recommendedFoods,5);
+        choice = current_button;
+        select_beep();
         food = category.nonVeg[choice-1];
     }
 
@@ -330,7 +324,6 @@ FoodItem displayMenu(int type,int category_no,Menu menu) {
                         printf("Chinese items:\n");
                             for (int i = 0; i < FOOD_EACH_CATEGORY/2; i++){
                                 printFoodList(i+1,menu.chinese.veg[i],i);
-                                
                             }
                             item=select_food(restaurant_no,menu.chinese);
                             // printf("%s\n",item.name);
@@ -1051,7 +1044,7 @@ int view_cart(){
     FILE *fp;
     fp = fopen("cart.txt", "r");
     if (fp == NULL) {
-        print_error("ERROR: Could not open cart file\n");
+        print_error("ERROR: Could not open cart file");
         return 0;
     }
     if (readCurrentUser()==1)
@@ -1080,6 +1073,12 @@ int view_cart(){
         }
         
     }
+    if (total_price == 0) 
+    {
+        print_error("No items found in cart");
+        return -1;
+    }
+    
     setCursor_inc(80,50);
     set_text_color(WHITE, YELLOW);
     printf("                     ");
@@ -1101,7 +1100,178 @@ int view_cart(){
     return 1;
 }
 
-int add_order_details(){
+float calculate_discount(FoodEntry entry) {
+    // Parse the date
+    int day, month, year, hour, min, sec;
+    sscanf(entry.datetime, "%d-%d-%d/%d:%d:%d", &day, &month, &year, &hour, &min, &sec);
+    
+    // Example discount criteria based on date and category
+    float discount = 0.0;
+    
+    // Discount based on time & cuisine
+    if ( strcmp(entry.category,"snacks")==0 && hour >= 16 && hour <= 18 ) {
+        discount += 2.0;
+    }
+    
+    if ( strcmp(entry.category,"beverages")==0 && hour >= 1 && hour <= 3 ) {
+        discount += 2.0;
+    }
+    
+    if ( strcmp(entry.category,"breakfast")==0 && hour >= 8 && hour <= 10 ) {
+        discount += 2.0;
+    }
+    // Discount on new year
+    if (day == 1  && month == 1 ) {
+        discount += 10.0;
+    }
+    // Discount on pongal day
+    if (day == 14  && month == 1 ) {
+        discount += 10.0;
+    }
+    // Discount for ramdan
+    if (day == 10  && month == 4 ){
+        discount += 10.0;
+    }
+    // Discount for Tamil new year
+    if (day == 14  && month == 4 ){
+        discount += 10.0;
+    }
+    // Discount for Aadi sale
+    if (day == 19  && month == 7 ){
+        discount += 10.0;
+    }
+    // Discount for vinayak chaturthi
+    if (day == 7  && month == 9 ){
+        discount += 10.0;
+    }
+    // Discount for Bakrid
+    if (day == 17  && month == 6 ){
+        discount += 10.0;
+    }
+    // Discount for ester
+    if (day == 31  && month == 3 ){
+        discount += 10.0;
+    }
+    // Discount for christmas
+    if (day == 25  && month == 12 ){
+        discount += 10.0;
+    }
+
+    // Discount based on healthy cuisines
+    if (strcmp(entry.category, "seafood") == 0) {
+        discount += 2.0;
+    }
+    
+    if (strcmp(entry.category, "japanese") == 0) {
+        discount += 2.0;
+    }
+    
+    if (strcmp(entry.category, "south_indian") == 0) {
+        discount += 2.0;
+    }
+
+    if (strcmp(entry.category, "mediterranean") == 0) {
+        discount += 2.0;
+    }
+    if ( entry.quantity >=10){
+        discount += 2.0;
+    }
+    if (entry.quantity > 10 && entry.quantity <= 20){
+        discount += 3.0;
+    }
+    if ( entry.quantity > 20 && entry.quantity <= 30){
+        discount += 4.0;
+    }
+    if ( entry.quantity > 30 && entry.quantity <= 40){
+        discount += 5.0;
+    }
+    if ( entry.quantity < 50){
+        discount += 6.0;
+    }
+
+    return discount;
+}
+
+float calculate_discount_points(int points){
+    float discount=0.0;
+
+    if ( points < 5) {
+        return discount;
+    }
+    if ( points == 5 ) {
+        return 1.0;
+    }
+    if ( points == 6 ) {
+        return 2.0;
+    }
+    if ( points == 7 ) {
+        return 3.0;
+    }
+    if ( points == 8 ) {
+        return 4.0;
+    }
+    if ( points == 9 ) {
+        return 5.0;
+    }
+    if ( points == 10 ) {
+        return 6.0;
+    }
+
+}
+
+void process_entries(FoodEntry *entries, int size, int point) {
+    float total_cost =0;
+    int tot_quantity=0;
+    printf("  FOOD      Quant       PRICE       Tot_amt  \n");
+    for (int i = 0; i < size; ++i) {
+        printf("%s      %d      %f      %f\n",entries[i].dish,entries[i].quantity,entries[i].amount,entries[i].amount*entries[i].quantity);
+        total_cost+=entries[i].amount*entries[i].quantity;
+    }
+
+    float total_discount = 0;
+
+    for (int i = 0; i < size; ++i) {
+        float discount = calculate_discount(entries[i]);
+        total_discount += (entries[i].amount * entries[i].quantity * discount) / 100;
+    }
+
+    float final_amount = total_cost - total_discount;
+
+    float discount = calculate_discount_points(point);
+    total_discount += ( final_amount * discount) / 100;
+
+    final_amount = total_cost - total_discount;
+    
+    printf("Total Cost before Discount: %.2f\n", total_cost);
+    printf("Total Discount: %.2f\n", total_discount);
+    printf("Final Amount after Discount: %.2f\n", final_amount);
+
+     // Write to file
+    FILE *file = fopen("user_purchases.txt", "a");
+    if (file == NULL) {
+        perror("Failed to open file");
+        return;
+    }
+
+    time_t now = time(NULL);
+    char *time_str = ctime(&now);
+    if (time_str != NULL) {
+        // Remove the newline character from the end of the time string
+        time_str[strlen(time_str) - 1] = '\0';
+    }
+
+    fprintf(file, "%s,%.2f,%s\n", current_user_details.username, final_amount, time_str);
+    fclose(file);
+}
+
+int calculateDiscount(FoodEntry *foodlist,int size,int point) {
+
+    process_entries(foodlist, size, point);
+
+   return   0;
+}
+
+int add_order_details(FoodEntry order_details[10]){
     float total_price=0;
     int total_count=1;
     char username[100];
@@ -1113,9 +1283,10 @@ int add_order_details(){
     FILE *fp,*order_details_file;
     fp = fopen("cart.txt", "r");
     if (fp == NULL) {
-        print_error("ERROR: Could not open cart file\n");
-        return 0;
+        print_error("ERROR: Could not open cart file");
     }
+
+    
 
     order_details_file = fopen("order_details.txt", "a");
     if (readCurrentUser()==1)
@@ -1125,7 +1296,6 @@ int add_order_details(){
         return 0;
     }
     FoodItemCart item;
-    Order_details order_details[10];
     FoodItemCart cartItems[10];
     // int counts=fscanf(fp, "%s %s %f %s %s %f %d %d",item.username ,item.name, &item.price, item.category, item.type, &item.rating, &item.total_ratings, &item.count);
     // printf("%d",counts);
@@ -1138,7 +1308,15 @@ int add_order_details(){
                 char time[30];
 
                 fprintf(order_details_file,"%s,%s,%s,%s,%f,%d,%02d-%02d-%d/%02d:%02d:%02d\n",item.username ,item.name, item.category, item.type, item.price,item.count,local->tm_mday, local->tm_mon + 1, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
-
+                char datetime[20];
+                sprintf(datetime,"%02d-%02d-%d/%02d:%02d:%02d",local->tm_mday, local->tm_mon + 1, local->tm_year + 1900, local->tm_hour, local->tm_min, local->tm_sec);
+                strcpy(order_details[total_count-1].name,current_user_details.username);
+                strcpy(order_details[total_count-1].dish,item.name);
+                strcpy(order_details[total_count-1].category,item.category);
+                strcpy(order_details[total_count-1].type,item.type);
+                strcpy(order_details[total_count-1].datetime,datetime);
+                order_details[total_count-1].amount = item.price;
+                order_details[total_count-1].quantity = item.count;
                 total_price += item.price*item.count;
                 total_count++;
 
@@ -1161,49 +1339,64 @@ int add_order_details(){
     fp = fopen("cart.txt","w");
     if (fp == NULL) {
         print_error("ERROR: Could not open cart file\n");
-        return 0;
     }
     for(int j=0; j<i ; j++){
         fprintf(fp, "%s %s %f %s %s %f %d %d\n",cartItems[j].username ,cartItems[j].name, cartItems[j].price, cartItems[j].category, cartItems[j].type, cartItems[j].rating, cartItems[j].total_ratings, cartItems[j].count);
     }
     fclose(fp);
-    return 1;
+    return total_count-1;
 }
 
 
 int edit_cart(){
-        int choice;
         int line_no;
-        int x=85,y=0;
-        setCursor_inc(x,y++);
-        set_text_color(BLACK,YELLOW_BACKGROUND);
-        printf("1.      Place order      ");
-        setCursor_inc(x,y++);
-        printf("2.      Change count     ");
-        setCursor_inc(x,y++);
-        printf("3.      Remove items     ");
-        setCursor_inc(x,y++);
-        printf("4.      Back             ");
-        setCursor_inc(x,y++);
-        printf("    Enter your choice:   ");
-        set_text_color(BLACK,WHITE);
-        scanf("%d", &choice);
-        select_beep();
 
+        int choice;
+        char *cartLabels[] = {"Place order", "Change count", "Remove items", "Back" };
+        InputPopup(cartLabels,4);
+        choice = current_button;
+        select_beep();
         switch (choice)
         {
         case 1:
+
             UserDeliveryInfo UserDeliveryInfo;
+            // FoodEntry FoodEntries[10];
             UserDeliveryInfo = readUserDeliveryInfo();
             if(strcmp(user_delivery_info.address,"none")==0){
                 print_error("Please add a delivery address");
                 return 1;
             }
-             if(payment()){
-                if(add_order_details()){
-                    return 2;
+
+                FoodEntry FoodEntries[10];
+                int count;
+                count = add_order_details(FoodEntries);
+                int response = MessageBox(NULL, "Wanna Play games to earn discount", "Warning",  MB_ICONQUESTION | MB_YESNOCANCEL);
+                int score;
+                if (response == IDYES){
+                    MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
+                    system("cls");
+                    home_page_banner();
+                    home();
+                    printUserDetails();
+                    side_menu(-1);
+                    play_games(&score);
+                    system("cls");
+                    home_page_banner();
+                    home();
+                    printUserDetails();
+                    side_menu(-1);
+                    getchar();
+                }else{
+                    score = 0;
                 }
-             }
+                
+                calculateDiscount(FoodEntries,count,score);
+                getchar();
+                payment();
+                return 2;
+                
+             
             break;
         case 2:
             printf("Enter the item to be updated: ");
@@ -1367,31 +1560,16 @@ int foodOrder() {
         printUserDetails();
         home_page_banner();
         set_text_color(BLACK,WHITE);
-        int x=90,y=20;
-        setCursor_inc(x,y++);
-        printf("=========================");
-        setCursor_inc(x,y++);
-        printf("                        ");
-        setCursor_inc(x,y++);
-        printf("  1. Select Category    ");
-        setCursor_inc(x,y++);
-        printf("                        ");
-        setCursor_inc(x,y++);
-        printf("  2. Back               ");
-        setCursor_inc(x,y++);
-        printf("                        ");
-        setCursor_inc(x,y++);
-        printf("  3. Exit               ");
-        setCursor_inc(x,y++);
-        printf("                        ");
-        setCursor_inc(x,y++);
-        printf("=========================");
-        setCursor_inc(x,y++);
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
+       
+        char *CategorySelectionPageLabels[] = {"Select Category", "Back", "Exit"};
+        InputPopup(CategorySelectionPageLabels,3);
+        print_success("popup successfull");
+        food_category_num = current_button;
         select_beep();
+        printf("%d",food_category_num);
+        print_success("food category found");
 
-        switch (choice) 
+        switch (food_category_num) 
         {
             case 1:
                     menu = readMenuFromFile(&menu);
@@ -1400,50 +1578,11 @@ int foodOrder() {
                     side_menu(-1);
                     home_page_banner();
                     printUserDetails();
-                    x=70,y=10;
-                    setCursor_inc(x,y++);
-                    set_text_color(BLACK,YELLOW);
-                    printf("    ================  ");
-                    setCursor_inc(x,y++);
-                    printf("    1. Indian         ");
-                    printf("    2. Chinese        ");
-                    printf("    3. Tamil Nadu     ");
-                    setCursor_inc(x,y++);
-                    printf("    4. Fast Food      ");
-                    printf("    5. Seafood        ");
-                    printf("    6. Breakfast      ");
-                    setCursor_inc(x,y++);
-                    printf("    7. Mediterranean  ");
-                    printf("    8. Vietnamese     ");
-                    printf("    9. Italian        ");
-                    setCursor_inc(x,y++);
-                    printf("    10. Mexican       ");
-                    printf("    11. Thai          ");
-                    printf("    12. Japanese      ");
-                    setCursor_inc(x,y++);
-                    printf("    13. Caribbean     ");
-                    printf("    14. Greek         ");
-                    printf("    15. French        ");
-                    setCursor_inc(x,y++);
-                    printf("    16. Spanish       ");
-                    printf("    17. Middle Eastern");
-                    printf("    18. Korean        ");
-                    setCursor_inc(x,y++);
-                    printf("    19. Turkish       ");
-                    printf("    20. Australian    ");
-                    printf("    21. Ethiopian     ");
-                    setCursor_inc(x,y++);
-                    printf("    22. Moroccan      ");
-                    printf("    23. North Indian  ");
-                    printf("    24. South Indian  ");
-                    setCursor_inc(x,y++);
-                    printf("  25. Beverages  ");
-                    printf("  26. Breakfast  ");
-                    printf("  27. Snacks  ");
-                    printf("  28. American  ");
-                    setCursor_inc(x,y++);
-                    printf("    Enter your choice: ");
-                    scanf("%d", &food_category_num);
+                    
+                    char *CuisineLabels[] = { "Indian", "Chinese", "Tamil Nadu", "Fast Food", "Seafood", "Breakfast", "Mediterranean", "Vietnamese", "Italian", "Mexican", "Thai", "Japanese", "Caribbean", 
+                    "Greek", "French", "Spanish", "Middle Eastern", "Korean", "Turkish", "Australian", "Ethiopian", "Moroccan", "North Indian", "South Indian", "Beverages", "Breakfast", "Snacks", "American"};
+                    InputPopup(CuisineLabels,28);
+                    food_category_num = current_button;
                     select_beep();
                     system("cls");
                     home();

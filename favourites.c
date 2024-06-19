@@ -20,7 +20,7 @@ int view_favourites(){
     }
     printf("Favourites:\n");
     int index=0;
-    while(fscanf(fp, "Username: %99[^,],Name: %99[^,], Price: %f, Category: %99[^,], Type: %99[^,], Ratings: %f, Total_ratings: %d", 
+    while(fscanf(fp, "%s,%s,%f,%s,%s,%f,%d\n", 
                   username, food.name, &food.price, food.category, food.type, &food.rating, &food.total_ratings) == 7) {
         if(strcmp(username, current_user_details.username) == 0){
             printFoodList(index+1,food,index);

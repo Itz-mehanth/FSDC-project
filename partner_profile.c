@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <Windows.h>
+#include "textField.h"
 #include "illustrations.h"
 #include "map.h"
 #include "partner_profile.h"
@@ -12,6 +13,7 @@
 #include "notification.h"
 #include "favourites.h"
 #include "history.h"
+#include "buttonCreator.h"
 #define MAX_STRING_LENGTH 100
 
 typedef struct {
@@ -132,7 +134,7 @@ void print_deliveries_info(){
 void getLastPathForUser(const char *filename, const char *target_username, char cities[MAX_CITIES][MAX_CITY_NAME_LENGTH], int *num_cities) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        printf("Error opening file.\n");
+        print_error("Error opening file");
         return;
     }
 
@@ -142,7 +144,7 @@ void getLastPathForUser(const char *filename, const char *target_username, char 
     char *token;
     *num_cities = 0;
 
-    printf("Parsing the file\n");
+    // printf("Parsing the file\n");
     while (fgets(line, sizeof(line), file)) {
         // Remove the newline character at the end of the line
         line[strcspn(line, "\n")] = '\0';
@@ -178,10 +180,10 @@ void print_path(){
     char cities[MAX_CITIES][MAX_CITY_NAME_LENGTH];
     set_text_color(RED,WHITE);
     int num_cities;
-    printf("getting the last path\n");
+    // printf("getting the last path\n");
     getchar();
     getLastPathForUser(filename, current_del_boy_details.username, cities, &num_cities);
-    printf("got the last path\n");
+    // printf("got the last path\n");
     getchar();
     int x=130;
     for (int y = 0; y < num_cities; y++)
@@ -189,7 +191,7 @@ void print_path(){
         setCursor_inc(x,y);
         printf("%d. %50s ",y+1,cities[y]);
     }
-    printf("printting the last path\n");
+    // printf("printting the last path\n");
     getchar();
     
 
@@ -197,17 +199,18 @@ void print_path(){
 
 int edit_partner_profile()
 {   
-    printf("What would you like to edit?\n");
-    printf("1. Password\n");
-    printf("2. Email\n");
-    printf("3. Phone number\n");
-    printf("4. back\n");
-    printf("Enter your choice (1-4): ");
-
+    // printf("What would you like to edit?\n");
+    // printf("1. Password\n");
+    // printf("2. Email\n");
+    // printf("3. Phone number\n");
+    // printf("4. back\n");
+    // printf("Enter your choice (1-4): ");
     int choice;
+    char *editProfileLabels[] = { "Password", "Email", "Phone", "Back" };
+    InputPopup(editProfileLabels,4);
+    choice = current_button;
     char new_value[100]; // Buffer for new input
 
-    scanf("%d", &choice);
     char email[100], password[20],phone[20];
     readPartnersFromFile();
     readCurrentPartner();
@@ -279,13 +282,10 @@ int edit_partner_profile()
 
 int partner_profile_options(){
 
-        printf("1. Edit profile\n");
-        printf("2. View past order Details\n");
-        printf("3. Current delivery location path\n");
-        printf("4. Logout\n");
-        printf("Enter your choice (1-4): ");
         int choice;
-        scanf("%d", &choice);
+        char *profileOptionsLabels[] = { "Edit profile", "View past order Details", "Current delivery location path", "Logout"};
+        InputPopup(profileOptionsLabels,7);
+        choice = current_button;
         switch (choice) {
         case 1:
             edit_partner_profile();

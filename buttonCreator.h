@@ -10,7 +10,7 @@ extern int current_button;
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 // Other function declarations
-void CreateButtons(HWND hWnd, char* buttonLabels[], int numButtons, UINT_PTR* buttonIds);
+void CreateButtons(HWND hWnd, char* buttonLabels[], int numButtons);
 
 #endif // BUTTONCREATOR_H
 

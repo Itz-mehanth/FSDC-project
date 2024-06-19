@@ -74,7 +74,7 @@ void writePartnersToFile(Partner partner)
         print_error("Error opening file");
         return;
     }
-    fprintf(file, "%s %s %s %s %lf %lf %f %d %d\n", partner.username, partner.password, partner.email, partner.phone_no, 12.790127, 80.221657,0,0,0);
+    fprintf(file, "%s %s %s %s %lf %lf %f %d %d\n", partner.username, partner.password, partner.email, partner.phone_no, 12.790126782731512,80.22165662386577,0,0,0);
 
     fclose(file);
 }
@@ -503,7 +503,6 @@ int loginPartner()
     return 1;
 }
 
-
 int delivery_boy_login()
 {
     // int option = UserType();
@@ -525,8 +524,6 @@ int delivery_boy_login()
 
             }// Exit the program after successful logi       
         }else{
-
-
             if(display_partner_profile()==1){
                 return 0;
             }

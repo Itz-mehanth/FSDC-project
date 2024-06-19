@@ -7,7 +7,9 @@
 #include "sounds.h"
 #include "restaurants_home.h"
 #include "food_items.h"
+#include "buttonCreator.h"
 #include "illustrations.h"
+#include "textField.h"
 #include "food_items.h"
 #include "notification.h"
 
@@ -24,7 +26,7 @@ int addToCart(FoodItem food_item, int quantity) {
     FILE *fp;
     fp = fopen("cart.txt", "a");
     if (fp == NULL) {
-        printf("ERROR: Could not open cart file\n");
+        print_error("ERROR: Could not open cart file");
         return 0;
     }
 
@@ -37,7 +39,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
     readCurrentUser();
     FILE *file = fopen("foods.txt", "r+");
     if (file == NULL) {
-        print_error("Error opening foods.txt file.\n");
+        print_error("Error opening foods.txt file");
         return 0;
     }
 
@@ -45,7 +47,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
     int updated = 0;
 
     while (fgets(line, sizeof(line), file) != NULL) {
-        if (strstr(line, itemName) != NULL) {
+        if (strstr(line, itemName) != NULL ) {
             // Parse the line to extract the relevant data
             char name[50];
             float price;
@@ -89,7 +91,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
         // Check if the rating already exists in ratings.txt
         FILE *ratingsFile = fopen("ratings.txt", "r+");
         if (ratingsFile == NULL) {
-            print_error("Error opening ratings.txt file.\n");
+            print_error("Error opening ratings.txt file");
             return 0;
         }
 
@@ -124,7 +126,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
 
         return 1;
     } else {
-        print_error("Food item not found.\n");
+        print_error("Food item not found");
         return 0;
     }
 }
@@ -132,7 +134,7 @@ int updateFoodItemRating(const char *itemName, float newRating) {
 int food_in_fav(char *food_name){
     FILE *file = fopen("favourites.txt", "r");
     if (file == NULL) {
-        print_error("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
     int found = 0;
@@ -152,7 +154,7 @@ int food_in_fav(char *food_name){
 int food_exists(char *food_name){
     FILE *file = fopen("cart.txt", "r");
     if (file == NULL) {
-        print_error("Error opening file\n");
+        print_error("Error opening file");
         return 0;
     }
     int found = 0;
@@ -202,9 +204,10 @@ FoodItem recommendedFoodDisplay(){
         strcpy(predFoods[0].name,"none");
         return predFoods[0];
     }
-
-    printf("Enter your choice: ");
-    scanf("%d",&choice);
+    char *recommendedFoods[] = { predFoods[0].name,predFoods[1].name,predFoods[2].name,predFoods[3].name,predFoods[4].name};
+    InputPopup(recommendedFoods,5);
+    choice = current_button;
+    select_beep();
     return predFoods[choice-1];
 
 }
@@ -220,8 +223,9 @@ void rate_food_item(FoodItem food){
 
     if(response == IDYES){
         MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
-        printf("Enter your rating: ");
-        scanf("%d", &user_rating);
+        char *ratingsLabels[] = { "1 Star","2 Star","3 Star","4 Star","5 Star"};
+        InputPopup(ratingsLabels,5);
+        user_rating = current_button;
         select_beep();
 
         if(user_rating>0 && user_rating<6){
@@ -275,7 +279,7 @@ void rate_food_item(FoodItem food){
                 printf("Error opening file\n");
                 return;
             }
-            fprintf(file, "Username: %s,Name: %s, Price: %.2f, Category: %s, Type: %s, Ratings: %.2f, Total_ratings: %d\n",current_user_details.username ,food.name, food.price, food.category,food.type, food.rating, food.total_ratings);
+            fprintf(file, "%s,%s,%.2f,%s,%s,%.2f,%d\n",current_user_details.username ,food.name, food.price, food.category,food.type, food.rating, food.total_ratings);
             FILE *fp = fopen("current_resturant.txt", "w");
             if (fp == NULL){
                 print_error("Error opening file\n");

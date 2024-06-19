@@ -22,13 +22,13 @@ int InputPopup(char *customButtonLabels[],int customNumButtons) {
         }
         classRegistered = 1;  // Set the flag to indicate the class is registered
     }
-    
-    
+
+
     // Create the main window
     HWND hWnd = CreateWindowEx(0, "MyWindowClass", "Dynamic Button Example",
                                WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-                               300, 300, NULL, NULL, GetModuleHandle(NULL), NULL);
-    
+                               80, 20, NULL, NULL, GetModuleHandle(NULL), NULL);
+
     if (!hWnd) {
         MessageBox(NULL, "Failed to create window", "Error", MB_ICONERROR);
         return 1;
@@ -39,7 +39,7 @@ int InputPopup(char *customButtonLabels[],int customNumButtons) {
     // Array to store button IDs for later reference
     UINT_PTR buttonIds[3];  // Adjust the size based on your number of buttons
     // Create buttons dynamically based on custom array
-    CreateButtons(hWnd, customButtonLabels, customNumButtons, buttonIds);
+    CreateButtons(hWnd, customButtonLabels, customNumButtons);
     
     // Show the main window
     ShowWindow(hWnd, SW_SHOWDEFAULT);

@@ -11,3 +11,8 @@ paveethiran,Curry_Leaf_Rice,4.00
 paveethiran,Key_Lime_Pie,4.00
 mehanth,Clam_Chowder,5.00
 mehanth,Curry_Leaf_Rice,4.00
+mehanth,Beef_Burrito,3.00
+mehanth,Bisi_Bele_Bath,3.00
+mehanth,Dim_Sum,3.00
+mehanth,Beef_Bourguignon,4.00
+mehanth,Thali_Meals,3.00

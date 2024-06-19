@@ -7,7 +7,6 @@
 #include "map.h"
 
 extern int restaurant_no;
-
 extern char restaurantType[20];
 // int restaurant_no;
 extern char restaurant_filename[];
@@ -35,6 +34,8 @@ typedef struct {
 
 
 extern restaurant restaurants[];
+extern restaurant vegRestaurants[];
+extern restaurant nonvegRestaurants[];
 
 int review_restaurant(const char *restaurant_name);
 

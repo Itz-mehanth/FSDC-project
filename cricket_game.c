@@ -2,8 +2,10 @@
 #include <windows.h>
 #include <math.h>
 #include <time.h>
+#include "textField.h"
 #include <stdlib.h>
 #include "login.h"
+#include "buttonCreator.h"
 #include "food_order_page.h"
 #include "sounds.h"
 #include "cricket_game.h"
@@ -245,7 +247,6 @@ char* choose_team(int rand){
         return "RR";
         break;
     case 9:
-    
         return "RCB";
         break;
     case 10:
@@ -272,11 +273,9 @@ int cricket_game() {
     system("cls");
     print_ground();
     int x = 80,Y=15;
-    setCursor_inc(x,Y++);
-    printf("1.CSK   2.DC   3.GT   4.KKR   5.LSG");
-    setCursor_inc(x,Y++);
-    printf("6.MI    7.PK   8.RR   9.RCB   10.SRH\n");
-    printf("Select your team: ");
+    char *IplTeams[] = { "CSK", "DC", "GT","KKR", "LSG", "MI", "PKBS", "RR", "RCB", "SRH" };
+    InputPopup(IplTeams,10);
+    team = current_button;
     scanf("%d",&team);
     strcpy(team_name ,choose_team(team));
     A:
@@ -331,19 +330,22 @@ int cricket_game() {
                 {
                     print_success("CONGRATULATIONS YOU WON THE GAME\n");
                     applause();
-                    return 1; 
+                     // Calculate game score
+                    return 4 - (rand_target - score) / (rand_balls / 6);
                 }
                 else if (score<rand_target)
                 {
                     print_error("YOU LOSE THE GAME\n");
-                    return 1;
+                     // Calculate game score
+                    return 0;
                 }
                 
             }
             
             if(match_over){
                 print_hit();
-                return 1;
+                score = 4 - (rand_target - score) / (rand_balls / 6); // Calculate game score
+                return 4 - (rand_target - score) / (rand_balls / 6);
             }
             getchar();
             goto B;
@@ -359,6 +361,8 @@ int cricket_game() {
         set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
         out();
         print_error("YOU LOSE THE GAME\n");
+                     // Calculate game score
+        return 4 - (rand_target - score) / (rand_balls / 6);
     }
 
     setCursor(0, 0); // Set cursor to default position

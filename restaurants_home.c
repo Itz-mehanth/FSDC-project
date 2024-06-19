@@ -6,8 +6,10 @@
 #include <time.h>
 #include "map.h"
 #include "restaurants_home.h"
+#include "textField.h"
 #include "illustrations.h"
 #include "login.h"
+#include "buttonCreator.h"
 #include "theme.h"
 #include "food_order_page.h"
 #include "food_items.h"
@@ -23,6 +25,8 @@ int restaurant_no;
 char restaurantType[20];
 
 restaurant restaurants[TOTAL_RESTAURANTS];
+restaurant vegRestaurants[5];
+restaurant nonvegRestaurants[10];
 
 void printf_restaurants(restaurant *restaurants) {
     for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
@@ -90,6 +94,8 @@ void sortRestaurantsByWeightedRating() {
 }
 
 int readRestaurants() {
+    int veg_idx = 0;
+    int nonveg_idx = 0;
     FILE *fp = fopen("restaurants_new.txt", "r");
     if (fp == NULL) {
         print_error("Error opening file:restaurants_new.txt");
@@ -97,9 +103,12 @@ int readRestaurants() {
     }
     for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
         fscanf(fp, "%[^,],%[^,],%lf,%lf,%f,%d\n", restaurants[i].name, restaurants[i].type, &restaurants[i].lat, &restaurants[i].lon, &restaurants[i].rating, &restaurants[i].total_ratings);
+        
     }
     fclose(fp);
     sortRestaurantsByWeightedRating(restaurants);
+
+
     return 1;
 }
 Category select_food_Category()
@@ -164,8 +173,9 @@ B:
     int response = MessageBox(NULL, "Wanna add rating", "Warning",MB_ICONQUESTION | MB_YESNOCANCEL);
     if(response == IDYES){
         MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
-        printf("Enter your rating: ");
-        scanf("%d", &user_rating);
+        char *ratingsLabels[] = { "1 Star","2 Star","3 Star","4 Star","5 Star"};
+        InputPopup(ratingsLabels,5);
+        user_rating = current_button;
         select_beep();
         if (user_rating > 0 && user_rating < 6)
         {
@@ -368,6 +378,16 @@ A:
 void display_restaurants()
 {
     int index = 1;
+    int veg_idx = 0;
+    int nonveg_idx = 0;
+    for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
+        if (strcmp(restaurants[i].type,"veg") == 0)
+        {
+            nonvegRestaurants[veg_idx++] = restaurants[i];
+        }else if (strcmp(restaurants[i].type,"nonveg") == 0){
+            nonvegRestaurants[nonveg_idx++] = restaurants[i];
+        }
+    }
     setCursor_inc(90,33);
     printf("%s","R E S T A R A U R A N T S");
     for (int i = 0; i < TOTAL_RESTAURANTS; i++)
@@ -377,11 +397,13 @@ void display_restaurants()
             if (strcmp(restaurants[i].type, "veg") == 0)
             {
                 printRestaurant(index, restaurants[i].name);
+                vegRestaurants[veg_idx++] = restaurants[i];
                 index++;
             }
             
         }else{
             printRestaurant(index, restaurants[i].name);
+            nonvegRestaurants[nonveg_idx++] = restaurants[i];
             index++;
         }
         if (index == 10)
@@ -396,8 +418,17 @@ void display_restaurants()
 int select_restaurants()
 {
     int selected_restaurants;
-    printf("Enter the restaurant number to select:");
-    scanf("%d", &selected_restaurants);
+    readRestaurants();
+    if (veg_mode)
+    {
+        char *editProfileLabels[] = { vegRestaurants[0].name, vegRestaurants[1].name, vegRestaurants[2].name, vegRestaurants[3].name, vegRestaurants[4].name };
+        InputPopup(editProfileLabels,5);
+    }else{
+        char *editProfileLabels[] = { nonvegRestaurants[0].name, nonvegRestaurants[1].name, nonvegRestaurants[2].name, nonvegRestaurants[3].name, nonvegRestaurants[4].name, nonvegRestaurants[5].name, nonvegRestaurants[6].name, nonvegRestaurants[7].name, nonvegRestaurants[8].name, nonvegRestaurants[9].name};
+        InputPopup(editProfileLabels,10);
+    }
+    
+    selected_restaurants = current_button;
     select_beep();
     return selected_restaurants;
 }
@@ -476,14 +507,10 @@ int review_restaurant(const char *restaurant_name)
         printUserDetails();
         printRestaurant(1, restaurant_name);
     }
-    printf("1.Rate restaurant:\n");
-    printf("2.Add comment:\n");
-    printf("3.View comment:\n");
-    printf("4.View menu:\n");
-    printf("5.back:\n");
-    printf("Enter your choice:");
-    scanf("%d", &choice);
-    select_beep();
+
+    char *restaurantOptions[] = { "Rate restaurant", "Add comment", "View comment", "View menu" };
+    InputPopup(restaurantOptions,4);
+    choice = current_button;
     switch (choice)
     {
     case 1:
@@ -495,7 +522,6 @@ int review_restaurant(const char *restaurant_name)
     case 3:
         if (viewLastFiveComments(restaurant_name) == 1)
         {
-            getchar();
             getchar();
             break;
         }
@@ -510,7 +536,7 @@ int review_restaurant(const char *restaurant_name)
     }
     system("cls");
     goto D;
-    return 0;
+    return -1;
 }
 
 void print_restaurants()
@@ -526,9 +552,7 @@ void print_restaurants()
                 printRestaurant(index, restaurants[i].name);
                 index++;
             }
-            
         }else{
-
             printRestaurant(index, restaurants[i].name);
             index++;
         }
@@ -645,7 +669,13 @@ int restaurantsHomeFunction()
                     restaurant_count++;
                     if (selection == restaurant_count)
                     {
-
+                        FILE *fp = fopen("current_restaurant.txt", "w");
+                        if (fp == NULL)
+                        {
+                            print_error("Couldn't open current restaurant file");
+                        }
+                        fprintf(fp, "%s", restaurants[i].name);
+                        fclose(fp);
                         printf("****-%s:-****",restaurants[i].name);
                         printRestaurant(restaurant_count,restaurants[i].name);
                         response = review_restaurant(restaurants[i].name);
@@ -655,7 +685,7 @@ int restaurantsHomeFunction()
                             return 2;
                         }else if (response == 0)
                         {
-                            return 0; 
+                            return 0;
                         }
                         
                         restaurant_no = 0;
@@ -666,7 +696,6 @@ int restaurantsHomeFunction()
                 restaurant_count++;
                 if (selection == restaurant_count)
                 {
-                
                     printf("****-%s:-****",restaurants[i].name);
                     printRestaurant(restaurant_count,restaurants[i].name);
                     response = review_restaurant(restaurants[i].name);

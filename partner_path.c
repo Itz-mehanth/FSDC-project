@@ -80,10 +80,9 @@ int loadDeliveryRecords(const char* filename, DeliveryRecord records[], int max_
 int find_node_by_loc(Node* graph,double lat,double lon) {
 
   // Search for the source node by name
-    // printf("%s \n",source_name);
   for (int i = 0; i < num_cities; i++) {
     if (fabs(lat - graph[i].latitude) < TOLERANCE && fabs(lon - graph[i].longitude) < TOLERANCE) {
-        // printf("the partner is in %s\n",graph[i].name);
+        printf("the partner is in %s\n",graph[i].name);
       return i; // Return index if found
     }
   }
@@ -473,7 +472,56 @@ void addDeliveryDetails(char *partnerName, struct tm *time, char partner_path[10
     fclose(f);
 }
 
+void update_partner_location(Node *partnerLocation, Partner *partner) {
+    FILE *f = fopen("delivery_boys_details.txt", "r");
+    if (f == NULL) {
+        perror("Error opening file");
+        return;
+    }
 
+    FILE *tempFile = fopen("temp.txt", "w");
+    if (tempFile == NULL) {
+        perror("Error opening temporary file");
+        fclose(f);
+        return;
+    }
+
+    Partner temp;
+    bool found = false;
+
+    // Read each partner record and write to the temp file, updating the target partner's location
+    while (fscanf(f, "%s %s %s %s %lf %lf %f %d %d", temp.username, temp.password, temp.email, temp.phone_no,&temp.lat, &temp.lon,&temp.ratings, &temp.total_ratings, (int *)&temp.current_del_boy,&temp.estimated_sec) == 9) {
+        if (strcmp(temp.username, partner->username) == 0) {
+            temp.lat = partnerLocation->latitude;
+            temp.lon = partnerLocation->longitude;
+            found = true;
+        }
+        fprintf(tempFile, "%s %s %s %s %lf %lf %f %d %d\n", temp.username, temp.password, temp.email, temp.phone_no,
+                  temp.lat, temp.lon,temp.ratings, temp.total_ratings, temp.current_del_boy,temp.estimated_sec);
+    }
+
+    fclose(f);
+    fclose(tempFile);
+
+    if (found) {
+        // Replace the original file with the updated temp file
+        remove("delivery_boys_details.txt");
+        rename("temp.txt", "delivery_boys_details.txt");
+        printf("Partner location updated successfully.\n");
+    } else {
+        remove("temp.txt");
+        printf("Partner with username '%s' not found.\n", partner->username);
+    }
+
+    FILE *fp = fopen("delivery_boys_details.txt", "r+");
+    if (fp == NULL)
+    {
+        print_error("Error opening file");
+        return;
+    }
+    fclose(fp);
+    
+}
 
 // Function to find the best delivery person based on scores
 
@@ -509,13 +557,13 @@ void partnerFinder(char *restaurant, char *sourcename){
     double current_dist_part_rest;
     float max_ratings = 0.0;
 
-    // printf("The total number of delivery partners: %d\n",num_del_boys);
+    printf("The total number of delivery partners: %d\n",num_del_boys);
     for (int i = 0; i < num_del_boys; i++)
     {
         partner_location_index = find_node_by_loc(graph,partners[i].lat,partners[i].lon);
-        // printf("The partner location: %d\n",partner_location_index);
+        printf("The partner location: %d\n",partner_location_index);
         current_dist_part_rest = dijkstra_for_partner(cost_matrix, partner_location_index, restaurant_location_index ,graph,dist,0);
-        // printf("%lf == %lf\n",current_dist_part_rest, min_dist_part_rest);
+        printf("%lf == %lf\n",current_dist_part_rest, min_dist_part_rest);
         if (current_dist_part_rest < min_dist_part_rest && partners[i].ratings >= max_ratings) 
         {
             min_dist_part_rest = current_dist_part_rest;
@@ -523,17 +571,19 @@ void partnerFinder(char *restaurant, char *sourcename){
             max_ratings = partners[i].ratings;
             partner_location_index = find_node_by_loc(graph,partners[i].lat,partners[i].lon);
         }
-        
     }
 
     current_dist_part_rest = dijkstra_for_partner(cost_matrix, partner_location_index, restaurant_location_index ,graph,dist,1);
-    printf("you delivery person name is %s\n", chosen_partner.username);
-    getchar();
+    // printf("you delivery person name is %s\n", chosen_partner.username);
+    // getchar();
     struct tm time = get_current_time();
     min_dist_user_rest = dijkstra_for_partner(cost_matrix, restaurant_location_index, destination_location_index  ,graph,dist,1);
-    printf("finding rest dest path\n");
-    getchar();
+    // printf("finding rest dest path\n");
+    // getchar();
     printNearbyPartner(1,chosen_partner,min_dist_part_rest+min_dist_user_rest,sourcename);
+    Node* partnerLocation;
+    partnerLocation= find_node_by_name(graph,sourcename);
+    update_partner_location(partnerLocation,&chosen_partner);
     getch();
     addDeliveryDetails(chosen_partner.username,&time,partner_path,partner_path_length);
 }
@@ -541,11 +591,9 @@ void partnerFinder(char *restaurant, char *sourcename){
 
 int partnerMap(char *sourcename,char restaurant[50] ,float max_dist){
     system("cls");
-
     int index = 0;
     int Partner;
     partnerFinder(restaurant,sourcename);
-        
     return 0;
 }
 // void main(){

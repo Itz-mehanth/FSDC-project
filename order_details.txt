@@ -16,3 +16,17 @@ paveethiran,Clam_Chowder,Seafood,Veg,9.990000,5,17-06-2024/02:05:39
 paveethiran,heeseburger,FastFood,Veg,5.990000,5,17-06-2024/02:17:33
 paveethiran,Grilled_Shrimp_Skewers,Seafood,Veg,17.990000,5,17-06-2024/02:25:01
 paveethiran,Ratatouille,French,Veg,12.990000,3,17-06-2024/02:52:59
+mehanth,Pizza_Slice,FastFood,Veg,2.990000,5,19-06-2024/00:37:38
+mehanth,Oysters_on_the_Half_Shell,Seafood,Veg,19.990000,4,19-06-2024/00:37:38
+mehanth,Coconut_Chutney,TamilNadu,Veg,4.990000,5,19-06-2024/00:37:38
+mehanth,ramisu,Italian,Veg,8.990000,5,19-06-2024/00:40:43
+mehanth,Falafel_Wrap,Mediterranean,Veg,11.990000,6,19-06-2024/00:48:51
+mehanth,Beef_Burrito,Mexican,NonVeg,12.990000,5,19-06-2024/13:09:25
+mehanth,Bisi_Bele_Bath,TamilNadu,Veg,10.990000,7,19-06-2024/13:09:25
+mehanth,Mapo_Tofu,Chinese,Veg,10.990000,5,19-06-2024/13:46:14
+mehanth,Dim_Sum,Chinese,Veg,11.990000,5,19-06-2024/13:52:18
+mehanth,Fried_Rice,Chinese,Veg,9.990000,5,19-06-2024/14:31:46
+mehanth,Croissant,French,Veg,3.990000,5,19-06-2024/14:35:08
+mehanth,Churros_con_Chocolate,Spanish,Veg,7.990000,8,19-06-2024/14:48:17
+mehanth,Beef_Bourguignon,French,NonVeg,20.990000,5,19-06-2024/14:49:36
+mehanth,Thali_Meals,TamilNadu,Veg,12.990000,6,19-06-2024/16:29:50

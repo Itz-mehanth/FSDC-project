@@ -1,7 +1,7 @@
+hotel_parkway_inn,nonveg,12.823957,80.230877,3.500000,2
 days_hotel,nonveg,12.803990,80.224098,4.000000,1
-foodaholic,nonveg,12.812312,80.228689,0.000000,0
-hotel_parkway_inn,nonveg,12.823957,80.230877,0.000000,0
 hungry_bear_hotel,nonveg,12.828190,80.230912,4.000000,1
+foodaholic,nonveg,12.812312,80.228689,2.500000,2
 novotel_hotel_sipcot,nonveg,12.831236,80.230148,0.000000,0
 nandhana_palace,nonveg,12.833064,80.229289,0.000000,0
 taco_bell,nonveg,12.836168,80.228946,0.000000,0

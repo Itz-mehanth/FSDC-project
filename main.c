@@ -9,7 +9,6 @@
 #include "animations.h"
 #include "notification.h"
 
-
 int main(){
     printf("\n\n\n\n\n\n\n\n\n\n");
     welcome_pop();
@@ -40,10 +39,10 @@ int main(){
         }
     }else if (loginRes == 0)
     {
-        goto HOME;
+        goto C;
     }
     else{
-        goto C;
+        goto HOME;
     }
     return 1;
 }
