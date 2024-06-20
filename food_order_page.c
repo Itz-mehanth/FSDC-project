@@ -33,15 +33,14 @@ FoodItem select_food(int restaurant_type,Category category){
     if (veg_mode)
     {
 
-        char *recommendedFoods[] = { category.nonVeg[0].name,category.nonVeg[1].name,category.nonVeg[2].name,category.nonVeg[3].name,category.nonVeg[4].name};
+        char *recommendedFoods[] = { category.veg[0].name,category.veg[1].name,category.veg[2].name,category.veg[3].name,category.veg[4].name};
         InputPopup(recommendedFoods,5);
         choice = current_button;
         select_beep();
         food = category.veg[choice-1];
     }else{
-
         char *recommendedFoods[] = { category.nonVeg[0].name,category.nonVeg[1].name,category.nonVeg[2].name,category.nonVeg[3].name,category.nonVeg[4].name,category.nonVeg[5].name,category.nonVeg[6].name,category.nonVeg[7].name,category.nonVeg[8].name,category.nonVeg[9].name};
-        InputPopup(recommendedFoods,5);
+        InputPopup(recommendedFoods,10);
         choice = current_button;
         select_beep();
         food = category.nonVeg[choice-1];
@@ -125,28 +124,40 @@ void printCartFood(int n,const FoodItemCart item) {
 
 
 void printFoodItem(const FoodItem item) {
+    int y=16,x=70;
+    setCursor_inc(x,y++);
     set_text_color(RED,YELLOW);
     printf("            Food Details                \n");
 
+    setCursor_inc(x,y++);
     set_text_color(YELLOW,WHITE);
     printf("  Cuisine: ");
     set_text_color(BLACK,WHITE);
     printf("%-27s  \n", item.category);
 
+    setCursor_inc(x,y++);
     set_text_color(YELLOW,WHITE);
     printf("  Category: ");
     set_text_color(BLACK,WHITE);
     printf("%-26s  \n", item.type);
 
+    setCursor_inc(x,y++);
     printf("                                        \n");
+    setCursor_inc(x,y++);
     set_text_color(RED,WHITE);
+    setCursor_inc(x,y++);
     printf("            %-26s  \n", item.name);
+    setCursor_inc(x,y++);
     printf("                                        \n");
 
+    setCursor_inc(x,y++);
     set_text_color(CYAN,WHITE);
+    setCursor_inc(x,y++);
     printf("       $ %-29.2f  \n", item.price);
+    setCursor_inc(x,y++);
     printf("                                        \n");
 
+    setCursor_inc(x,y++);
     set_text_color(YELLOW,WHITE);
     printf("     *");
     set_text_color(BLACK,WHITE);
@@ -157,6 +168,7 @@ void printFoodItem(const FoodItem item) {
     set_text_color(BLACK,WHITE);
     printf(")                         \n");
 
+    setCursor_inc(x,y++);
     printf("                                        ");
     set_text_color(CURRENT_FOREGROUND_COLOR,CURRENT_BACKGROUND_COLOR);
     printf("\n");
@@ -1222,11 +1234,26 @@ float calculate_discount_points(int points){
 void process_entries(FoodEntry *entries, int size, int point) {
     float total_cost =0;
     int tot_quantity=0;
-    printf("  FOOD      Quant       PRICE       Tot_amt  \n");
+    int x=70;
+    int y=20;
+    setCursor_inc(x,y++);
+    set_text_color(BLACK,GREEN);
+    printf("                                                                   "," ");
+    setCursor_inc(x,y++);
+    printf("       FOOD               QUANTITY       PRICE       TOTAL AMOUNT  \n");
+    setCursor_inc(x,y++);
+    printf("                                                                   "," ");
+    set_text_color(BLACK,WHITE);
+    printf("                                                                   "," ");
     for (int i = 0; i < size; ++i) {
-        printf("%s      %d      %f      %f\n",entries[i].dish,entries[i].quantity,entries[i].amount,entries[i].amount*entries[i].quantity);
+        setCursor_inc(x,y++);
+        set_text_color(BLACK,WHITE);
+        printf(" %-25s  %d            %.2f            %.2f ",entries[i].dish,entries[i].quantity,entries[i].amount,entries[i].amount*entries[i].quantity);
+        printf(" %-25s                                    "," ");
         total_cost+=entries[i].amount*entries[i].quantity;
     }
+    set_text_color(BLACK,WHITE);
+    printf("                                                                   "," ");
 
     float total_discount = 0;
 
@@ -1242,9 +1269,17 @@ void process_entries(FoodEntry *entries, int size, int point) {
 
     final_amount = total_cost - total_discount;
     
-    printf("Total Cost before Discount: %.2f\n", total_cost);
-    printf("Total Discount: %.2f\n", total_discount);
-    printf("Final Amount after Discount: %.2f\n", final_amount);
+    setCursor_inc(x,y++);
+    set_text_color(BLACK,YELLOW);
+    printf(" Total Cost before Discount: %.2f                                     \n", total_cost);
+    setCursor_inc(x,y++);
+    printf(" Total Discount: %.2f                                                 \n", total_discount);
+    setCursor_inc(x,y++);
+    printf(" Final Amount after Discount: %.2f                                    \n", final_amount);
+    setCursor_inc(x,y++);
+    printf("                                                                      \n", final_amount);
+    getchar();
+    set_text_color(BLACK,WHITE);
 
      // Write to file
     FILE *file = fopen("user_purchases.txt", "a");
@@ -1265,7 +1300,11 @@ void process_entries(FoodEntry *entries, int size, int point) {
 }
 
 int calculateDiscount(FoodEntry *foodlist,int size,int point) {
-
+    system("cls");
+    home();
+    printUserDetails();
+    home_page_banner();
+    side_menu(-1);
     process_entries(foodlist, size, point);
 
    return   0;
@@ -1285,8 +1324,6 @@ int add_order_details(FoodEntry order_details[10]){
     if (fp == NULL) {
         print_error("ERROR: Could not open cart file");
     }
-
-    
 
     order_details_file = fopen("order_details.txt", "a");
     if (readCurrentUser()==1)
@@ -1319,7 +1356,6 @@ int add_order_details(FoodEntry order_details[10]){
                 order_details[total_count-1].quantity = item.count;
                 total_price += item.price*item.count;
                 total_count++;
-
             }else{
                 strcpy(cartItems[i].username,item.username);
                 strcpy(cartItems[i].name,item.name);
@@ -1334,6 +1370,7 @@ int add_order_details(FoodEntry order_details[10]){
         }
         
     }
+
     fclose(fp);
     fclose(order_details_file);
     fp = fopen("cart.txt","w");
@@ -1359,7 +1396,6 @@ int edit_cart(){
         switch (choice)
         {
         case 1:
-
             UserDeliveryInfo UserDeliveryInfo;
             // FoodEntry FoodEntries[10];
             UserDeliveryInfo = readUserDeliveryInfo();
@@ -1386,7 +1422,6 @@ int edit_cart(){
                     home();
                     printUserDetails();
                     side_menu(-1);
-                    getchar();
                 }else{
                     score = 0;
                 }
@@ -1459,6 +1494,7 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
     int count;
     int found = 0;
     FoodItem food;
+    FoodItem food1;
         system("cls");
         home();
         side_menu(-1);
@@ -1469,16 +1505,16 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
         setCursor_inc(x,y++);
         printf(" Search: ");
         set_text_color(BLACK,DARK_GRAY);
-        printf("%15s               O-",ItemName);
+        printf("%15s               O- ",ItemName);
         setCursor_inc(x,y++);
         set_text_color(BLACK,DARK_GRAY);
         printf("                                          ");
+    FoodItem food_list1[5];
+    FoodItem food_list[5];
     while (1)
     {
-
-        FoodItem food_list[5];
-        found = 0;
-        count =1;
+        found =  0;
+        count = 1;
         y=2;
         char ch  = _getch();
         if (ch==13)
@@ -1486,7 +1522,7 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
             int selected;
             printf("Enter your choice: ");
             scanf("%d",&selected);
-            return food_list[selected-1];
+            return food_list1[selected-1];
 
         }else if (ch=='\b'){
             removeLastChar(ItemName);
@@ -1504,19 +1540,23 @@ FoodItem searchFoodItem(int restaurant_no, Menu menu) {
         setCursor_inc(x,y++);
         printf(" Search: ");
         set_text_color(WHITE,DARK_GRAY);
-        printf("%15s               O-",ItemName);
+        printf("%15s               O- ",ItemName);
         setCursor_inc(x,y++);
         set_text_color(WHITE,DARK_GRAY);
         printf("                                          ");
-        
+        set_text_color(WHITE,WHITE);
+        char lineWithoutCaseChange[MAX_LINE_LENGTH];
         // Read each line of the file
         // convertToLowerCase(token);
         while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
+            strcpy(lineWithoutCaseChange, line);
             convertToLowerCase(line);
             if ((token = strstr(line, ItemName)) != NULL && (type_token = strstr(line, type)) != NULL) {
                 sscanf(line,"%[^,],%f,%[^,],%[^,],%f,%d\n",food.name,&food.price,food.category,food.type,&food.rating,&food.total_ratings); // Print the line if the item name is found
+                sscanf(lineWithoutCaseChange,"%[^,],%f,%[^,],%[^,],%f,%d\n",food1.name,&food1.price,food1.category,food1.type,&food1.rating,&food1.total_ratings); // Print the line if the item name is found
                 printFoodList(count,food,count-1);
                 food_list[count-1] = food;
+                food_list1[count-1] = food1;
                 count++;
                 found = 1;
             }
@@ -1563,11 +1603,9 @@ int foodOrder() {
        
         char *CategorySelectionPageLabels[] = {"Select Category", "Back", "Exit"};
         InputPopup(CategorySelectionPageLabels,3);
-        print_success("popup successfull");
         food_category_num = current_button;
         select_beep();
         printf("%d",food_category_num);
-        print_success("food category found");
 
         switch (food_category_num) 
         {
@@ -1590,11 +1628,11 @@ int foodOrder() {
                     home_page_banner();
                     food_selected=displayMenu(restaurant_no,food_category_num,menu);
 
+                    A:
                     system("cls");
                     home();
                     printUserDetails();
                     home_page_banner();
-                    A:
                     printFoodItem(food_selected);
                     food_selected = addCartFunction(food_selected);
                     if(strcmp(food_selected.name,"none")!=0){

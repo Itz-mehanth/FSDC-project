@@ -3,6 +3,7 @@ Margherita_Pizza,9.99,Italian,Veg,0.00,0,0.00
 Risotto,14.99,Italian,Veg,0.00,0,0.00
 ramisu,8.99,Italian,Veg,0.00,0,0.00
 Caprese_Salad,10.99,Italian,Veg,0.00,0,0.00
+tortellini_alfredo
 Lasagna,11.99,Italian,NonVeg,0.00,0,0.00
 Bruschetta,7.99,Italian,Veg,0.00,0,0.00
 Pesto_Pasta,10.99,Italian,NonVeg,0.00,0,0.00
@@ -13,7 +14,7 @@ Masala_Dosa,8.99,Indian,Veg,0.00,0,0.00
 Chicken_Biryani,11.99,Indian,NonVeg,0.00,0,0.00
 Palak_Paneer,10.99,Indian,Veg,0.00,0,0.00
 Gulab_Jamun,6.99,Indian,Veg,0.00,0,0.00
-Chole_Bhature,9.99,Indian,Veg,0.00,0,0.00
+Chole_Bhature,9.99,Indian,Veg,5.00,1,5.00
 Tandoori_Chicken,12.99,Indian,NonVeg,0.00,0,0.00
 Paneer_Tikka,10.99,Indian,NonVeg,0.00,0,0.00
 Rogan_Josh,14.99,Indian,NonVeg,0.00,0,0.00
@@ -24,7 +25,7 @@ Dim_Sum,11.99,Chinese,Veg,3.00,1,3.00
 Mapo_Tofu,10.99,Chinese,Veg,0.00,0,0.00
 Peking_Duck,18.99,Chinese,NonVeg,0.00,0,0.00
 Sweet_and_Sour_Pork,13.99,Chinese,NonVeg,0.00,0,0.00
-Chow_Mein,10.99,Chinese,NonVeg,0.00,0,0.00
+Chow_Mein,10.99,Chinese,NonVeg,4.00,1,4.00
 Egg_Rolls,6.99,Chinese,Veg,0.00,0,0.00
 Spring_Rolls,8.99,Chinese,Veg,0.00,0,0.00
 Beef_and_Broccoli,14.99,Chinese,NonVeg,0.00,0,0.00
@@ -58,7 +59,7 @@ Mexican_Street_Corn_(Elote),7.99,Mexican,Veg,0.00,0,0.00
 Chile_Rellenos,14.99,Mexican,Veg,0.00,0,0.00
 Pozole,11.99,Mexican,NonVeg,0.00,0,0.00
 Churros_with_Chocolate_Sauce,6.99,Mexican,Veg,0.00,0,0.00
-Cheeseburger,8.99,American,NonVeg,4.00,1,4.00
+Cheeseburger,8.99,American,NonVeg,5.00,1,5.00
 BBQ_Ribs,16.99,American,NonVeg,0.00,0,0.00
 Fried_Chicken,12.99,American,NonVeg,0.00,0,0.00
 Mac_and_Cheese,10.99,American,Veg,0.00,0,0.00
@@ -249,9 +250,9 @@ Seafood_Paella,18.99,Seafood,Veg,0.00,0,0.00
 Oysters_on_the_Half_Shell,19.99,Seafood,Veg,0.00,0,0.00
 Scallops_with_Lemon_Butter_Sauce,20.99,Seafood,Veg,0.00,0,0.00
 heeseburger,5.99,FastFood,Veg,0.00,0,4.00
-Chicken_Nuggets,4.99,FastFood,NonVeg,3.00,1,3.00
+Chicken_Nuggets,4.99,FastFood,NonVeg,5.00,1,5.00
 Hot_Dog,3.99,FastFood,NonVeg,0.00,0,0.00
-Pizza_Slice,2.99,FastFood,Veg,0.00,0,0.00
+Pizza_Slice,2.99,FastFood,Veg,3.00,1,3.00
 Chicken_Sandwich,6.49,FastFood,NonVeg,0.00,0,0.00
 Fries,2.49,FastFood,Veg,0.00,0,0.00
 Onion_Rings,3.49,FastFood,Veg,0.00,0,0.00

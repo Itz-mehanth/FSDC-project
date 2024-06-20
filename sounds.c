@@ -32,3 +32,16 @@ void out(){
 void crowd(){
     PlaySound(TEXT("crowd.wav"), NULL, SND_FILENAME | SND_ASYNC);
 }
+void win(){
+    PlaySound(TEXT("win.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+void cling(){
+    PlaySound(TEXT("cling.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+void tik(){
+    PlaySound(TEXT("tik.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}
+
+void gpay(){
+    PlaySound(TEXT("gpay.wav"), NULL, SND_FILENAME | SND_ASYNC);
+}

@@ -13,5 +13,5 @@ void loadingBar();
 
 int heart();
 
-
+void waterMelon(int x, int y);
 #endif // !ILLUSTRATIONS

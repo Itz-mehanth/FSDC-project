@@ -331,7 +331,7 @@ int cricket_game() {
                     print_success("CONGRATULATIONS YOU WON THE GAME\n");
                     applause();
                      // Calculate game score
-                    return 4 - (rand_target - score) / (rand_balls / 6);
+                    return rand() %6 + 5;
                 }
                 else if (score<rand_target)
                 {
@@ -344,8 +344,7 @@ int cricket_game() {
             
             if(match_over){
                 print_hit();
-                score = 4 - (rand_target - score) / (rand_balls / 6); // Calculate game score
-                return 4 - (rand_target - score) / (rand_balls / 6);
+                return rand() % 5;
             }
             getchar();
             goto B;
@@ -362,7 +361,7 @@ int cricket_game() {
         out();
         print_error("YOU LOSE THE GAME\n");
                      // Calculate game score
-        return 4 - (rand_target - score) / (rand_balls / 6);
+        return rand() % 5;
     }
 
     setCursor(0, 0); // Set cursor to default position

@@ -16,3 +16,8 @@ mehanth,Bisi_Bele_Bath,3.00
 mehanth,Dim_Sum,3.00
 mehanth,Beef_Bourguignon,4.00
 mehanth,Thali_Meals,3.00
+mehanth,Cheeseburger,5.00
+mehanth,Chicken_Nuggets,5.00
+mehanth,Pizza_Slice,3.00
+mehanth,Chow_Mein,4.00
+mehanth,Chole_Bhature,5.00

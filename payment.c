@@ -5,6 +5,7 @@
 #include "restaurants_home.h"
 #include "food_order_page.h"
 #include "delivery_boy_selection.h"
+#include "sounds.h"
 #include "partner_path.h"
 #include <windows.h>
 #include "login.h"
@@ -762,6 +763,7 @@ void loadingbarpayment(){
 void success_popup(){
     int x=101,y=29;
     loadingbarpayment();
+    gpay();
     setCursor_inc(x,y++);
     set_text_color(BLACK,GREEN);
     printf("                               ");
@@ -769,6 +771,7 @@ void success_popup(){
     printf("       PAYMENT SUCCESSFUL      ");
     setCursor_inc(x,y++);
     printf("                               ");
+    print_success("PAYMENT SUCCESSFUL");
 }
 
 int payment() {

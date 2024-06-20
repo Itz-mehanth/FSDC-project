@@ -1,3 +1,9 @@
 mehanth,Beef_Burrito,12.99,Mexican,NonVeg,3.00,0
 mehanth,Bisi_Bele_Bath,10.99,TamilNadu,Veg,3.00,0
 mehanth,Dim_Sum,11.99,Chinese,Veg,3.00,0
+mehanth,Thali_Meals,12.99,TamilNadu,Veg,3.00,0
+mehanth,Grilled_Salmon,16.99,Seafood,NonVeg,5.00,1
+mehanth,Cheeseburger,8.99,American,NonVeg,5.00,1
+mehanth,Pizza_Slice,2.99,FastFood,Veg,3.00,0
+mehanth,Chow_Mein,10.99,Chinese,NonVeg,4.00,0
+mehanth,Croissant,3.99,French,Veg,0.00,0

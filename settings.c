@@ -114,7 +114,7 @@ int select_delivery_address(){
     double cost_matrix[MAX_CITIES][MAX_CITIES];
     double dist[V];
     Node *graph = create_graph_from_file("loc_data.txt");
-    printf("%s",graph[3].name);
+    // printf("%s",graph[3].name);
     char input_address[100]="";
     A:
     int x = 50,y=13;
@@ -159,7 +159,7 @@ int select_delivery_address(){
     // printf("%s",graph[8].name);
     printf("You have selected %s\n", address_node.name);
     create_cost_matrix(cost_matrix, graph,&address_node);
-    printf("testing cost matrix %lf",cost_matrix[10][20]);
+    // printf("testing cost matrix %lf",cost_matrix[10][20]);
     // printf("%s",graph[9].name);
     setCursor_inc(x,y++);
     printf("Enter the max distance of the restaurants:");

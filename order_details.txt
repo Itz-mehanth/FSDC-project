@@ -30,3 +30,14 @@ mehanth,Croissant,French,Veg,3.990000,5,19-06-2024/14:35:08
 mehanth,Churros_con_Chocolate,Spanish,Veg,7.990000,8,19-06-2024/14:48:17
 mehanth,Beef_Bourguignon,French,NonVeg,20.990000,5,19-06-2024/14:49:36
 mehanth,Thali_Meals,TamilNadu,Veg,12.990000,6,19-06-2024/16:29:50
+mehanth,Grilled_Salmon,Seafood,NonVeg,16.990000,123,19-06-2024/21:40:32
+mehanth,Belgian_Waffles,Breakfast,NonVeg,8.490000,12,19-06-2024/21:53:01
+mehanth,Chicken_Nuggets,FastFood,NonVeg,4.990000,1,19-06-2024/21:53:01
+mehanth,Key_Wat_(Spicy_Beef_Stew),Ethiopian,NonVeg,13.990000,5,19-06-2024/22:02:21
+mehanth,Kebab_Platter,Mediterranean,NonVeg,16.990000,4,19-06-2024/22:11:27
+mehanth,Crème_Brûlée,French,Veg,7.990000,7,19-06-2024/22:24:47
+mehanth,Chow_Mein,Chinese,NonVeg,10.990000,5,21-06-2024/02:22:01
+mehanth,Croissant,French,Veg,3.990000,6,21-06-2024/02:22:01
+mehanth,Chole_Bhature,NorthIndian,Veg,11.990000,5,21-06-2024/03:25:42
+mehanth,Key_Lime_Pie,American,Veg,6.990000,4,21-06-2024/03:25:42
+mehanth,Bouillabaisse,French,NonVeg,22.990000,3,21-06-2024/03:29:43

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include "statistics.h"
+#include "CommunityChat.h"
 #include "sounds.h"
 #include "textField.h"
 #include "partner_path.h"
@@ -281,7 +283,7 @@ void side_menu(int selectedOption){
         printf("                           ");
         setCursor_inc(x,y);
         y+=1;
-        printf("          HISTORY          ");
+        printf("         STATISTICS        ");
         setCursor_inc(x,y);
         y+=1;
         printf("                           ");
@@ -377,6 +379,21 @@ void side_menu(int selectedOption){
         y+=1;
         printf("                           ");
 
+        set_text_color(BLACK,BLACK);
+        if (selectedOption == 9)
+        {
+            set_text_color(WHITE,BLUE);
+        }
+        setCursor_inc(x,y);
+        y+=1;
+        printf("                           ");
+        setCursor_inc(x,y);
+        y+=1;
+        printf("       COMMUNITY CHAT      ");
+        setCursor_inc(x,y);
+        y+=1;
+        printf("                           ");
+
         setCursor_inc(x,y);
         set_text_color(BLACK,BLACK);
         y+=1;
@@ -398,11 +415,11 @@ void side_menu(int selectedOption){
 }
 
 int menu_navigator(){
-    int num_options = 11;
+    int num_options = 10;
     int selectedOption = 0;
     char side_menu_options[12][20] = 
     {
-        "home", "profile", "history", "settings", "logout","view restaurants","cart","search","nearby_restaurants"
+        "home", "profile", "history", "settings", "logout","view restaurants","cart","search","nearby_restaurants","CommunityChat"
     };
     char ch;
     bool exit = false;
@@ -452,6 +469,11 @@ void find_user_details(User Users[],const char *target_username,User *destinatio
         }
     }
 }
+void game_results_popup(int score){
+    char success_message[20];
+    sprintf(success_message,"You got %d scores!\n",score);
+    print_success(success_message);
+}
 int play_games(int *score){
         int choice;
         char *GamesLabels[] = { "Cricket", "Snake and Ladder", "Snake", "Exit" };
@@ -460,14 +482,20 @@ int play_games(int *score){
         set_text_color(BLACK,WHITE);
         if(choice==1){
             *score = cricket_game();
+            win();
+            game_results_popup(*score);
             return 1;
         }
         else if(choice==2){
             *score = snake_ladder_game();
+            win();
+            game_results_popup(*score);
             return 1;
         }
         else if(choice==3){
             *score = snake_game();
+            win();
+            game_results_popup(*score);
             return 1;
         }
         else if(choice==4){
@@ -505,6 +533,7 @@ int writeCurrentUser(User current_user_details) {
     fprintf(file, "%s %s %s %s %d", current_user_details.username, current_user_details.password, current_user_details.email, current_user_details.phone_no, current_user_details.isveg);
     
     fclose(file);
+    return 1;
 }
 
 
@@ -515,8 +544,8 @@ int readCurrentUser(){
         return 0;
     }
     if (fscanf(file,"%s %s %s %s %d",current_user_details.username,current_user_details.password,current_user_details.email,current_user_details.phone_no,&current_user_details.isveg) != 5) {
-        print_error("Error reading from file 'current_user.txt'");
-        getchar();
+        // print_error("Error reading from file 'current_user.txt'");
+        // getchar();
         fclose(file);
         return 0;
     }    
@@ -634,7 +663,7 @@ void removeLastChar(char *str) {
 void signup_side_page(bool focus){
     int x = 117, y = 20;
     setCursor_inc(x,y++);
-    set_text_color(WHITE,YELLOW);
+    set_text_color(BLACK,YELLOW);
     printf("                                              ");
     setCursor_inc(x,y++);
     printf("                                              ");
@@ -659,7 +688,7 @@ void signup_side_page(bool focus){
     setCursor_inc(x,y++);
 
     printf("                 ");
-    set_text_color(WHITE,focus ? BLUE : YELLOW);
+    set_text_color(BLACK,focus ? BLUE : YELLOW);
     printf("%-10s ","L O G I N");
     set_text_color(WHITE,YELLOW);
     printf("                   ");
@@ -675,7 +704,7 @@ void signup_side_page(bool focus){
 void login_side_page(bool focus){
     int x = 80, y = 20;
     setCursor_inc(x,y++);
-    set_text_color(WHITE,YELLOW);
+    set_text_color(BLACK,YELLOW);
     printf("                                            ");
     setCursor_inc(x,y++);
     printf("                                            ");
@@ -699,9 +728,9 @@ void login_side_page(bool focus){
     printf("                                            ");
     setCursor_inc(x,y++);
     printf("                ");
-    set_text_color(WHITE,focus ? BLUE : YELLOW);
+    set_text_color(BLACK,focus ? BLUE : YELLOW);
     printf(" %-12s","S I G N U P");
-    set_text_color(WHITE,YELLOW);
+    set_text_color(BLACK,YELLOW);
     printf("               ");
     setCursor_inc(x,y++);
     printf("                                            ");
@@ -728,7 +757,7 @@ int registerUser()
         int x = 80, y = 20;
         // Print sign-up form
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("            S I G N   U P            ");
         setCursor_inc(x, y++);
         printf("                                     ");
@@ -789,10 +818,10 @@ int registerUser()
         setCursor_inc(x, y++);
 
 
-        set_text_color(WHITE,DARK_BLUE);
+        set_text_color(BLACK,DARK_BLUE);
         if (currentField == 4)
         {
-            set_text_color(WHITE,BLUE);
+            set_text_color(BLACK,BLUE);
         }
         
         printf("                                     ");
@@ -801,10 +830,10 @@ int registerUser()
         setCursor_inc(x, y++);
         printf("                                     ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                     ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                     ");
         if (focusSide == 1)
         {
@@ -845,17 +874,17 @@ int registerUser()
                 
                 if(!isUsernameExists(username) && authenticate(password) && currentField == 4 && isPhoneNumberValid(phone) && isEmailValid(email)){
                         setCursor_inc(80,33);
-                        set_text_color(WHITE,YELLOW);
+                        set_text_color(BLACK,YELLOW);
                         print_success("   Signing up...\n");
                         setCursor_inc(80,34);
-                        set_text_color(WHITE,BLUE);
+                        set_text_color(BLACK,BLUE);
                         for (int i = 0; i < 37; i++)
                         {
                             printf("=");
                             Sleep(200);
                         }
                         setCursor_inc(80,34);
-                        set_text_color(WHITE,YELLOW);
+                        set_text_color(BLACK,YELLOW);
                         print_success("Sign-up successful!\n");
                         strcpy(user.email, email);
                         strcpy(user.username, username);
@@ -955,7 +984,7 @@ int loginUser()
         int x = 124, y = 20;
 
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("               L O G I N              ");
         setCursor_inc(x, y++);
         printf("                                      ");
@@ -988,10 +1017,10 @@ int loginUser()
         printf(" %-36s ", password);
 
         setCursor_inc(x, y++);
-        set_text_color(WHITE,DARK_BLUE);
+        set_text_color(BLACK,DARK_BLUE);
         if (currentField == 2)
         {
-            set_text_color(WHITE,BLUE);
+            set_text_color(BLACK,BLUE);
         }
         printf("                                      ");
         setCursor_inc(x, y++);
@@ -999,7 +1028,7 @@ int loginUser()
         setCursor_inc(x, y++);
         printf("                                      ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                      ");
         setCursor_inc(x, y++);
         printf("                                      ");
@@ -1056,22 +1085,24 @@ int loginUser()
                         if (strcmp(Users[i].username, username) == 0 && strcmp(Users[i].password, password) == 0 && username[0] != '\0')
                         {
                             strcpy(current_user,username);
+                            current_user_details = Users[i];
                             setCursor_inc(52,90);
-                            set_text_color(WHITE,YELLOW);
+                            set_text_color(BLACK,YELLOW);
                             print_success("  Logging in...");
                             if(writeCurrentUser(current_user_details)==1){
-                                set_text_color(WHITE,BLUE);
+                                set_text_color(BLACK,BLUE);
                                 for (int i = 0; i < 37; i++)
                                 {
                                     printf("=");
                                     Sleep(200);
                                 }
                                 setCursor_inc(52,91);
-                                set_text_color(WHITE,YELLOW);
+                                set_text_color(BLACK,YELLOW);
                                 print_success("Login successful");
                                 success = true;
                                 return 1;
                             }else{
+                                print_error("Failed to login");
                                 return 0;
                             }
                         }
@@ -1123,14 +1154,14 @@ int UserTypeScreen(int ScreenState,int selected){
     if (selected == 1)
     {
         set_text_color(GREEN,YELLOW);
-        printf("   %c",508);
+        printf("  %c%c",987,987);
     }else if (selected == 2)
     {
         set_text_color(WHITE,YELLOW);
-        printf("   %c",511);
+        printf("  %c%c",987,987);
     }else{
         set_text_color(WHITE,YELLOW);
-        printf("   %c",511);
+        printf("  %c%c",987,987);
     }
     set_text_color(WHITE,YELLOW);
     printf("             ");
@@ -1143,14 +1174,14 @@ int UserTypeScreen(int ScreenState,int selected){
     if (selected == 1)
     {
         set_text_color(WHITE,YELLOW);
-        printf("   %c",511);
+        printf("  %c%c",987,987);
     }else if (selected == 2)
     {
         set_text_color(GREEN,YELLOW);
-        printf("   %c",508);
+        printf("  %c%c",987,987);
     }else{
         set_text_color(WHITE,YELLOW);
-        printf("   %c",511);
+        printf("  %c%c",987,987);
     }
     set_text_color(WHITE,YELLOW);
     printf("             ");
@@ -1263,7 +1294,7 @@ int loginFunction()
                     goto A;
                 }
 
-            }// Exit the program after successful logi           
+            }// Exit the program after successful login  
         }else{
             select_beep();
             system("cls");
@@ -1272,6 +1303,12 @@ int loginFunction()
             switch (choice)
             {
                 case 2:
+                    system("cls");
+                    home();
+                    printUserDetails();
+                    home_page_banner();
+                    side_menu(-1);
+                    statBars();
                     break;
                 case 4:
                     FILE *fp = fopen("current_user.txt", "w");
@@ -1279,7 +1316,6 @@ int loginFunction()
                     {
                         printf("error opening delivery_boys_details.txt");
                     }
-                    
                     fclose(fp);
                     return -1;
                     
@@ -1324,7 +1360,10 @@ int loginFunction()
                     if (food_selected.name != NULL) 
                     {
                         system("cls");
-                        top_bar();
+                        home();
+                        printUserDetails();
+                        home_page_banner();
+                        side_menu(-1);
                         printFoodItem(food_selected);
                         addCartFunction(food_selected);
                     }
@@ -1343,6 +1382,9 @@ int loginFunction()
                     result = map(user_delivery_info.address,user_delivery_info.distance);
                     if(result == 0) return 0;
                     getchar();
+                    break;
+                case 9:
+                    communityChat();
                     break;
                 default:
                     print_error("Invalid choice. Please try again");

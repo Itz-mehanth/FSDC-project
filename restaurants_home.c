@@ -204,7 +204,7 @@ B:
     }
 }
 
-void printRestaurant(int n, const char *restaurant_name)
+void printRestaurants(int n, const char *restaurant_name)
 {
     readRestaurants();
     restaurant *res = find_restaurant(restaurant_name);
@@ -267,6 +267,61 @@ void printRestaurant(int n, const char *restaurant_name)
 
     set_text_color(CURRENT_FOREGROUND_COLOR, WHITE);
 }
+void printRestaurant(int n, const char *restaurant_name)
+{
+    waterMelon(50,20);
+    readRestaurants();
+    restaurant *res = find_restaurant(restaurant_name);
+
+    int y, x;
+    y=20,x=95;
+
+    setCursor_inc(x, y);
+    y++;
+    set_text_color(RED, YELLOW);
+    printf("[%d] Restaurant Details          ", n);
+    set_text_color(CURRENT_FOREGROUND_COLOR, CURRENT_BACKGROUND_COLOR);
+
+    setCursor_inc(x, y);
+    y++;
+    set_text_color(GREEN, WHITE);
+    printf("  Category: ");
+    set_text_color(BLACK, WHITE);
+    printf("%-18s  ", res->type);
+
+    setCursor_inc(x, y);
+    y++;
+    printf("                                ");
+    setCursor_inc(x, y);
+    y++;
+    set_text_color(RED, WHITE);
+    printf("         %-21s  ", res->name);
+
+    setCursor_inc(x, y);
+    y++;
+    printf("                                ");
+
+    setCursor_inc(x, y);
+    y++;
+    set_text_color(YELLOW, WHITE);
+    printf("     *");
+    set_text_color(BLACK, WHITE);
+    printf(" %.2f (", res->rating);
+
+    set_text_color(GREEN, WHITE);
+    printf("%d", res->total_ratings);
+    set_text_color(BLACK, WHITE);
+    printf(")                 ");
+
+    setCursor_inc(x, y);
+    y++;
+    if (n == 9)
+    {
+        setCursor_inc(0, 32);
+    }
+
+    set_text_color(CURRENT_FOREGROUND_COLOR, WHITE);
+}
 
 void printNearbyRestaurant(int n, const char *restaurant_name,float distance)
 {
@@ -274,6 +329,7 @@ void printNearbyRestaurant(int n, const char *restaurant_name,float distance)
     restaurant *res = find_restaurant(restaurant_name);
 
     int y, x;
+    
     if (n - 1 < 5)
     {
         y = 35;
@@ -284,6 +340,7 @@ void printNearbyRestaurant(int n, const char *restaurant_name,float distance)
         y = 45;
         x = (n - 6) * 35 + 30;
     }
+
 
     setCursor_inc(x, y);
     y++;
@@ -381,10 +438,12 @@ void display_restaurants()
     int veg_idx = 0;
     int nonveg_idx = 0;
     for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
+
         if (strcmp(restaurants[i].type,"veg") == 0)
         {
-            nonvegRestaurants[veg_idx++] = restaurants[i];
-        }else if (strcmp(restaurants[i].type,"nonveg") == 0){
+            vegRestaurants[veg_idx++] = restaurants[i];
+        }
+        if (strcmp(restaurants[i].type,"nonveg"  ) == 0 || strcmp(restaurants[i].type,"veg") == 0){
             nonvegRestaurants[nonveg_idx++] = restaurants[i];
         }
     }
@@ -396,13 +455,13 @@ void display_restaurants()
         {
             if (strcmp(restaurants[i].type, "veg") == 0)
             {
-                printRestaurant(index, restaurants[i].name);
+                printRestaurants(index, restaurants[i].name);
                 vegRestaurants[veg_idx++] = restaurants[i];
                 index++;
             }
             
         }else{
-            printRestaurant(index, restaurants[i].name);
+            printRestaurants(index, restaurants[i].name);
             nonvegRestaurants[nonveg_idx++] = restaurants[i];
             index++;
         }
@@ -505,6 +564,8 @@ int review_restaurant(const char *restaurant_name)
     D:
         home();
         printUserDetails();
+        home_page_banner();
+        side_menu(-1);
         printRestaurant(1, restaurant_name);
     }
 
@@ -549,11 +610,11 @@ void print_restaurants()
         {
             if (strcmp(restaurants[i].type,"veg") == 0)
             {
-                printRestaurant(index, restaurants[i].name);
+                printRestaurants(index, restaurants[i].name);
                 index++;
             }
         }else{
-            printRestaurant(index, restaurants[i].name);
+            printRestaurants(index, restaurants[i].name);
             index++;
         }
         if (index == 11)
@@ -658,6 +719,7 @@ int restaurantsHomeFunction()
         }
         system("cls");
         home();
+        side_menu(-1);
         printUserDetails();
         home_page_banner();
         int restaurant_count = 0;
@@ -676,7 +738,7 @@ int restaurantsHomeFunction()
                         }
                         fprintf(fp, "%s", restaurants[i].name);
                         fclose(fp);
-                        printf("****-%s:-****",restaurants[i].name);
+                        // printf("****-%s:-****",restaurants[i].name);
                         printRestaurant(restaurant_count,restaurants[i].name);
                         response = review_restaurant(restaurants[i].name);
                         strcpy(current_restaurant_name,restaurants[i].name);

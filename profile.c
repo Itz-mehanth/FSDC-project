@@ -167,7 +167,6 @@ int edit_profile()
             strcpy(current_user_details.phone_no,Users[i].phone_no);
             current_user_details.isveg = Users[i].isveg;
             writeCurrentUser(current_user_details);
-
             fclose(file);
             break;
         } else {
@@ -189,8 +188,8 @@ int profile_options(){
         // printf("Enter your choice (1-8): ");
         // getchar(); // Consume newline character left in the buffer
         int choice;
-        char *profileOptionsLabels[] = { "Edit profile", "Favourites", "comments", "Ratings", "Statistics", "History", "back" };
-        InputPopup(profileOptionsLabels,7);
+        char *profileOptionsLabels[] = { "Edit profile", "Favourites","back" };
+        InputPopup(profileOptionsLabels,3);
         choice = current_button;
         switch (choice) {
         case 1: 
@@ -204,16 +203,7 @@ int profile_options(){
             view_favourites();
             getchar();
             break;
-        case 4: 
-            
-            break;
-        case 5: 
-            
-            break;
-        case 6: 
-            calender();
-            break;
-        case 7: 
+        case 3: 
             return 0;
             break;
         default:

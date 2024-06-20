@@ -15,7 +15,7 @@
                 "-L/mingw64/lib",          // Library path for MinGW libraries
                 "-L/msys64/mingw64/lib",   // Additional library path for MSYS2 libraries
                 "-lcurl",
-                "-lraylib"
+                // "-lraylib"
             ],
             "options": {
                 "cwd": "${fileDirname}"

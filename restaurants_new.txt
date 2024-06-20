@@ -1,5 +1,5 @@
+days_hotel,nonveg,12.803990,80.224098,4.000000,2
 hotel_parkway_inn,nonveg,12.823957,80.230877,3.500000,2
-days_hotel,nonveg,12.803990,80.224098,4.000000,1
 hungry_bear_hotel,nonveg,12.828190,80.230912,4.000000,1
 foodaholic,nonveg,12.812312,80.228689,2.500000,2
 novotel_hotel_sipcot,nonveg,12.831236,80.230148,0.000000,0

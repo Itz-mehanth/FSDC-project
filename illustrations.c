@@ -241,3 +241,51 @@ void print_avatar(){
     printf("//|\\\n");
     printf("// \\\n");
 }
+
+
+void waterMelon(int x, int y) {
+    // int x = 50;
+    // int y=20;
+    set_text_color(BLACK,WHITE);
+    for (int i = 1; i < 11; i++)
+    {
+        setCursor_inc(x-1.3*i, y++);
+        set_text_color(BLACK,DARK_GRAY*2);
+        printf(" ");
+        set_text_color(BLACK,RED);
+        printf("%*s",i*3," ");
+        set_text_color(BLACK,DARK_GRAY*2);
+        printf(" ");
+        
+    }
+    for (int i = 9; i > 5; i--)
+    {
+        setCursor_inc(x-i-3, y++);
+        set_text_color(BLACK,GREEN);
+        printf("  ");
+        set_text_color(BLACK,RED);
+        printf("%*s",i*3," ");
+        set_text_color(BLACK,GREEN);
+        printf("  ");
+        
+    }
+    setCursor_inc(x-7, y++);
+    printf("                   ");
+    setCursor_inc(x, y-10);
+    set_text_color(BLACK,DARK_GRAY*2);
+    printf(" ");
+    setCursor_inc(x+4, y-10);
+    set_text_color(BLACK,DARK_GRAY*2);
+    printf(" ");
+    setCursor_inc(x-3, y-5);
+    set_text_color(BLACK,DARK_GRAY*2);
+    printf(" ");
+    setCursor_inc(x+7, y-4);
+    set_text_color(BLACK,DARK_GRAY*2);
+    printf(" ");
+
+    set_text_color(BLACK,WHITE);
+    setCursor_inc(x-4, y+1);
+    printf("WELCOME FRIEND");
+}
+

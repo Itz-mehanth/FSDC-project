@@ -1,1 +1,10 @@
 mehanth,69.60,Wed Jun 19 16:33:47 2024
+mehanth,29.60,Wed Jun 15 16:33:47 2024
+mehanth,100.60,Wed Jun 16 16:33:47 2024
+mehanth,95.36,Wed Jun 19 21:53:31 2024
+mehanth,65.75,Wed Jun 19 22:02:24 2024
+mehanth,63.88,Wed Jun 19 22:11:30 2024
+mehanth,52.57,Wed Jun 19 22:30:00 2024
+mehanth,74.16,Fri Jun 21 02:22:14 2024
+mehanth,82.64,Fri Jun 21 03:25:55 2024
+mehanth,64.83,Fri Jun 21 03:29:47 2024

@@ -4,8 +4,11 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <float.h>
+#include "buttonCreator.h"
+#include "textField.h"
 #include "map.h"
 #include <stdio.h>
+#include "sounds.h"
 #include "illustrations.h"
 #include "settings.h"
 #include "login.h"
@@ -425,6 +428,32 @@ int compareNodesByDistance(const void* a, const void* b) {
 void sortNodesByShortestDistance(Node nodes[], int size) {
     qsort(nodes, size, sizeof(Node), compareNodesByDistance);
 }
+int select_nearbyrestaurants(restaurant nearbyRestaurants[10],int count)
+{
+    readRestaurants();
+    int selected_restaurants;
+        int valid_restaurant_count = 0;
+
+    // Count the number of non-junk restaurants
+    for (int i = 0; i < 10; i++) {
+        if (nearbyRestaurants[i].name != NULL && strlen(nearbyRestaurants[i].name) > 0) {
+            valid_restaurant_count++;
+        }
+    }
+
+    // Dynamically allocate memory for the editProfileLabels array based on the count of valid restaurants
+    char *editProfileLabels[valid_restaurant_count];
+    int j = 0;
+    for (int i = 0; i < count; i++) {
+            editProfileLabels[j++] = nearbyRestaurants[i].name;
+    }
+
+    InputPopup(editProfileLabels, count);
+    
+    selected_restaurants = current_button;
+    select_beep();
+    return selected_restaurants;
+}
 
 int map(char *sourcename, float max_dist){
     system("cls");
@@ -448,11 +477,13 @@ int map(char *sourcename, float max_dist){
     dijkstra(cost_matrix, find_source_node_index(graph,sourcename), -1, graph,dist);
     assignSortestDistance(graph,dist);
     sortNodesByShortestDistance(graph, V);
-
+    int near_rest_count = 0;
+    restaurant nearbyrestaurants[10];
     for (int i = 0; i < V; i++)
     {
         if (dist[i] < max_dist)
         {
+
             if (veg_mode)
             {
                 if(isrestaurant(graph[i].name) && strcmp(find_restaurant(graph[i].name)->type,"veg") == 0){
@@ -462,6 +493,10 @@ int map(char *sourcename, float max_dist){
                         break;
                     }
                     printNearbyRestaurant(index+1, graph[i].name,dist[index]);
+                    readRestaurants();
+                    restaurant *res = find_restaurant(graph[i].name);
+                    nearbyrestaurants[index] = *res;
+                    near_rest_count++;
                     index++;
                     // printf("%s distance-%.2fkm\n", graph[i].name, dist[i]);
                 }
@@ -474,6 +509,10 @@ int map(char *sourcename, float max_dist){
                     }
                     
                     printNearbyRestaurant(index+1, graph[i].name,dist[index]);
+                    near_rest_count++;
+                    readRestaurants();
+                    restaurant *res = find_restaurant(graph[i].name);
+                    nearbyrestaurants[index] = *res;
                     index++;
                     // printf("%s distance-%.2fkm\n", graph[i].name, dist[i]);
                 }
@@ -491,7 +530,7 @@ int map(char *sourcename, float max_dist){
         int selection = INT_MAX;
         while (selection > index && printf("invalid selection\n"))
         {
-            selection = select_restaurants();
+            selection = select_nearbyrestaurants(nearbyrestaurants,near_rest_count);
         }
         
         // printf("your have selected %d",selection);
@@ -500,9 +539,9 @@ int map(char *sourcename, float max_dist){
         printUserDetails();
         home_page_banner();
 
-        printf("****-%s:-****",restaurants[selection-1]->name);
-        printRestaurant(selection,restaurants[selection-1]->name);
-        response = review_restaurant(restaurants[selection-1]->name);
+        printf("****-%s:-****",nearbyrestaurants[selection-1].name);
+        printRestaurant(selection,nearbyrestaurants[selection-1].name);
+        response = review_restaurant(nearbyrestaurants[selection-1].name);
         if (response == 2)
         {
             return 2;

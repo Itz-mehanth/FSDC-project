@@ -2,9 +2,13 @@
 #include "delivery_boy_selection.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "illustrations.h"
 #include "food_order_page.h"
 #include "theme.h"
 #include "login.h"
+#include "sounds.h"
+#include "buttonCreator.h"
+#include "textField.h"
 #include <string.h>
 #include <math.h>
 #include "map.h"
@@ -78,12 +82,13 @@ int loadDeliveryRecords(const char* filename, DeliveryRecord records[], int max_
 }
 
 int find_node_by_loc(Node* graph,double lat,double lon) {
-
+    char partnerStatus[100];
   // Search for the source node by name
   for (int i = 0; i < num_cities; i++) {
     if (fabs(lat - graph[i].latitude) < TOLERANCE && fabs(lon - graph[i].longitude) < TOLERANCE) {
-        printf("the partner is in %s\n",graph[i].name);
-      return i; // Return index if found
+        sscanf(partnerStatus, "the partner is in %s\n",graph[i].name);
+        // print_success(partnerStatus);
+        return i; // Return index if found
     }
   }
 
@@ -128,7 +133,7 @@ void addSecondsToCurrentTime(int secondsToAdd, char *timestamp) {
 
     // Format the modified time as a timestamp string
     if (strftime(timestamp, 50, "%Y-%m-%d %H:%M:%S", &current_time) == 0) {
-        print_error("strftime failed\n");
+        print_error("strftime failed");
     }
 }
 
@@ -191,8 +196,8 @@ double dijkstra_for_partner(double graph[V][V], int src, int dest, Node* graph_a
 
     if (to_write) 
     {
-        printf("Paths from source %s to destination is:\n", graph_arr[src].name, graph_arr[dest].name);
-        getchar();
+        // printf("Paths from source %s to destination is:\n", graph_arr[src].name, graph_arr[dest].name);
+        // getchar();
         FILE *fp = fopen("delivery_details.txt", "a");
         printDeliveryPath(parent, dest, graph_arr,fp);
         fclose(fp);
@@ -233,7 +238,7 @@ int isPartner(double latitude, double longitude) {
         // printf("%lf == %lf = %d %lf == %lf = %d\n",lat,latitude,lat == latitude ,lon,longitude, lon == longitude);
         if (fabs(lat - latitude) < TOLERANCE && fabs(lon - longitude) < TOLERANCE)
         {
-            printf("match found\n");
+            // printf("match found\n");
             return 1;
         }
         num_del_boys++;
@@ -255,7 +260,7 @@ Partner find_partner(double latitude, double longitude){
         
         if (fabs(partner.lat - latitude) < TOLERANCE && fabs(partner.lon - longitude) < TOLERANCE)
         {
-            printf("match found\n");
+            // printf("match found\n");
             return partner;
         }
     }
@@ -286,7 +291,7 @@ double generate_random_speed(double minSpeed, double maxSpeed) {
     double randomSpeed = minSpeed + (double)rand() / RAND_MAX * (maxSpeed - minSpeed);
     return randomSpeed;
 }
-void update_partner_rating(const char *name, int new_rating) {
+void update_partner_rating(char *name, int new_rating) {
     FILE *fp;
     char line[256];  // Buffer for reading lines
     int found = 0;
@@ -309,7 +314,7 @@ void update_partner_rating(const char *name, int new_rating) {
         int total_ratings;
 
         // Parse the line into components
-        sscanf(line, "%s %s %s %s %lf %lf %f %d %d",
+        sscanf(line, "%s %s %s %s %lf %lf %f %d %d\n",
                currentName, password, email, phone_no, &lat, &lon, &ratings, &total_ratings, &estimatedSec);
 
         // Check if the name matches
@@ -318,7 +323,7 @@ void update_partner_rating(const char *name, int new_rating) {
             float new_average_ratings = ((ratings * total_ratings) + new_rating) / (total_ratings + 1);
 
             // Move the file pointer back to the start of the line
-            fseek(fp, currentPos, SEEK_SET);
+            fseek(fp, currentPos-strlen(line)-1, SEEK_SET);
 
             // Update the line with new average ratings and increment total_ratings
             fprintf(fp, "%s %s %s %s %.6lf %.6lf %.6f %d %d\n",
@@ -333,9 +338,9 @@ void update_partner_rating(const char *name, int new_rating) {
     fclose(fp);
 
     if (!found) {
-        printf("Name '%s' not found in the file.\n", name);
+        // printf("Name '%s' not found in the file.\n", name);
     } else {
-        printf("Updated ratings for '%s' successfully.\n", name);
+        // printf("Updated ratings for '%s' successfully.\n", name);
     }
 }
 
@@ -351,7 +356,7 @@ void add_delivery_boy_status(Partner partner, char timestamp[20], char *address)
 
     // Format the time into a string
     if (strftime(current_timestamp, sizeof(current_timestamp), "%Y-%m-%d %H:%M:%S", &now) == 0) {
-        print_error("strftime failed\n");
+        print_error("strftime failed");
     }
 
     fprintf(f, "%s,%s,%s,%s\n", partner.username, address, current_timestamp, timestamp);
@@ -369,7 +374,7 @@ void convert_seconds(int total_seconds, int *hours, int *minutes, int *seconds) 
     // Calculate remaining seconds
     *seconds = total_seconds % 60;
 }
-void printNearbyPartner(int n, Partner partner,float distance,char *address)
+void printNearbyPartner(int n, Partner partner,float distance,char *address,char *partneraddress)
 {
     // printf("the input distance is %lf", distance);
     int hours, minutes,seconds;
@@ -400,20 +405,20 @@ void printNearbyPartner(int n, Partner partner,float distance,char *address)
     setCursor_inc(x, y);
     y++;
     set_text_color(RED, YELLOW);
-    printf("[%d] Partner Details          ", n);
+    printf("[%d] Partner Details                  ", n);
     set_text_color(CURRENT_FOREGROUND_COLOR, CURRENT_BACKGROUND_COLOR);
 
     setCursor_inc(x, y);
     y++;
-    printf("                                ");
+    printf("                                      ");
     setCursor_inc(x, y);
     y++;
     set_text_color(BLUE, WHITE);
-    printf("         %-21s  ", partner.username);
+    printf("         %-21s        ", partner.username);
 
     setCursor_inc(x, y);
     y++;
-    printf("                                ");
+    printf("                                      ");
 
     setCursor_inc(x, y);
     y++;
@@ -425,15 +430,18 @@ void printNearbyPartner(int n, Partner partner,float distance,char *address)
     set_text_color(GREEN, WHITE);
     printf("%d", partner.total_ratings);
     set_text_color(BLACK, WHITE);
-    printf(")      ");
+    printf(")            ");
     set_text_color(BLUE, WHITE);
     printf("%-8.2f Km",distance);
     setCursor_inc(x, y);
     y++;
-    printf(" Estimated time:                ");
+    printf(" Estimated time:                      ");
     setCursor_inc(x, y);
     y++;
-    printf(" %2d hours:%2d minutes            ",hours, minutes);
+    printf(" %2d hours:%2d minutes                 ",hours, minutes);
+    setCursor_inc(x, y);
+    y++;
+    printf(" Partner Location: %-18s ",partneraddress);
 
     setCursor_inc(x, y);
     y++;
@@ -507,10 +515,9 @@ void update_partner_location(Node *partnerLocation, Partner *partner) {
         // Replace the original file with the updated temp file
         remove("delivery_boys_details.txt");
         rename("temp.txt", "delivery_boys_details.txt");
-        printf("Partner location updated successfully.\n");
+        // printf("Partner location updated successfully.\n");
     } else {
         remove("temp.txt");
-        printf("Partner with username '%s' not found.\n", partner->username);
     }
 
     FILE *fp = fopen("delivery_boys_details.txt", "r+");
@@ -542,10 +549,10 @@ void partnerFinder(char *restaurant, char *sourcename){
         printf("Error reading file\n");
         return ;
     }
+    set_text_color(BLACK,WHITE);
 
     int total_partners;
-    printf("Restaurant: %s\nSource: %s\n",restaurant,sourcename);
-    getchar();
+    // printf("Restaurant: %s\nSource: %s\n",restaurant,sourcename);
     int restaurant_location_index=find_source_node_index(graph,restaurant);
     int destination_location_index=find_source_node_index(graph,sourcename);
     // printf("Partner location: %d\nRestaurant location: %d\nDestination location: %d\n",partner_location_index,restaurant_location_index,destination_location_index);
@@ -557,18 +564,17 @@ void partnerFinder(char *restaurant, char *sourcename){
     double current_dist_part_rest;
     float max_ratings = 0.0;
 
-    printf("The total number of delivery partners: %d\n",num_del_boys);
+    // printf("The total number of delivery partners: %d\n",num_del_boys);
     for (int i = 0; i < num_del_boys; i++)
     {
         partner_location_index = find_node_by_loc(graph,partners[i].lat,partners[i].lon);
-        printf("The partner location: %d\n",partner_location_index);
+        // printf("The partner location: %d\n",partner_location_index);
         current_dist_part_rest = dijkstra_for_partner(cost_matrix, partner_location_index, restaurant_location_index ,graph,dist,0);
-        printf("%lf == %lf\n",current_dist_part_rest, min_dist_part_rest);
-        if (current_dist_part_rest < min_dist_part_rest && partners[i].ratings >= max_ratings) 
+        // printf("%lf == %lf\n",current_dist_part_rest, min_dist_part_rest);
+        if (current_dist_part_rest < min_dist_part_rest) 
         {
             min_dist_part_rest = current_dist_part_rest;
             chosen_partner = partners[i];
-            max_ratings = partners[i].ratings;
             partner_location_index = find_node_by_loc(graph,partners[i].lat,partners[i].lon);
         }
     }
@@ -580,11 +586,40 @@ void partnerFinder(char *restaurant, char *sourcename){
     min_dist_user_rest = dijkstra_for_partner(cost_matrix, restaurant_location_index, destination_location_index  ,graph,dist,1);
     // printf("finding rest dest path\n");
     // getchar();
-    printNearbyPartner(1,chosen_partner,min_dist_part_rest+min_dist_user_rest,sourcename);
+    home();
+    printUserDetails();
+    home_page_banner();
+    side_menu(-1);
+    int partnerCurrentLoc_idx = find_node_by_loc(graph,chosen_partner.lat,chosen_partner.lon);
+    char currentPartnerLoc[100];
+    strcpy(currentPartnerLoc,graph[partnerCurrentLoc_idx].name);
+    printNearbyPartner(1,chosen_partner,min_dist_part_rest+min_dist_user_rest,sourcename,currentPartnerLoc);
     Node* partnerLocation;
     partnerLocation= find_node_by_name(graph,sourcename);
     update_partner_location(partnerLocation,&chosen_partner);
-    getch();
+    int response = MessageBox(NULL, "Wanna give rating", "Opinion", MB_ICONQUESTION | MB_YESNOCANCEL);
+
+    if(response == IDYES){
+        int user_rating;
+        MessageBox(NULL, "You chose to proceed.", "Proceeding", MB_ICONINFORMATION | MB_OK);
+        char *ratingsLabels[] = { "1 Star","2 Star","3 Star","4 Star","5 Star"};
+        InputPopup(ratingsLabels,5);
+        user_rating = current_button;
+        select_beep();
+
+        if(user_rating>0 && user_rating<6){
+            update_partner_rating(chosen_partner.username,user_rating);
+            print_success("Thank you for your feedback");
+        }else{
+            print_error("Invalid rating");
+        }
+    }else
+    {
+        MessageBox(NULL, "You chose to cancel.", "Cancelled", MB_ICONINFORMATION | MB_OK);
+    }
+    
+    printNearbyPartner(1,chosen_partner,min_dist_part_rest+min_dist_user_rest,sourcename,currentPartnerLoc);
+    getchar();
     addDeliveryDetails(chosen_partner.username,&time,partner_path,partner_path_length);
 }
 

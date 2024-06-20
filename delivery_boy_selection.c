@@ -44,6 +44,7 @@ int writeCurrentPartner(Partner currentPartner) {
     fprintf(file, "%s %s %s %s %lf %lf %f %d %d", currentPartner.username, currentPartner.password, currentPartner.email, currentPartner.phone_no, currentPartner.lat, currentPartner.lon, currentPartner.ratings, currentPartner.total_ratings, currentPartner.estimated_sec);
     // }
     fclose(file);
+    return 1;
 }
 
 
@@ -63,8 +64,6 @@ int readCurrentPartner(){
     fclose(file);
     return 1;
 }
-
-
 
 void writePartnersToFile(Partner partner)
 {
@@ -101,10 +100,12 @@ int readPartnersFromFile() {
         return 0;
     }
     num_del_boys = 0;
-    while (fscanf(file, "%s %s %s %s %lf %lf %f %d", partners[num_del_boys].username, partners[num_del_boys].password, partners[num_del_boys].email, partners[num_del_boys].phone_no, &partners[num_del_boys].lat, &partners[num_del_boys].lon, &partners[num_del_boys].ratings,&partners[num_del_boys].total_ratings) == 8 && num_del_boys < MAX_USERS) {
-        // printf("%s %s %s %s %d\n",partners[num_del_boys].username, partners[num_del_boys].password, partners[num_del_boys].email, partners[num_del_boys].phone_no, partners[num_del_boys].isveg);
+    while (fscanf(file, "%s %s %s %s %lf %lf %f %d %d\n", partners[num_del_boys].username, partners[num_del_boys].password, partners[num_del_boys].email, partners[num_del_boys].phone_no, &partners[num_del_boys].lat, &partners[num_del_boys].lon, &partners[num_del_boys].ratings,&partners[num_del_boys].total_ratings,&current_del_boy_details.estimated_sec) == 9 && num_del_boys < MAX_USERS)  {
+        // printf("%s %s %s %s %lf %lf %f %d\n",partners[num_del_boys].username, partners[num_del_boys].password, partners[num_del_boys].email, partners[num_del_boys].phone_no, partners[num_del_boys].lat, partners[num_del_boys].lon, partners[num_del_boys].ratings,partners[num_del_boys].total_ratings);
         num_del_boys++;
     }
+    // printf("%d is the number of users\n",num_del_boys);
+    getchar();
 
     fclose(file);
     return 1;
@@ -126,7 +127,7 @@ int registerPartner()
         int x = 80, y = 20;
         // Print sign-up form
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("            S I G N   U P            ");
         setCursor_inc(x, y++);
         printf("                                     ");
@@ -187,10 +188,10 @@ int registerPartner()
         setCursor_inc(x, y++);
 
 
-        set_text_color(WHITE,DARK_BLUE);
+        set_text_color(BLACK,DARK_BLUE);
         if (currentField == 4)
         {
-            set_text_color(WHITE,BLUE);
+            set_text_color(BLACK,BLUE);
         }
         
         printf("                                     ");
@@ -199,10 +200,10 @@ int registerPartner()
         setCursor_inc(x, y++);
         printf("                                     ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                     ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                     ");
         if (focusSide == 1)
         {
@@ -243,17 +244,17 @@ int registerPartner()
                 
                 if(!isPartnernameExists(username) && authenticate(password) && currentField == 4 && isPhoneNumberValid(phone) && isEmailValid(email)){
                         setCursor_inc(80,33);
-                        set_text_color(WHITE,YELLOW);
+                        set_text_color(BLACK,YELLOW);
                         print_success("   Signing up...");
                         setCursor_inc(80,34);
-                        set_text_color(WHITE,BLUE);
+                        set_text_color(BLACK,BLUE);
                         for (int i = 0; i < 37; i++)
                         {
                             printf("=");
                             Sleep(200);
                         }
                         setCursor_inc(80,34);
-                        set_text_color(WHITE,YELLOW);
+                        set_text_color(BLACK,YELLOW);
                         print_success("Sign-up successful!");
                         strcpy(partner.email, email);
                         strcpy(partner.username, username);
@@ -353,7 +354,7 @@ int loginPartner()
         int x = 124, y = 20;
 
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("               L O G I N              ");
         setCursor_inc(x, y++);
         printf("                                      ");
@@ -389,10 +390,10 @@ int loginPartner()
         printf(" %-36s ", password);
 
         setCursor_inc(x, y++);
-        set_text_color(WHITE,DARK_BLUE);
+        set_text_color(BLACK,DARK_BLUE);
         if (currentField == 2)
         {
-            set_text_color(WHITE,BLUE);
+            set_text_color(BLACK,BLUE);
         }
         printf("                                      ");
         setCursor_inc(x, y++);
@@ -400,7 +401,7 @@ int loginPartner()
         setCursor_inc(x, y++);
         printf("                                      ");
         setCursor_inc(x, y++);
-        set_text_color(WHITE,YELLOW);
+        set_text_color(BLACK,YELLOW);
         printf("                                      ");
         setCursor_inc(x, y++);
         printf("                                      ");
@@ -441,7 +442,10 @@ int loginPartner()
                 if (currentField < 2 && focusSide ==1) currentField++;
                 break;
             case 13: // Enter key
-                readPartnersFromFile();
+                int num_partners;
+                num_partners = readPartnersFromFile();
+                // printf("num of partners: %d\n", num_partners);
+                getchar();
                 if (focusSide == 0)
                 {
                     return 0;
@@ -449,21 +453,23 @@ int loginPartner()
                 if (currentField == 2) {
                     for (int i = 0; i < num_del_boys; i++)
                     {
+
                         if (strcmp(partners[i].username, username) == 0 && strcmp(partners[i].password, password) == 0 && username[0] != '\0')
                         {
                             strcpy(current_del_boy,username);
+                            current_del_boy_details = partners[i];
                             setCursor_inc(52,90);
-                            set_text_color(WHITE,YELLOW);
+                            set_text_color(BLACK,YELLOW);
                             print_success("  Logging in...");
                             if(writeCurrentPartner(current_del_boy_details)==1){
-                                set_text_color(WHITE,BLUE);
+                                set_text_color(BLACK,BLUE);
                                 for (int i = 0; i < 37; i++)
                                 {
                                     printf("=");
                                     Sleep(200);
                                 }
                                 setCursor_inc(52,91);
-                                set_text_color(WHITE,YELLOW);
+                                set_text_color(BLACK,YELLOW);
                                 print_success("Login successful");
                                 success = true;
                                 return 1;
@@ -473,7 +479,7 @@ int loginPartner()
                             }
                         }
                     }
-                    print_error("Invalid username or password");
+                    print_error("Partner not found");
                 }
                 break;
             case '\b':
@@ -523,7 +529,9 @@ int delivery_boy_login()
                 }
 
             }// Exit the program after successful logi       
-        }else{
+        }
+        
+        {
             if(display_partner_profile()==1){
                 return 0;
             }

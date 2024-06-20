@@ -284,7 +284,7 @@ int partner_profile_options(){
 
         int choice;
         char *profileOptionsLabels[] = { "Edit profile", "View past order Details", "Current delivery location path", "Logout"};
-        InputPopup(profileOptionsLabels,7);
+        InputPopup(profileOptionsLabels,4);
         choice = current_button;
         switch (choice) {
         case 1:
