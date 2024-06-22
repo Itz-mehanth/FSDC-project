@@ -102,6 +102,7 @@ int readDeliveryStatus(const char *filename, DeliveryEntry entries[], int maxEnt
     int entryCount = 0;
 
     while (fscanf(file, "%[^,],%[^,],%[^,],%[^\n]\n", name, address, startDateTime, endDateTime) == 4) {
+        // printf("%s,%s,%s,%s\n", name, address, startDateTime, endDateTime);
         strcpy(entries[entryCount].deliveryPersonName, name);
         strcpy(entries[entryCount].deliveryAddress, address);
         strcpy(entries[entryCount].startDateTime, startDateTime);
@@ -114,11 +115,11 @@ int readDeliveryStatus(const char *filename, DeliveryEntry entries[], int maxEnt
 }
 void print_deliveries_info(){
     const char *filename = "delivery_boys_status.txt";
-    DeliveryEntry entries[20];
+    DeliveryEntry entries[200];
     // printf("reading deliveries from %s\n", filename);
     int numEntries = readDeliveryStatus(filename, entries, 20);
     // printf("read deliveries from %s\n", filename);
-    // getchar();
+    getchar();
     int x=60;
     set_text_color(BLACK,WHITE);
     for (int y = 10; y < numEntries+10; y++)
@@ -186,7 +187,7 @@ void print_path(){
     // printf("got the last path\n");
     getchar();
     int x=130;
-    for (int y = 0; y < num_cities; y++)
+    for (int y = 10; y < num_cities+10; y++)
     {
         setCursor_inc(x,y);
         printf("%d. %50s ",y+1,cities[y]);

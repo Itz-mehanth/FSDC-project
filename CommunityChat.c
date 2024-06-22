@@ -23,8 +23,8 @@ int readMessages(Message messages[], const char *filename) {
     }
 
     int count = 0;
-    while (fscanf(file, "%[^,],%[^,],%[^\n]\n", messages[count].message,
-                  messages[count].username, messages[count].timestamp) == 3) {
+    while (fscanf(file, "%[^,],%[^,],%[^\n]\n",messages[count].username, messages[count].message,
+                   messages[count].timestamp) == 3) {
         count++;
         if (count >= 100) {
             printf("Warning: Maximum number of records reached (%d)\n", 100);
@@ -43,16 +43,23 @@ void writeMessages(Message message, const char *filename) {
         perror("Error opening file for writing");
         return;
     }
+    FILE *fp = fopen("usersChats.txt", "a");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        return;
+    }
 
     // Get current time and format it
     time_t currentTime = time(NULL);
     struct tm *tm_info = localtime(&currentTime);
     strftime(message.timestamp, sizeof(message.timestamp), "%Y-%m-%d %H:%M:%S", tm_info);
 
-    fprintf(file, "%s,%s,%s\n", message.message, message.username, message.timestamp);
+    fprintf(file, "%s,%s,%s\n", message.username, message.message, message.timestamp);
+    fprintf(fp, "%s,%s,%s\n", message.username, message.message, message.timestamp);
 
     fclose(file);
-    printf("Message written to %s successfully.\n", filename);
+    fclose(fp);
+    // printf("Message written to %s successfully.\n", filename);
 }
 
 void chatPageDiv() {
@@ -294,6 +301,7 @@ int communityChat() {
 
         strcpy(messageStruct.username, current_user_details.username);
         writeMessages(messageStruct, "CommunityChat.txt");
+
     }
 
     return 0;

@@ -21,3 +21,7 @@ mehanth,Chicken_Nuggets,5.00
 mehanth,Pizza_Slice,3.00
 mehanth,Chow_Mein,4.00
 mehanth,Chole_Bhature,5.00
+mehanth1,Moussaka,5.00
+mehanth1,Masala_Dosa,5.00
+mehanth1,Tom_Yum_Soup,4.00
+mehanth,Fried_Rice,4.00

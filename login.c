@@ -5,6 +5,7 @@
 #include "statistics.h"
 #include "CommunityChat.h"
 #include "sounds.h"
+#include "nlprecommendation.h"
 #include "textField.h"
 #include "partner_path.h"
 #include "delivery_boy_selection.h"
@@ -21,6 +22,7 @@
 #include "food_order_page.h"
 #include "food_items.h"
 #include "settings.h"
+
 #include "profile.h"
 #include "restaurants_home.h"
 #include "snake_ladder_game.h"
@@ -394,6 +396,21 @@ void side_menu(int selectedOption){
         y+=1;
         printf("                           ");
 
+        set_text_color(BLACK,BLACK);
+        if (selectedOption == 10)
+        {
+            set_text_color(WHITE,BLUE);
+        }
+        setCursor_inc(x,y);
+        y+=1;
+        printf("                           ");
+        setCursor_inc(x,y);
+        y+=1;
+        printf("  RECOMMENDED RESTAURANTS  ");
+        setCursor_inc(x,y);
+        y+=1;
+        printf("                           ");
+
         setCursor_inc(x,y);
         set_text_color(BLACK,BLACK);
         y+=1;
@@ -415,11 +432,11 @@ void side_menu(int selectedOption){
 }
 
 int menu_navigator(){
-    int num_options = 10;
+    int num_options = 11;
     int selectedOption = 0;
-    char side_menu_options[12][20] = 
+    char side_menu_options[13][30] = 
     {
-        "home", "profile", "history", "settings", "logout","view restaurants","cart","search","nearby_restaurants","CommunityChat"
+        "home", "profile", "history", "settings", "logout","view restaurants","cart","search","nearby_restaurants","CommunityChat","RecommendedRestaurants"
     };
     char ch;
     bool exit = false;
@@ -1386,6 +1403,62 @@ int loginFunction()
                 case 9:
                     communityChat();
                     break;
+                case 10:
+                
+                    system("cls");
+                    home();
+                    printUserDetails();
+                    home_page_banner();
+                    side_menu(-1);
+                    int num_recommended;
+                    restaurant recommended_restaurants[10];
+                    recommend_restaurants(&num_recommended, recommended_restaurants);
+                    if (num_recommended == 0)  
+                    {
+                        print_error("No recommended restaurants found");
+                        break;
+                    }
+                    
+                    int recommended_unique;
+                    restaurant* unique_restaurants;
+                    unique_restaurants = unique_sorted_restaurants(recommended_restaurants,num_recommended,&recommended_unique);
+                    for (int i = recommended_unique-1; i >= 0; i--)
+                    {
+                        printRestaurants(i+1,unique_restaurants[i].name);
+                    }
+
+                    getchar();
+                    int response;
+                    char **unique_restaurants_labels = malloc(recommended_unique * sizeof(char*));
+                    if (unique_restaurants_labels == NULL) {
+                        print_error("Memory allocation failed");
+                        exit(1);
+                    }
+                    int selection;
+                    for (int i = 0; i < recommended_unique; i++)
+                    {
+                        unique_restaurants_labels[i] = unique_restaurants[i].name;
+                    }
+                    printf("poping choices\n");
+                    InputPopup(unique_restaurants_labels,recommended_unique);
+                    selection = current_button;
+                    system("cls");
+                    home();
+                    printUserDetails();
+                    home_page_banner();
+
+                    printf("****-%s:-****",unique_restaurants[selection-1].name);
+                    printRestaurant(selection,unique_restaurants[selection-1].name);
+                    response = review_restaurant(unique_restaurants[selection-1].name);
+                    if (response == 2)
+                    {
+                        return 2;
+                    }else if (response == 0)
+                    {
+                    return 0; 
+                    }
+                    break;
+                    
                 default:
                     print_error("Invalid choice. Please try again");
                     break;

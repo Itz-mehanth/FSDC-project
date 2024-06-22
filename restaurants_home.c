@@ -5,6 +5,7 @@
 #include "settings.h"
 #include <time.h>
 #include "map.h"
+#include "nlprecommendation.h"
 #include "restaurants_home.h"
 #include "textField.h"
 #include "illustrations.h"
@@ -28,6 +29,46 @@ restaurant restaurants[TOTAL_RESTAURANTS];
 restaurant vegRestaurants[5];
 restaurant nonvegRestaurants[10];
 
+
+int compare_restaurants(const void *a, const void *b) {
+    const restaurant *ra = (const restaurant *)a;
+    const restaurant *rb = (const restaurant *)b;
+    return strcmp(ra->name, rb->name);
+}
+
+int compare_counts(const void *a, const void *b) {
+    const restaurant_count *rca = (const restaurant_count *)a;
+    const restaurant_count *rcb = (const restaurant_count *)b;
+    return rcb->count - rca->count;
+}
+
+restaurant *unique_sorted_restaurants(restaurant *restaurants, int num_restaurants, int *result_size) {
+    qsort(restaurants, num_restaurants, sizeof(restaurant), compare_restaurants);
+
+    restaurant_count *count_array = malloc(num_restaurants * sizeof(restaurant_count));
+    int unique_count = 0;
+
+    for (int i = 0; i < num_restaurants; i++) {
+        if (unique_count == 0 || strcmp(restaurants[i].name, count_array[unique_count - 1].res.name) != 0) {
+            count_array[unique_count].res = restaurants[i];
+            count_array[unique_count].count = 1;
+            unique_count++;
+        } else {
+            count_array[unique_count - 1].count++;
+        }
+    }
+
+    qsort(count_array, unique_count, sizeof(restaurant_count), compare_counts);
+
+    restaurant *sorted_unique_restaurants = malloc(unique_count * sizeof(restaurant));
+    for (int i = 0; i < unique_count; i++) {
+        sorted_unique_restaurants[i] = count_array[i].res;
+    }
+
+    free(count_array);
+    *result_size = unique_count;
+    return sorted_unique_restaurants;
+}
 void printf_restaurants(restaurant *restaurants) {
     for (int i = 0; i < TOTAL_RESTAURANTS; i++) {
             printf("%s, %s, %lf, %lf, %f, %d, %f\n", restaurants[i].name, restaurants[i].type, restaurants[i].lat, restaurants[i].lon, restaurants[i].rating, restaurants[i].total_ratings, restaurants[i].weighted_rating);
@@ -144,11 +185,12 @@ int update_restaurant(const char *filename, restaurant *restaurants)
     return 1;
 }
 
-restaurant *find_restaurant(const char *name)
+restaurant *find_restaurant(char *name)
 {
     for (int i = 0; i < TOTAL_RESTAURANTS; i++)
     {
-        if (strcmp(restaurants[i].name, name) == 0)
+        // printf("%s == %s", name, restaurants[i].name);
+        if (compare_strings(restaurants[i].name, name))
         {
             return &restaurants[i]; // return a pointer to the original object
         }
@@ -204,7 +246,7 @@ B:
     }
 }
 
-void printRestaurants(int n, const char *restaurant_name)
+void printRestaurants(int n, char *restaurant_name)
 {
     readRestaurants();
     restaurant *res = find_restaurant(restaurant_name);
@@ -267,7 +309,7 @@ void printRestaurants(int n, const char *restaurant_name)
 
     set_text_color(CURRENT_FOREGROUND_COLOR, WHITE);
 }
-void printRestaurant(int n, const char *restaurant_name)
+void printRestaurant(int n, char *restaurant_name)
 {
     waterMelon(50,20);
     readRestaurants();
@@ -323,7 +365,7 @@ void printRestaurant(int n, const char *restaurant_name)
     set_text_color(CURRENT_FOREGROUND_COLOR, WHITE);
 }
 
-void printNearbyRestaurant(int n, const char *restaurant_name,float distance)
+void printNearbyRestaurant(int n, char *restaurant_name,float distance)
 {
     readRestaurants();
     restaurant *res = find_restaurant(restaurant_name);
@@ -492,7 +534,7 @@ int select_restaurants()
     return selected_restaurants;
 }
 
-void storeComment(const char *restaurant_name)
+void storeComment(char *restaurant_name)
 {
     char name[100];
     char comment[1000];
@@ -536,10 +578,21 @@ void storeComment(const char *restaurant_name)
     }
 
     // Write data to file
-    fprintf(file, "Name: %s Comment: %s~Timestamp: %s~RestaurantName: %s\n", name, comment, timestamp, restaurant_name);
+    fprintf(file, "%s,%s%s~%s\n", name, comment,restaurant_name, timestamp);
 
     // Close file
     fclose(file);
+    FILE *fp = fopen("usersChat.txt", "a");
+    if (file == NULL) {
+        perror("Error opening file for writing");
+        return;
+    }
+
+    // Get current time and format it
+
+    fprintf(fp, "%s,%s,%s\n", current_user_details.username, comment, timestamp);
+
+    fclose(fp);
     print_success("Thank You! Comment added successfully");
 }
 
@@ -556,7 +609,7 @@ int isrestaurant(char *res_name){
     return 0;
 }
 
-int review_restaurant(const char *restaurant_name)
+int review_restaurant(char *restaurant_name)
 {
     int choice;
     if (0)
@@ -569,7 +622,7 @@ int review_restaurant(const char *restaurant_name)
         printRestaurant(1, restaurant_name);
     }
 
-    char *restaurantOptions[] = { "Rate restaurant", "Add comment", "View comment", "View menu" };
+    char *restaurantOptions[] = { "Rate restaurant", "Add comment", "View comment", "View menu"};
     InputPopup(restaurantOptions,4);
     choice = current_button;
     switch (choice)
@@ -631,13 +684,13 @@ void formatted_comment(char *comment_details)
     char time[20];
     char comment[MAX_COMMENT_LENGTH];
     char restaurant_name[20];
-    sscanf(comment_details, "Name: %s Comment: %[^~]~Timestamp: %[^~]~RestaurantName: %s\n", name, comment, time, restaurant_name);
+    sscanf(comment_details, "%s,%s%s~%s\n", name, comment,restaurant_name, time);
     printf("| USER: %s\t\tTIME: %s \n", name, time);
     printf("| COMMENT: %s \n", comment);
     printf("  ----------------------------------------------\n");
 }
 
-int viewLastFiveComments(const char *restaurant_name)
+int viewLastFiveComments(char *restaurant_name)
 {
     int num_lines = 0;
     char line[MAX_COMMENT_LENGTH];

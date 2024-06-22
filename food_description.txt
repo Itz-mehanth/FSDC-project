@@ -1,0 +1,280 @@
+Spaghetti Carbonara: A creamy Italian pasta dish with bacon and cheese.
+Margherita Pizza: Classic Italian pizza with tomato, mozzarella, and basil.
+Risotto: Italian rice dish cooked to creamy perfection.
+Tiramisu: Italian dessert layered with coffee-soaked ladyfingers and mascarpone.
+Caprese Salad: Italian salad with fresh tomatoes, mozzarella, and basil.
+Lasagna: Italian pasta dish layered with meat, cheese, and tomato sauce.
+Bruschetta: Italian appetizer of toasted bread topped with tomatoes and basil.
+Pesto Pasta: Italian pasta with a sauce made from basil, pine nuts, and Parmesan.
+Minestrone Soup: Italian vegetable soup with pasta or rice.
+Tortellini Alfredo: Italian pasta filled with cheese in a creamy Alfredo sauce.
+Butter Chicken: Indian chicken dish in a creamy tomato-based sauce.
+Masala Dosa: Indian crispy crepe filled with spiced potatoes.
+Chicken Biryani: Indian fragrant rice dish with marinated chicken.
+Palak Paneer: Indian spinach curry with paneer (Indian cottage cheese).
+Gulab Jamun: Indian dessert of deep-fried milk balls soaked in sugar syrup.
+Chole Bhature: Indian dish with spicy chickpeas (chole) and fried bread (bhature).
+Tandoori Chicken: Indian dish of marinated chicken cooked in a tandoor (clay oven).
+Paneer Tikka: Indian dish of marinated paneer cubes grilled to perfection.
+Rogan Josh: Indian lamb curry cooked with a blend of aromatic spices.
+Aloo Paratha: Indian stuffed flatbread with spiced potatoes.
+Kung Pao Chicken: Chinese spicy stir-fried chicken with peanuts.
+Fried Rice: Chinese stir-fried rice with vegetables and eggs.
+Dim Sum: Chinese bite-sized portions of various dishes served in steamer baskets.
+Mapo Tofu: Chinese dish of tofu in a spicy sauce with minced meat.
+Peking Duck: Chinese dish of roasted duck with crispy skin, served with pancakes.
+Sweet and Sour Pork: Chinese dish of crispy pork in a tangy sauce with vegetables.
+Chow Mein: Chinese stir-fried noodles with vegetables and meat.
+Egg Rolls: Chinese crispy fried rolls filled with vegetables and sometimes meat.
+Spring Rolls: Chinese crispy rolls filled with vegetables and sometimes meat.
+Beef and Broccoli: Chinese stir-fried dish with beef and broccoli in a savory sauce.
+Sushi Rolls: Japanese rolls of vinegared rice and seafood or vegetables wrapped in seaweed.
+Ramen: Japanese noodle soup with broth, noodles, and various toppings.
+Tempura: Japanese dish of battered and deep-fried seafood or vegetables.
+Teriyaki Chicken: Japanese grilled chicken in a sweet teriyaki sauce.
+Miso Soup: Japanese soup made with miso paste and dashi broth.
+Gyoza (Japanese Dumplings): Japanese pan-fried dumplings filled with meat and vegetables.
+Sashimi Platter: Japanese dish of thinly sliced raw fish or seafood.
+Udon Noodles: Japanese thick wheat flour noodles served in broth.
+Yakitori (Grilled Chicken Skewers): Japanese skewered and grilled chicken.
+Okonomiyaki (Japanese Pancake): Japanese savory pancake with various ingredients.
+Pad Thai: Thai stir-fried rice noodles with eggs, tofu, shrimp, and peanuts.
+Green Curry: Thai curry made with green chili paste, coconut milk, and meat or vegetables.
+Tom Yum Soup: Thai hot and sour soup with lemongrass, lime, and shrimp.
+Som Tum (Papaya Salad): Thai salad made with shredded green papaya, chili, and peanuts.
+Mango Sticky Rice: Thai dessert of sticky rice with fresh mango and coconut milk.
+Massaman Curry: Thai curry with a rich, mildly spicy coconut milk base and meat.
+Thai Fried Rice: Thai stir-fried rice with eggs, vegetables, and sometimes meat.
+Pineapple Fried Rice: Thai stir-fried rice with pineapple, vegetables, and meat.
+Thai Red Curry: Thai curry made with red chili paste, coconut milk, and meat or vegetables.
+Chicken Satay: Thai grilled and skewered chicken served with peanut sauce.
+Tacos al Pastor: Mexican tacos with spit-grilled pork and pineapple.
+Guacamole and Chips: Mexican dip made from mashed avocado, lime, and cilantro.
+Chicken Quesadillas: Mexican grilled tortilla filled with cheese, chicken, and vegetables.
+Beef Burrito: Mexican large flour tortilla filled with beans, rice, beef, and cheese.
+Enchiladas Verdes: Mexican tortillas filled with chicken and topped with green sauce.
+Nachos Supreme: Mexican tortilla chips topped with cheese, beans, meat, and salsa.
+Mexican Street Corn (Elote): Mexican grilled corn on the cob with cheese, lime, and chili.
+Chile Rellenos: Mexican roasted poblano peppers stuffed with cheese or meat.
+Pozole: Mexican traditional soup with hominy corn, meat, and chili peppers.
+Churros with Chocolate Sauce: Mexican fried dough pastries rolled in cinnamon sugar, served with chocolate sauce.
+Cheeseburger: American classic sandwich with beef patty, cheese, lettuce, and tomato.
+BBQ Ribs: American pork ribs grilled with barbecue sauce.
+Fried Chicken: American crispy fried chicken pieces.
+Mac and Cheese: American creamy macaroni pasta with cheese sauce.
+New York Style Pizza: American large, thin crust pizza with various toppings.
+Buffalo Wings: American spicy chicken wings served with blue cheese dressing.
+Clam Chowder: American creamy soup with clams, potatoes, and vegetables.
+Caesar Salad: American salad with romaine lettuce, croutons, Parmesan cheese, and Caesar dressing.
+Philly Cheesesteak: American sandwich with thinly sliced beef, cheese, and onions.
+Key Lime Pie: American dessert made with Key lime juice, egg yolks, and condensed milk in a graham cracker crust.
+Coq au Vin: French chicken braised with wine, lardons, mushrooms, and garlic.
+Croissant: French buttery, flaky pastry.
+Beef Bourguignon: French beef stew braised in red wine with carrots, onions, and mushrooms.
+Quiche Lorraine: French savory pie with bacon and cheese in a pastry crust.
+Escargot: French baked snails served with garlic and butter.
+Ratatouille: French Provencal vegetable stew.
+Crème Brûlée: French dessert with rich custard base and caramelized sugar crust.
+Bouillabaisse: French seafood stew with fish, shellfish, and vegetables.
+Duck à l'Orange: French roasted duck dish served with orange sauce.
+Salade Niçoise: French salad with tuna, olives, eggs, and vegetables.
+Paella: Spanish saffron-flavored rice dish with seafood, meat, and vegetables.
+Tortilla Española: Spanish omelette with potatoes and onions.
+Gazpacho: Spanish cold soup made from tomatoes, peppers, and cucumbers.
+Churros con Chocolate: Spanish fried dough pastries served with chocolate dipping sauce.
+Patatas Bravas: Spanish fried potatoes served with spicy tomato sauce.
+Pulpo a la Gallega: Spanish octopus dish seasoned with paprika and olive oil.
+Gambas al Ajillo: Spanish garlic shrimp cooked in olive oil.
+Calamares a la Romana: Spanish fried squid rings.
+Manchego Cheese Plate: Spanish cheese made from sheep's milk.
+Sangria: Spanish wine punch with chopped fruit and sweetener.
+Gyros: Greek sandwich with grilled meat, tomatoes, onions, and tzatziki sauce.
+Moussaka: Greek baked casserole with eggplant, meat, and béchamel sauce.
+Greek Salad: Greek salad with tomatoes, cucumbers, olives, and feta cheese.
+Souvlaki: Greek skewered and grilled meat.
+Spanakopita: Greek spinach and feta cheese pastry.
+Dolmades: Greek stuffed grape leaves.
+Tzatziki: Greek yogurt dip with cucumber and garlic.
+Pastitsio: Greek baked pasta dish with meat and béchamel sauce.
+Baklava: Greek sweet pastry made of layers of filo filled with chopped nuts and sweetened with honey.
+Loukoumades: Greek deep-fried dough balls dipped in honey syrup.
+Hummus with Pita Bread: Middle Eastern dip made from chickpeas, tahini, lemon, and garlic.
+Falafel: Middle Eastern deep-fried balls made from ground chickpeas.
+Shawarma: Middle Eastern meat (usually lamb or chicken) grilled on a vertical spit.
+Tabbouleh: Middle Eastern salad made from parsley, mint, tomatoes, and bulgur.
+Mouhamara: Middle Eastern dip made from red peppers, walnuts, and breadcrumbs.
+Baba Ganoush: Middle Eastern dip made from roasted eggplant, tahini, and garlic.
+Kibbeh: Middle Eastern dish made of bulgur, minced onions, and ground meat.
+Stuffed Grape Leaves: Middle Eastern dish of rice, vegetables, and sometimes meat wrapped in grape leaves.
+Fattoush: Middle Eastern salad with toasted pita bread, vegetables, and herbs.
+Kabsa: Middle Eastern rice dish with meat, vegetables, and aromatic spices.
+Samosa: Indian fried or baked pastry with savory filling, such as spiced potatoes, peas, and sometimes meat.
+Jalebi: Indian sweet made by deep-frying batter in pretzel or circular shapes, which are then soaked in sugar syrup.
+Pani Puri: Indian street food consisting of hollow, crispy puris filled with flavored water, tamarind chutney, chili, chaat masala, potato, onion, or chickpeas.
+Dahi Puri: Indian snack of small crispy puris filled with yogurt, spices, and tamarind chutney.
+Vada Pav: Indian vegetarian fast food consisting of a spicy potato dumpling placed inside a bread bun (pav) sliced almost in half through the middle.
+Pav Bhaji: Indian street food dish consisting of a spicy vegetable mash (bhaji) served with buttered bread rolls (pav).
+Samosa Chaat: Indian snack made with crushed samosas topped with yogurt, tamarind chutney, and spices.
+Rasmalai: Indian dessert consisting of flattened balls of paneer (Indian cottage cheese) soaked in sweetened, thickened milk.
+Gajar Halwa: Indian dessert made from grated carrots cooked in milk, sugar, and ghee, garnished with nuts.
+Kheer: Indian rice pudding made by boiling rice with milk and sugar, flavored with cardamom, saffron, and nuts.
+Dosa: South Indian crepe made from fermented rice and lentil batter, served with chutney and sambar.
+Idli: South Indian steamed rice cakes served with sambar and chutney.
+Uttapam: South Indian thick pancake made from fermented rice and lentil batter, topped with vegetables.
+Pani Puri: Indian street food consisting of hollow, crispy puris filled with flavored water, tamarind chutney, chili, chaat masala, potato, onion, or chickpeas.
+Dahi Puri: Indian snack of small crispy puris filled with yogurt, spices, and tamarind chutney.
+Aloo Tikki: Indian potato patties served with chutney and often with chickpeas or spicy peas.
+Chole Bhature: North Indian dish consisting of spicy chickpeas (chole) served with fried bread (bhature).
+Mutter Paneer: North Indian dish of paneer (Indian cottage cheese) and peas cooked in a tomato-based sauce.
+Rajma Chawal: North Indian dish of red kidney beans cooked in a thick tomato-based gravy, served with rice.
+Aloo Paratha: North Indian flatbread stuffed with spiced mashed potatoes, often served with yogurt or pickle.
+Pav Bhaji: Indian street food dish consisting of a spicy vegetable mash (bhaji) served with buttered bread rolls (pav).
+Samosa Chaat: Indian snack made with crushed samosas topped with yogurt, tamarind chutney, and spices.
+Rasmalai: Indian dessert consisting of flattened balls of paneer (Indian cottage cheese) soaked in sweetened, thickened milk.
+Gajar Halwa: Indian dessert made from grated carrots cooked in milk, sugar, and ghee, garnished with nuts.
+Kheer: Indian rice pudding made by boiling rice with milk and sugar, flavored with cardamom, saffron, and nuts.
+Raita: Indian side dish made from yogurt mixed with grated vegetables like cucumber, carrots, and seasoned with spices.
+Jalebi: Indian sweet made by deep-frying batter in pretzel or circular shapes, which are then soaked in sugar syrup.
+Rabri: Indian dessert made from condensed milk cooked for hours until thickened, flavored with cardamom and nuts.
+Phirni: Indian rice pudding made with ground rice, milk, sugar, and flavored with saffron and cardamom.
+Pulao: Indian rice dish cooked with vegetables or meat, flavored with spices and herbs.
+Biryani: Indian rice dish made with basmati rice, meat (such as chicken, lamb, or goat), marinated and cooked with spices.
+Kofta: Indian meatballs or vegetarian dumplings made from minced meat or vegetables, served in a spicy sauce.
+Seekh Kebab: Indian/Pakistani dish consisting of spiced minced meat (usually lamb or beef) grilled on skewers.
+Pakora: Indian snack made by deep-frying battered vegetables (like onion, potato) or meat (like chicken or paneer).
+Bhindi Masala: Indian dish of okra cooked with onions, tomatoes, and spices.
+Palak Paneer: North Indian dish made from spinach (palak) and paneer (Indian cottage cheese) in a creamy sauce.
+Malai Kofta: Indian dish of deep-fried vegetable or paneer (Indian cottage cheese) dumplings in a rich, creamy gravy.
+Chicken Tikka: Indian dish of marinated and grilled chicken chunks served with mint chutney.
+Butter Chicken: Indian dish of marinated chicken cooked in a buttery, creamy tomato-based sauce.
+Prawn Curry: Indian curry made with prawns cooked in a spicy coconut or tomato-based sauce.
+Goan Fish Curry: Spicy and tangy curry from Goa, India, made with fish, coconut milk, and Goan spices.
+Dhokla: Indian snack made from fermented batter derived from rice and split chickpeas, typically served with chutney.
+Thepla: Gujarati flatbread made from whole wheat flour, fenugreek leaves, and spices, often served with yogurt or pickles.
+Handvo: Gujarati savory cake made from a batter of rice, lentils, and vegetables, typically served with chutney.
+Ghugni: Eastern Indian dish made from dried yellow peas cooked with spices, often served as a snack or side dish.
+Bhuna Chicken: Indian dish of chicken cooked with onions, tomatoes, and spices until thick and fragrant.
+Shahi Paneer: North Indian dish of paneer (Indian cottage cheese) cooked in a creamy, aromatic gravy made of tomatoes, cream, and spices.
+Chana Masala: North Indian dish of chickpeas cooked with onions, tomatoes, and spices.
+Pesarattu: South Indian crepe made from green gram (moong dal) and rice batter, often served with ginger chutney.
+Ragi Mudde: South Indian dish made from finger millet flour (ragi), cooked into a ball-like consistency, typically served with sambar or chutney.
+Pad Thai: Thai stir-fried rice noodles with eggs, tofu, shrimp or chicken, peanuts, and bean sprouts, seasoned with tamarind sauce.
+Tom Yum Goong: Thai hot and sour soup with shrimp, lemongrass, kaffir lime leaves, galangal, and chili peppers.
+Green Curry: Thai curry made with green curry paste, coconut milk, vegetables, and choice of meat (chicken, beef, or seafood).
+Massaman Curry: Thai curry with a rich and mild flavor, made with coconut milk, roasted peanuts, potatoes, and choice of meat (usually beef or chicken).
+Mango Sticky Rice: Thai dessert made with sticky rice, fresh mango slices, and coconut milk, often served during mango season.
+Pho: Vietnamese noodle soup made with beef or chicken broth, rice noodles, herbs, and choice of meat (usually beef slices or chicken).
+Banh Mi: Vietnamese sandwich made with French baguette, filled with various ingredients such as grilled pork, pate, pickled vegetables, and herbs.
+Bun Cha: Vietnamese dish of grilled pork served with rice vermicelli noodles, herbs, and dipping sauce.
+Goi Cuon (Vietnamese Spring Rolls): Fresh Vietnamese spring rolls filled with shrimp, herbs, pork or chicken, vermicelli noodles, and wrapped in rice paper.
+Com Tam: Vietnamese broken rice dish served with grilled pork chop, shredded pork skin, steamed egg meatloaf, and pickled vegetables.
+Bulgogi: Korean marinated grilled beef dish, typically served with rice, lettuce wraps, and kimchi.
+Bibimbap: Korean mixed rice dish topped with vegetables, meat (usually beef), a fried egg, and spicy gochujang (red chili paste).
+Kimchi: Korean fermented vegetable dish, usually made with Napa cabbage and radishes, seasoned with chili pepper, garlic, ginger, and salt.
+Japchae: Korean stir-fried glass noodles made from sweet potato starch, with vegetables, beef or pork, and flavored with soy sauce and sesame oil.
+Banchan: Korean side dishes served alongside cooked rice in Korean cuisine, typically consisting of kimchi, pickled vegetables, and other small plates.
+Pierogi: Polish dumplings typically filled with savory ingredients like potatoes, cheese, meat, or mushrooms, boiled and then often pan-fried.
+Goulash: Hungarian stew made with beef (or sometimes pork), onions, paprika, and other spices, often served with potatoes or noodles.
+Wiener Schnitzel: Austrian dish consisting of breaded and fried veal or pork cutlet, usually served with a lemon wedge.
+Rösti: Swiss dish of grated and fried potatoes, often served as a side dish or topped with cheese and other ingredients.
+Borscht: Eastern European soup made with beetroots as the main ingredient, usually served hot or cold with sour cream.
+Moussaka: Greek dish consisting of layers of minced meat (often lamb or beef), eggplant, and potatoes, topped with a creamy béchamel sauce.
+Tzatziki: Greek sauce or dip made from yogurt, cucumbers, garlic, olive oil, and fresh herbs like dill or mint.
+Dolma: Stuffed grape leaves typically filled with a mixture of rice, minced meat, pine nuts, and herbs, common in Mediterranean and Middle Eastern cuisines.
+Kibbeh: Middle Eastern dish made of bulgur wheat, minced onions, and finely ground lean meat (usually lamb or beef), often shaped into balls or patties.
+Shakshuka: North African and Middle Eastern dish of poached eggs in a spicy tomato sauce with peppers, onions, and spices like cumin and paprika.
+Falafel: Middle Eastern fried balls or patties made from ground chickpeas or fava beans, often served in pita bread with tahini sauce and vegetables.
+Tabbouleh: Levantine vegetarian salad made of finely chopped parsley, tomatoes, mint, onion, bulgur, and seasoned with olive oil and lemon juice.
+Hummus: Levantine dip or spread made from mashed chickpeas blended with tahini, lemon juice, and garlic, often served with pita bread or vegetables.
+Couscous: North African dish made from steamed semolina, usually served with a stew (like tagine) of meat and vegetables.
+Samosa: Indian or South Asian pastry filled with spiced potatoes, peas, lentils, or meat, often deep-fried and served with chutney.
+Saag Paneer: North Indian dish made from spinach (saag) and paneer (Indian cheese), seasoned with ginger, garlic, and spices like turmeric and cumin.
+Biryani: South Asian dish of fragrant rice cooked with meat (often chicken, mutton, or beef), spices, and sometimes vegetables or eggs.
+Dosa: South Indian fermented crepe made from rice batter and black lentils, usually served with chutney and sambar (spicy lentil soup).
+Rendang: Indonesian spicy beef stew slowly cooked in coconut milk and a mixture of lemongrass, galangal, garlic, turmeric, ginger, and chili.
+Nasi Goreng: Indonesian fried rice dish cooked with kecap manis (sweet soy sauce), shallots, garlic, tamarind, chili, and accompanied with fried egg and prawns or chicken.
+Ceviche: A popular dish in Latin American cuisine, ceviche typically consists of raw fish or seafood marinated in citrus juices (like lime or lemon) and mixed with onions, cilantro, and other seasonings.
+Arepa: A staple in Colombian and Venezuelan cuisine, arepas are cornmeal patties that are grilled, baked, or fried and often filled with cheese, meats, avocados, or other ingredients.
+Pão de Queijo: Brazilian cheese bread made from tapioca flour and cheese, creating a chewy and cheesy snack often served as an appetizer or breakfast item.
+Feijoada: A hearty Brazilian stew of black beans with pork or beef, typically served with rice, collard greens, orange slices, and farofa (toasted cassava flour).
+Empanada: A savory pastry turnover popular in many Latin American countries, filled with a variety of ingredients such as beef, chicken, cheese, or vegetables and then baked or fried.
+Pupusa: A traditional Salvadoran dish made of thick corn tortillas filled with cheese, beans, or meat, often served with curtido (a pickled cabbage relish) and salsa.
+Jambalaya: A Creole and Cajun dish from Louisiana, jambalaya is a one-pot rice dish with a variety of ingredients such as sausage, chicken, shrimp, and vegetables, seasoned with Cajun spices.
+Gumbo: Another iconic dish from Louisiana, gumbo is a thick stew or soup that typically includes a variety of meats or seafood, vegetables, and a roux (flour and fat mixture) served over rice.
+Etouffee: A Cajun and Creole dish from Louisiana, etouffee is typically made with shellfish (like crawfish or shrimp) cooked in a rich buttery sauce flavored with vegetables, spices, and served over rice.
+Beignets: A French-inspired pastry popular in New Orleans, Louisiana, beignets are deep-fried doughnuts dusted with powdered sugar, often enjoyed with coffee.
+Bánh Xèo: A Vietnamese savory pancake made from rice flour, turmeric powder, coconut milk, and filled with shrimp, pork, bean sprouts, and herbs, usually wrapped in lettuce and dipped in fish sauce.
+Pho: A Vietnamese noodle soup consisting of broth, rice noodles, herbs, and meat (usually beef or chicken), often served with lime, bean sprouts, basil, and chili peppers on the side.
+Banh Mi: A Vietnamese sandwich on a baguette filled with various ingredients such as grilled meats (pork, chicken, or beef), pickled vegetables, cilantro, and mayonnaise or pate.
+Tom Yum: A spicy and sour Thai soup flavored with lemongrass, kaffir lime leaves, galangal, lime juice, and chili peppers, often containing shrimp or other seafood.
+Pad Thai: A popular Thai stir-fried noodle dish made with rice noodles, eggs, tofu or shrimp, bean sprouts, peanuts, and a flavorful sauce made from tamarind paste, fish sauce, and palm sugar.
+Tandoori Chicken: A popular Indian dish where chicken is marinated in a mixture of yogurt and spices, then cooked in a tandoor (clay oven), resulting in a flavorful and slightly charred exterior.
+Samosa: A triangular pastry from Indian cuisine filled with spiced potatoes, peas, and sometimes meat, then deep-fried until crispy and golden brown.
+Biryani: A fragrant Indian rice dish cooked with basmati rice, meat (often chicken or lamb), and a blend of spices such as saffron, cardamom, and cloves, layered and cooked together for a rich and flavorful meal.
+Chole Bhature: A North Indian dish consisting of spicy chickpeas (chole) served with deep-fried bread (bhature), often accompanied by yogurt or pickles.
+Masala Dosa: A South Indian specialty, a thin and crispy fermented rice and lentil crepe filled with a spiced potato mixture and typically served with coconut chutney and sambar (a lentil-based vegetable stew).
+Rendang: A rich and flavorful Indonesian dish of slow-cooked meat (usually beef) simmered in coconut milk and a mixture of lemongrass, galangal, garlic, turmeric, and chili paste until the sauce is thick and aromatic.
+Nasi Goreng: An Indonesian fried rice dish cooked with kecap manis (sweet soy sauce), garlic, shallots, tamarind, chili, and often accompanied by prawns, chicken, or eggs, served with pickled vegetables and krupuk (crackers).
+Satay: Skewered and grilled meat (commonly chicken, beef, or lamb) served with a peanut sauce and often accompanied by rice cakes or cucumber salad, popular throughout Southeast Asia.
+Baklava: A rich, sweet pastry made of layers of filo pastry filled with chopped nuts and sweetened with syrup or honey, popular in Middle Eastern and Mediterranean cuisines.
+Falafel: Deep-fried balls or patties made from ground chickpeas or fava beans mixed with herbs and spices, often served in pita bread with tahini sauce, salad, and pickles, a staple of Middle Eastern cuisine.
+Hummus: A creamy dip or spread made from mashed chickpeas blended with tahini (sesame paste), olive oil, lemon juice, garlic, and spices, served with pita bread or as a side dish in Middle Eastern cuisine.
+Shakshuka: A North African and Middle Eastern dish of poached eggs in a spicy tomato sauce with peppers, onions, and spices, typically served with bread for dipping.
+Tabbouleh: A Levantine vegetarian salad made of finely chopped parsley, tomatoes, mint, onion, bulgur (cracked wheat), seasoned with olive oil, lemon juice, and salt, often served as part of a mezze (appetizer) spread.
+Kibbeh: A Middle Eastern dish made of bulgur wheat, minced onions, and finely ground meat (often lamb or beef), shaped into balls or patties and deep-fried or baked, served with yogurt sauce.
+Dolma: Stuffed grape leaves (and sometimes other vegetables like peppers or zucchini) filled with a mixture of rice, minced meat, pine nuts, and spices, a traditional dish in Mediterranean and Middle Eastern cuisines.
+Ceviche: A popular dish in Latin American cuisine, especially Peru, made from fresh raw fish or seafood marinated in citrus juices (usually lime or lemon) and mixed with onions, cilantro, and chili peppers.
+Arepa: A staple in Colombian and Venezuelan cuisine, a type of cornmeal flatbread that is grilled, baked, fried, or boiled and often stuffed or topped with cheese, meats, avocado, or beans.
+Pupusa: A traditional Salvadoran dish of thick handmade corn tortillas stuffed with various fillings such as cheese, beans, pork, or loroco (a native Central American flower bud), often served with curtido (a cabbage slaw) and tomato salsa.
+Empanada: A pastry turnover filled with various ingredients such as meats (beef, chicken, or pork), cheese, vegetables, or fruits, popular in Spain and throughout Latin America, often served as a snack or appetizer.
+Feijoada: A hearty Brazilian stew of black beans cooked with pork or beef, typically including smoked meats such as sausage, bacon, and ribs, seasoned with onions, garlic, and spices, served with rice, collard greens, and orange slices.
+Moqueca: A Brazilian seafood stew originating from the northeastern state of Bahia, made with fish or shrimp cooked in coconut milk, tomatoes, onions, garlic, coriander, and palm oil (dendê), served with rice and farofa (toasted cassava flour).
+Coxinha: A popular Brazilian street food consisting of shredded chicken, typically seasoned with onions, garlic, and spices, encased in a dough, breaded, and deep-fried until golden brown, shaped like a teardrop.
+Chimichurri: A green sauce originating from Argentina and Uruguay, made with finely chopped parsley, garlic, vinegar, olive oil, and spices (such as oregano and red pepper flakes), used as a marinade or condiment for grilled meats.
+Matambre: An Argentine dish made from a thin cut of beef, usually flank steak or skirt steak, stuffed with vegetables, hard-boiled eggs, and herbs, rolled up, and cooked on a grill or in the oven.
+Churros: Fried dough pastry originating from Spain and Portugal, often coated in sugar and cinnamon, served hot and crispy, sometimes filled with dulce de leche, chocolate, or other sweet fillings.
+Paella: A Valencian rice dish from Spain, typically made with saffron-infused rice cooked with a variety of ingredients such as seafood (shrimp, mussels, clams), meats (chicken, rabbit), and vegetables (peppers, peas), cooked in a large shallow pan.
+Tzatziki: A Greek sauce or dip made from strained yogurt mixed with cucumbers, garlic, salt, olive oil, vinegar or lemon juice, and dill, often served as a condiment with grilled meats or as a dip with pita bread.
+Souvlaki: A popular Greek fast food consisting of small pieces of meat (usually pork, chicken, or lamb) skewered and grilled, served with pita bread, tomatoes, onions, and tzatziki sauce.
+Moussaka: A Greek baked casserole dish made with layers of eggplant, minced meat (often lamb or beef), tomatoes, onions, and spices, topped with a creamy béchamel sauce and baked until golden brown.
+Baklava: A rich, sweet dessert pastry made of layers of filo dough filled with chopped nuts (such as walnuts, almonds, or pistachios) and sweetened with syrup or honey, popular in Middle Eastern and Mediterranean cuisines.
+Kimchi: A staple in Korean cuisine, kimchi is a traditional fermented dish made with seasoned vegetables, usually napa cabbage and Korean radishes, combined with garlic, ginger, chili peppers, and salted seafood, aged to develop complex flavors.
+Bulgogi: A popular Korean barbecue dish consisting of thinly sliced marinated beef (or sometimes pork) grilled or stir-fried, flavored with a mixture of soy sauce, sugar, sesame oil, garlic, and pepper, often served with rice and lettuce leaves for wrapping.
+Bibimbap: A Korean mixed rice dish topped with various vegetables (such as spinach, mushrooms, carrots, and bean sprouts), sliced meat (often beef), a fried egg, and gochujang (spicy chili paste), typically served in a hot stone bowl.
+Galbi: Korean-style marinated beef short ribs, often grilled or barbecued, marinated in a mixture of soy sauce, sugar, sesame oil, garlic, and pepper, offering a savory and slightly sweet flavor.
+Jjajangmyeon: A popular Korean-Chinese noodle dish made with wheat noodles topped with a thick, savory black bean sauce (jjajang) containing diced pork or seafood, onions, and other vegetables.
+Okonomiyaki: A savory Japanese pancake made with flour, eggs, shredded cabbage, and various ingredients such as pork belly, seafood, or cheese, cooked on a griddle and topped with okonomiyaki sauce, mayo, seaweed flakes, and bonito flakes.
+Takoyaki: A Japanese street food consisting of round savory batter balls filled with minced or diced octopus, tempura scraps, pickled ginger, and green onions, cooked in a special molded pan and topped with takoyaki sauce, mayo, bonito flakes, and seaweed.
+Ramen: A Japanese noodle soup dish consisting of wheat noodles served in a flavorful broth, often flavored with miso, soy sauce, or salt, and topped with various ingredients such as sliced pork (chashu), nori (seaweed), bamboo shoots, and a soft-boiled egg.
+Tempura: A Japanese dish of lightly battered and deep-fried seafood (such as shrimp, squid) and vegetables (such as sweet potato, eggplant) served with a dipping sauce (tentsuyu) or grated daikon radish.
+Sushi: A Japanese dish consisting of vinegared rice combined with various ingredients such as raw or cooked seafood, vegetables, and sometimes tropical fruits, often rolled in seaweed (nori) or served as bite-sized pieces (nigiri), accompanied by soy sauce, wasabi, and pickled ginger.
+Pho: A Vietnamese noodle soup consisting of broth, rice noodles, herbs (usually cilantro, Thai basil, and scallions), and meat (commonly beef or chicken), often garnished with bean sprouts, lime, and chili peppers.
+Banh Xeo: A Vietnamese savory pancake made from rice flour batter, turmeric powder, coconut milk, filled with pork, shrimp, bean sprouts, and green onions, served with fresh herbs and dipping sauce.
+Cha Ca: A Vietnamese dish of marinated and grilled fish (typically catfish or snakehead fish) served with rice vermicelli, peanuts, dill, coriander, and shrimp paste sauce.
+Com Tam: A Vietnamese broken rice dish topped with grilled pork (often in the form of a pork chop or shredded), a steamed egg meatloaf (called cha trung), and served with pickled vegetables and fish sauce.
+Laksa: A spicy noodle soup from the Peranakan culture, combining Chinese and Malay elements, with coconut milk, curry spices, noodles, and either chicken, prawn, or fish.
+Hainanese Chicken Rice: A popular dish in Southeast Asia, featuring poached chicken and seasoned rice, served with chili sauce and usually accompanied by cucumber slices and a clear soup.
+Nasi Goreng: An Indonesian fried rice dish cooked with kecap manis (sweet soy sauce), garlic, shallots, tamarind, chili, and accompanied by ingredients such as chicken, prawns, and vegetables, topped with a fried egg.
+Gado-Gado: An Indonesian salad consisting of mixed vegetables (like boiled potatoes, spinach, bean sprouts) with tofu and tempeh, dressed in a peanut sauce.
+Rendang: An Indonesian spicy meat dish originating from the Minangkabau ethnic group of Indonesia, made with beef (or sometimes chicken) slowly simmered with coconut milk and a mixture of lemongrass, garlic, turmeric, ginger, and chili paste.
+Babi Guling: A Balinese dish of spit-roast pig seasoned with turmeric, coriander seeds, lemongrass, black pepper, garlic, and other spices, typically served with rice and lawar (a type of vegetable salad).
+Som Tum (Green Papaya Salad): A spicy and tangy Thai salad made from shredded green papaya, tomatoes, green beans, peanuts, dried shrimp, garlic, chilies, lime juice, and fish sauce.
+Pad Thai: A popular Thai stir-fried noodle dish made with rice noodles, tofu, shrimp or chicken, bean sprouts, peanuts, scrambled egg, and flavored with tamarind sauce, fish sauce, garlic, and chili.
+Tom Yum Goong: A classic Thai hot and sour soup flavored with lemongrass, kaffir lime leaves, galangal, lime juice, fish sauce, and chili peppers, with shrimp (goong) being a key ingredient.
+Massaman Curry: A Thai curry dish that is rich and flavorful, made with coconut milk, roasted peanuts or cashews, potatoes, bay leaves, cinnamon, star anise, palm sugar, fish sauce, and either beef, chicken, or tofu.
+Korean BBQ (Gogi Gui): Refers to the Korean method of grilling meat, typically beef, pork, or chicken, at the table, often accompanied by various side dishes (banchan) such as kimchi, lettuce leaves, and dipping sauces.
+Bulgogi: A Korean dish of marinated slices of beef (or pork) grilled or stir-fried, usually served with rice, lettuce leaves for wrapping, and accompanied by gochujang (Korean chili paste) and other condiments.
+Bibimbap: A Korean mixed rice dish topped with assorted vegetables (like spinach, mushrooms, carrots, and bean sprouts), sliced meat (often beef), a fried egg, and gochujang (chili pepper paste), mixed together before eating.
+Kimchi: A staple in Korean cuisine, kimchi is a fermented vegetable dish (usually cabbage or radish) seasoned with chili peppers, garlic, ginger, and salt, with variations including cucumber or scallions.
+Galbi (Kalbi): Korean marinated beef short ribs (or pork ribs) grilled or barbecued, often with a sweet soy sauce marinade, garlic, sesame oil, and sometimes fruit juice, served with rice and side dishes.
+Japchae: A Korean dish of stir-fried glass noodles made from sweet potato starch, mixed with vegetables (such as spinach, carrots, and mushrooms) and sometimes beef or other proteins, seasoned with soy sauce and sesame oil.
+Pho: A Vietnamese noodle soup consisting of broth, rice noodles, herbs (like basil and cilantro), and meat (usually beef or chicken), often served with lime, bean sprouts, and chili peppers on the side.
+Banh Mi: A Vietnamese sandwich on a French baguette, typically filled with various meats (like grilled pork, Vietnamese sausage, or pâté), pickled vegetables (carrots, daikon), cilantro, and mayonnaise or chili sauce.
+Bun Cha: A Vietnamese dish of grilled fatty pork (cha) served over white rice noodles (bun) with herbs, pickled vegetables, and a dipping sauce (nuoc cham).
+Com Tam: A Vietnamese dish of broken rice served with grilled pork (often ribs or shredded), egg meatloaf (cha trung), pickled vegetables, and fish sauce.
+Goi Cuon (Vietnamese Fresh Spring Rolls): Transparent spring rolls filled with shrimp, pork, herbs, rice vermicelli, and sometimes lettuce, wrapped in rice paper and served with peanut or hoisin dipping sauce.
+Bo Kho: A Vietnamese beef stew made with tender chunks of beef simmered in a fragrant broth flavored with lemongrass, star anise, and fish sauce, often served with bread or rice noodles.
+Cha Ca: A Vietnamese dish of grilled fish (usually firm white fish like catfish or monkfish) marinated in turmeric and dill, served with rice noodles, peanuts, herbs, and nuoc cham sauce.
+Laksa: A spicy noodle soup popular in Southeast Asian cuisine, especially in Malaysia and Singapore, made with either curry (curry laksa) or sour tamarind (asam laksa) broth, noodles, fish or shrimp, and garnished with herbs, chili, and sometimes coconut milk.
+Nasi Goreng: An Indonesian fried rice dish cooked with kecap manis (sweet soy sauce), garlic, shallots, tamarind, chili, and accompanied by ingredients like egg, prawns, chicken, and vegetables.
+Rendang: An Indonesian spicy meat dish originating from the Minangkabau ethnic group of Indonesia, made with beef (or occasionally chicken) slow-cooked in coconut milk and a mixture of lemongrass, galangal, garlic, turmeric, ginger, and chili.

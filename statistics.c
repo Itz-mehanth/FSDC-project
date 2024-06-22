@@ -5,6 +5,7 @@
 #include "statistics.h"
 #include "conio.h"
 #include "food_order_page.h"
+#include "login.h"
 #include <string.h>
 #include <time.h>
 
@@ -28,11 +29,16 @@ int read_purchases(const char *filename, PurchaseEntry *entries, int max_entries
         print_error("Failed to open file");
         return -1;
     }
-
+    PurchaseEntry entry;
     int count = 0;
-    while (count < max_entries && fscanf(file, "%[^,],%f,%[^\n]\n", entries[count].username, &entries[count].final_amount, entries[count].time_str) == 3) {
+    while (count < max_entries && fscanf(file, "%[^,],%f,%[^\n]\n", entry.username, &entry.final_amount, entry.time_str) == 3) {
         // printf("%s %.2f %s\n", entries[count].username, entries[count].final_amount, entries[count].time_str);
-        count++;
+        if (strcmp(entry.username,current_user_details.username)==0)
+        {
+            entries[count] = entry;
+            count++;
+        }
+         
     }
 
     fclose(file);

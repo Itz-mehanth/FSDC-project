@@ -1112,7 +1112,7 @@ int view_cart(){
     return 1;
 }
 
-float calculate_discount(FoodEntry entry) {
+float calculate_discount(FoodEntry entry,int *peak_hr,int *healthy,int *qty) {
     // Parse the date
     int day, month, year, hour, min, sec;
     sscanf(entry.datetime, "%d-%d-%d/%d:%d:%d", &day, &month, &year, &hour, &min, &sec);
@@ -1123,14 +1123,17 @@ float calculate_discount(FoodEntry entry) {
     // Discount based on time & cuisine
     if ( strcmp(entry.category,"snacks")==0 && hour >= 16 && hour <= 18 ) {
         discount += 2.0;
+        *peak_hr=1;
     }
     
     if ( strcmp(entry.category,"beverages")==0 && hour >= 1 && hour <= 3 ) {
         discount += 2.0;
+        *peak_hr=1;
     }
     
     if ( strcmp(entry.category,"breakfast")==0 && hour >= 8 && hour <= 10 ) {
         discount += 2.0;
+        *peak_hr=1;
     }
     // Discount on new year
     if (day == 1  && month == 1 ) {
@@ -1172,37 +1175,48 @@ float calculate_discount(FoodEntry entry) {
     // Discount based on healthy cuisines
     if (strcmp(entry.category, "seafood") == 0) {
         discount += 2.0;
+        *healthy=1;
     }
     
     if (strcmp(entry.category, "japanese") == 0) {
         discount += 2.0;
+        *healthy=1;
     }
     
     if (strcmp(entry.category, "south_indian") == 0) {
         discount += 2.0;
+        *healthy=1;
     }
 
     if (strcmp(entry.category, "mediterranean") == 0) {
         discount += 2.0;
+        *healthy=1;
     }
+    // Discount based on the quantity
     if ( entry.quantity >=10){
         discount += 2.0;
+        *qty=1;
     }
     if (entry.quantity > 10 && entry.quantity <= 20){
         discount += 3.0;
+        *healthy=1;
     }
     if ( entry.quantity > 20 && entry.quantity <= 30){
         discount += 4.0;
+        *healthy=1;
     }
     if ( entry.quantity > 30 && entry.quantity <= 40){
         discount += 5.0;
+        *healthy=1;
     }
     if ( entry.quantity < 50){
         discount += 6.0;
+        *healthy=1;
     }
 
     return discount;
 }
+
 
 float calculate_discount_points(int points){
     float discount=0.0;
@@ -1232,6 +1246,7 @@ float calculate_discount_points(int points){
 }
 
 void process_entries(FoodEntry *entries, int size, int point) {
+    int is_peak_hour=0,is_healthy_food=0,is_quantity=0;
     float total_cost =0;
     int tot_quantity=0;
     int x=70;
@@ -1258,7 +1273,7 @@ void process_entries(FoodEntry *entries, int size, int point) {
     float total_discount = 0;
 
     for (int i = 0; i < size; ++i) {
-        float discount = calculate_discount(entries[i]);
+        float discount = calculate_discount(entries[i],&is_peak_hour,&is_healthy_food,&is_quantity);
         total_discount += (entries[i].amount * entries[i].quantity * discount) / 100;
     }
 
@@ -1275,6 +1290,24 @@ void process_entries(FoodEntry *entries, int size, int point) {
     setCursor_inc(x,y++);
     printf(" Total Discount: %.2f                                                 \n", total_discount);
     setCursor_inc(x,y++);
+    printf("The Discounts were applied for..                                      \n");
+    setCursor_inc(x,y++);
+    if(total_discount != 0)
+    {
+        if (is_peak_hour == 1)
+            printf(" For ordering the food in the peak hour                               \n");
+            setCursor_inc(x,y++);
+        if (is_healthy_food == 1)
+            printf(" For choosing healthy food cuisines                                   \n");
+            setCursor_inc(x,y++);
+        if(is_quantity == 1)
+            printf(" For ordering foods in more quantiy                                   \n");
+            setCursor_inc(x,y++);
+        if(point > 5)
+            printf(" For points gained from playing the game                              \n");
+            setCursor_inc(x,y++);
+    }
+
     printf(" Final Amount after Discount: %.2f                                    \n", final_amount);
     setCursor_inc(x,y++);
     printf("                                                                      \n", final_amount);

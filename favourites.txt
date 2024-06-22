@@ -7,3 +7,6 @@ mehanth,Cheeseburger,8.99,American,NonVeg,5.00,1
 mehanth,Pizza_Slice,2.99,FastFood,Veg,3.00,0
 mehanth,Chow_Mein,10.99,Chinese,NonVeg,4.00,0
 mehanth,Croissant,3.99,French,Veg,0.00,0
+mehanth1,Moussaka,14.99,Greek,NonVeg,5.00,1
+mehanth1,Masala_Dosa,8.99,SouthIndian,Veg,5.00,0
+mehanth1,Mutton_Biryani,16.99,TamilNadu,NonVeg,0.00,0

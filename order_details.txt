@@ -41,3 +41,10 @@ mehanth,Croissant,French,Veg,3.990000,6,21-06-2024/02:22:01
 mehanth,Chole_Bhature,NorthIndian,Veg,11.990000,5,21-06-2024/03:25:42
 mehanth,Key_Lime_Pie,American,Veg,6.990000,4,21-06-2024/03:25:42
 mehanth,Bouillabaisse,French,NonVeg,22.990000,3,21-06-2024/03:29:43
+mehanth1,Vegetable_Spring_Rolls,Snacks,NonVeg,4.990000,5,21-06-2024/05:50:38
+mehanth1,Bouillabaisse,French,NonVeg,22.990000,7,21-06-2024/06:02:15
+mehanth1,Masala_Dosa,SouthIndian,Veg,8.990000,8,21-06-2024/08:59:15
+mehanth1,Tzatziki,Greek,Veg,6.990000,5,21-06-2024/09:01:35
+mehanth1,Mutton_Biryani,TamilNadu,NonVeg,16.990000,6,21-06-2024/09:33:16
+mehanth,Pulpo_a_la_Gallega,Spanish,NonVeg,18.990000,2,21-06-2024/11:28:30
+mehanth,Loukoumades,Greek,NonVeg,6.990000,2,21-06-2024/11:29:48

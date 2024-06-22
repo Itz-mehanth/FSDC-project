@@ -31,24 +31,32 @@ typedef struct {
     dif_categories categories;
 } restaurant;
 
+typedef struct {
+    restaurant res;
+    int count;
+} restaurant_count;
 
+int compare_restaurants(const void *a, const void *b);
+int compare_counts(const void *a, const void *b);
+
+restaurant *unique_sorted_restaurants(restaurant *restaurants, int num_restaurants, int *result_size);
 
 extern restaurant restaurants[];
 extern restaurant vegRestaurants[];
 extern restaurant nonvegRestaurants[];
 
-int review_restaurant(const char *restaurant_name);
+int review_restaurant(char *restaurant_name);
 
-restaurant *find_restaurant(const char *name);
+restaurant *find_restaurant(char *name);
 
 Node enter_delivery_address(Node *graph);
 
-void storeComment(const char *restaurant_name);
+void storeComment(char *restaurant_name);
 
-void printNearbyRestaurant(int n, const char *restaurant_name,float distance);
+void printNearbyRestaurant(int n, char *restaurant_name,float distance);
 // void nearby_restaurants(char node_name[],float distance_max);
 int isrestaurant(char *res_name);
-int viewLastFiveComments(const char *restaurant_name);
+int viewLastFiveComments(char *restaurant_name);
 
 Category select_food_Category();
 
@@ -61,13 +69,13 @@ void print_restaurants();
 // int initialize_restaurant(restaurant *Restaurant, char name[20],char type[20], double lat, double lon, float rating , int total_ratings);
 // Category select_food_Category();
 // int writeToRestaurants(restaurant *restaurants);
+void printRestaurants(int n, char *restaurant_name);
 
 int readRestaurants();
-restaurant* find_restaurant(const char *name);
 
 void rate_restaurant(const char *restaurant_name);
 
-void printRestaurant(int n, const char *restaurant_name);
+void printRestaurant(int n, char *restaurant_name);
 
 void display_restaurants();
 int select_restaurants();

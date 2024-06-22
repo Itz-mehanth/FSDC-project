@@ -105,7 +105,6 @@ int readPartnersFromFile() {
         num_del_boys++;
     }
     // printf("%d is the number of users\n",num_del_boys);
-    getchar();
 
     fclose(file);
     return 1;
@@ -445,7 +444,6 @@ int loginPartner()
                 int num_partners;
                 num_partners = readPartnersFromFile();
                 // printf("num of partners: %d\n", num_partners);
-                getchar();
                 if (focusSide == 0)
                 {
                     return 0;

@@ -10,7 +10,7 @@ Pesto_Pasta,10.99,Italian,NonVeg,0.00,0,0.00
 Minestrone_Soup,6.99,Italian,NonVeg,0.00,0,0.00
 Tortellini_Alfredo,13.99,Italian,NonVeg,0.00,0,0.00
 Butter_Chicken,13.99,Indian,NonVeg,0.00,0,0.00
-Masala_Dosa,8.99,Indian,Veg,0.00,0,0.00
+Masala_Dosa,8.99,Indian,Veg,5.00,1,5.00
 Chicken_Biryani,11.99,Indian,NonVeg,0.00,0,0.00
 Palak_Paneer,10.99,Indian,Veg,0.00,0,0.00
 Gulab_Jamun,6.99,Indian,Veg,0.00,0,0.00
@@ -20,7 +20,7 @@ Paneer_Tikka,10.99,Indian,NonVeg,0.00,0,0.00
 Rogan_Josh,14.99,Indian,NonVeg,0.00,0,0.00
 Aloo_Paratha,7.99,Indian,Veg,0.00,0,0.00
 Kung_Pao_Chicken,12.99,Chinese,NonVeg,0.00,0,0.00
-Fried_Rice,9.99,Chinese,Veg,0.00,0,0.00
+Fried_Rice,9.99,Chinese,Veg,4.00,1,4.00
 Dim_Sum,11.99,Chinese,Veg,3.00,1,3.00
 Mapo_Tofu,10.99,Chinese,Veg,0.00,0,0.00
 Peking_Duck,18.99,Chinese,NonVeg,0.00,0,0.00
@@ -41,7 +41,7 @@ Yakitori_(Grilled_Chicken_Skewers),9.99,Japanese,Veg,0.00,0,0.00
 Okonomiyaki_(Japanese_Pancake),10.99,Japanese,Veg,0.00,0,0.00
 Pad_Thai,10.99,Thai,NonVeg,0.00,0,0.00
 Green_Curry,12.99,Thai,NonVeg,0.00,0,0.00
-Tom_Yum_Soup,8.99,Thai,NonVeg,0.00,0,0.00
+Tom_Yum_Soup,8.99,Thai,NonVeg,4.00,1,4.00
 Som_Tum_(Papaya_Salad),9.99,Thai,Veg,0.00,0,0.00
 Mango_Sticky_Rice,6.99,Thai,Veg,0.00,0,0.00
 Massaman_Curry,13.99,Thai,NonVeg,0.00,0,0.00
@@ -90,7 +90,7 @@ Calamares_a_la_Romana,12.99,Spanish,NonVeg,0.00,0,0.00
 Manchego_Cheese_Plate,10.99,Spanish,NonVeg,0.00,0,0.00
 Sangria,9.99,Spanish,Veg,0.00,0,0.00
 Gyros,11.99,Greek,NonVeg,0.00,0,0.00
-Moussaka,14.99,Greek,NonVeg,4.00,1,4.00
+Moussaka,14.99,Greek,NonVeg,5.00,1,5.00
 Greek_Salad,9.99,Greek,Veg,0.00,0,0.00
 Souvlaki,12.99,Greek,NonVeg,0.00,0,0.00
 Spanakopita,8.99,Greek,Veg,0.00,0,0.00
