@@ -114,6 +114,7 @@ food_delivery_app/
    ```bash
    git clone https://github.com/Itz-mehanth/FSDC-project.git
    cd food_delivery_app
+   start cmd
    ```
 2. **Run the application:**
    ```bash
