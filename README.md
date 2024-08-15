@@ -115,15 +115,9 @@ food_delivery_app/
    git clone https://github.com/Itz-mehanth/FSDC-project.git
    cd food_delivery_app
    ```
-
-2. **Compile the project:**
+2. **Run the application:**
    ```bash
-   make
-   ```
-
-3. **Run the application:**
-   ```bash
-   ./food_delivery_app
+   ./output
    ```
 
 ## Usage
